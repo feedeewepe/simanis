@@ -1,0 +1,28 @@
+CRITICAL - 2021-10-27 08:56:59 --> Class 'App\Controllers\StudentModel' not found
+#0 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\KerjaPraktek->getmhs()
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KerjaPraktek))
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-10-27 08:58:42 --> Call to undefined method CodeIgniter\Database\MySQLi\Connection::get()
+#0 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\KerjaPraktek->getmhs()
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KerjaPraktek))
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-10-27 08:59:00 --> Argument 1 passed to CodeIgniter\Database\BaseBuilder::get() must be of the type int or null, string given, called in C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\Model.php on line 800
+#0 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\Model.php(800): CodeIgniter\Database\BaseBuilder->get('FULLNAME')
+#1 C:\xampp\htdocs\promise\app\Controllers\KerjaPraktek.php(83): CodeIgniter\Model->__call('get', Array)
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\KerjaPraktek->getmhs()
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KerjaPraktek))
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2021-10-27 08:59:53 --> Argument 2 passed to CodeIgniter\Database\BaseBuilder::get() must be of the type int, string given, called in C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\Model.php on line 800
+#0 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\Model.php(800): CodeIgniter\Database\BaseBuilder->get(3, 'FULLNAME')
+#1 C:\xampp\htdocs\promise\app\Controllers\KerjaPraktek.php(83): CodeIgniter\Model->__call('get', Array)
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\KerjaPraktek->getmhs()
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KerjaPraktek))
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#6 {main}

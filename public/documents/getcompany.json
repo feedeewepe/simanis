@@ -1,0 +1,17 @@
+[{
+    "COMPANYID": "1",
+    "COMPANYNAME": "A SURYA SEJAHTERA ALAMI, CV",
+    "ADDRESS": "Jl. Industri No.56 Rt.02\/01",
+    "CITY": "Malang",
+    "PROVINCE": "Jawa Timur",
+    "PHONE": "111111",
+    "EMAIL": "aaa@bbb.ccc"
+}, {
+    "COMPANYID": "2",
+    "COMPANYNAME": "A. SHULMAN PLASTICS, PT",
+    "ADDRESS": "Jl. Surabaya-malang Desa Ngerong",
+    "CITY": "Pasuruan",
+    "PROVINCE": "Jawa Timur",
+    "PHONE": "0343 - 854240",
+    "EMAIL": "bbb@ccc.ddd"
+}]

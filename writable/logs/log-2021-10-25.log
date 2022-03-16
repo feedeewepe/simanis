@@ -1,0 +1,359 @@
+CRITICAL - 2021-10-25 00:10:56 --> Only variables should be passed by reference
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Only variables ...', 'C:\\xampp\\htdocs...', 20, Array)
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 00:17:01 --> Only variables should be passed by reference
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Only variables ...', 'C:\\xampp\\htdocs...', 20, Array)
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 00:17:39 --> Undefined property: App\Controllers\CetakSurat::$session
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(42): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 42, Array)
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 20:10:35 --> Call to undefined function App\Controllers\exist()
+#0 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-10-25 20:11:42 --> Call to undefined function App\Controllers\file_exist()
+#0 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-10-25 20:22:31 --> Method load is not defined.
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(27): PhpOffice\PhpWord\PhpWord->__call('load', Array)
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 20:31:02 --> Call to undefined method PhpOffice\PhpWord\TemplateProcessor::addSection()
+#0 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-10-25 20:36:15 --> Method createwriter is not defined.
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(36): PhpOffice\PhpWord\PhpWord->__call('createwriter', Array)
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 21:02:40 --> Method setvalue is not defined.
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(29): PhpOffice\PhpWord\PhpWord->__call('setvalue', Array)
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 21:09:15 --> Argument 1 passed to PhpOffice\PhpWord\IOFactory::createWriter() must be an instance of PhpOffice\PhpWord\PhpWord, instance of PhpOffice\PhpWord\TemplateProcessor given, called in C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php on line 37
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(37): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\TemplateProcessor), 'HTML')
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 22:06:28 --> syntax error, unexpected '$dataanggota' (T_VARIABLE)
+#0 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\Router\Router.php(169): CodeIgniter\Router\Router->autoRoute('CetakSurat/sura...')
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(809): CodeIgniter\Router\Router->handle('CetakSurat/sura...')
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(389): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 22:19:53 --> "pdf" is not a valid writer.
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'pdf')
+#1 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(61): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'pdf', true)
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2021-10-25 22:20:16 --> PDF rendering library or library path has not been defined.
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#2 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(61): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-10-25 22:28:09 --> preg_match_all() expects parameter 2 to be string, object given
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'preg_match_all(...', 'C:\\xampp\\htdocs...', 16350, Array)
+#1 C:\xampp\htdocs\promise\vendor\tecnickcom\tcpdf\tcpdf.php(16350): preg_match_all('/<cssarray>([^\\...', Object(PhpOffice\PhpWord\PhpWord), Array)
+#2 C:\xampp\htdocs\promise\vendor\tecnickcom\tcpdf\tcpdf.php(17319): TCPDF->getHtmlDomArray(Object(PhpOffice\PhpWord\PhpWord))
+#3 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(81): TCPDF->writeHTML(Object(PhpOffice\PhpWord\PhpWord))
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#6 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-10-25 22:47:20 --> Argument 1 passed to PhpOffice\PhpWord\IOFactory::createWriter() must be an instance of PhpOffice\PhpWord\PhpWord, instance of App\Controllers\CetakSurat given, called in C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php on line 63
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(63): PhpOffice\PhpWord\IOFactory::createWriter(Object(App\Controllers\CetakSurat), 'HTML')
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 22:53:21 --> preg_match_all() expects parameter 2 to be string, object given
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'preg_match_all(...', 'C:\\xampp\\htdocs...', 16350, Array)
+#1 C:\xampp\htdocs\promise\vendor\tecnickcom\tcpdf\tcpdf.php(16350): preg_match_all('/<cssarray>([^\\...', Object(PhpOffice\PhpWord\Writer\HTML), Array)
+#2 C:\xampp\htdocs\promise\vendor\tecnickcom\tcpdf\tcpdf.php(17319): TCPDF->getHtmlDomArray(Object(PhpOffice\PhpWord\Writer\HTML))
+#3 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(83): TCPDF->writeHTML(Object(PhpOffice\PhpWord\Writer\HTML))
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#6 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-10-25 23:06:48 --> PDF rendering library or library path has not been defined.
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#2 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(66): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-10-25 23:10:54 --> Method setpdfrenderer is not defined.
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(28): PhpOffice\PhpWord\PhpWord->__call('setpdfrenderer', Array)
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 23:13:04 --> Too few arguments to function PhpOffice\PhpWord\Settings::setPdfRenderer(), 1 passed in C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php on line 29 and exactly 2 expected
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(29): PhpOffice\PhpWord\Settings::setPdfRenderer('TCPDF')
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 23:13:32 --> Use of undefined constant TCPDF - assumed 'TCPDF' (this will throw an Error in a future version of PHP)
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(29): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefine...', 'C:\\xampp\\htdocs...', 29, Array)
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 23:14:31 --> Use of undefined constant TCPDF - assumed 'TCPDF' (this will throw an Error in a future version of PHP)
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefine...', 'C:\\xampp\\htdocs...', 30, Array)
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 23:21:09 --> Use of undefined constant tcpdf - assumed 'tcpdf' (this will throw an Error in a future version of PHP)
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefine...', 'C:\\xampp\\htdocs...', 30, Array)
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 23:21:34 --> PDF rendering library or library path has not been defined.
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#2 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(66): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-10-25 23:22:08 --> Too few arguments to function PhpOffice\PhpWord\Settings::setPdfRenderer(), 1 passed in C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php on line 31 and exactly 2 expected
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(31): PhpOffice\PhpWord\Settings::setPdfRenderer('TCPDF')
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 23:25:02 --> Use of undefined constant TCPDF - assumed 'TCPDF' (this will throw an Error in a future version of PHP)
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefine...', 'C:\\xampp\\htdocs...', 30, Array)
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 23:25:30 --> Use of undefined constant TCPDF - assumed 'TCPDF' (this will throw an Error in a future version of PHP)
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefine...', 'C:\\xampp\\htdocs...', 30, Array)
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 23:27:16 --> Use of undefined constant PDF_RENDERER_TCPDF - assumed 'PDF_RENDERER_TCPDF' (this will throw an Error in a future version of PHP)
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefine...', 'C:\\xampp\\htdocs...', 30, Array)
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 23:30:37 --> PDF rendering library or library path has not been defined.
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#2 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(64): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-10-25 23:32:04 --> Use of undefined constant APPATH - assumed 'APPATH' (this will throw an Error in a future version of PHP)
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(29): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefine...', 'C:\\xampp\\htdocs...', 29, Array)
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 23:32:43 --> PDF rendering library or library path has not been defined.
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#2 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(64): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-10-25 23:33:39 --> PDF rendering library or library path has not been defined.
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#2 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(64): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-10-25 23:40:01 --> PDF rendering library or library path has not been defined.
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#2 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(64): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-10-25 23:42:19 --> PDF rendering library or library path has not been defined.
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#2 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(65): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-10-25 23:42:36 --> PDF rendering library or library path has not been defined.
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#2 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(65): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-10-25 23:47:48 --> PDF rendering library or library path has not been defined.
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#2 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(65): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-10-25 23:50:09 --> PDF rendering library or library path has not been defined.
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#2 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(65): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-10-25 23:53:38 --> Class 'App\Controllers\Settings' not found
+#0 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-10-25 23:54:13 --> Unable to load PDF Rendering library
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\Writer\PDF.php(60): PhpOffice\PhpWord\Writer\PDF\AbstractRenderer->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#2 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#3 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(67): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#6 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-10-25 23:54:47 --> Use of undefined constant TCPDF - assumed 'TCPDF' (this will throw an Error in a future version of PHP)
+#0 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefine...', 'C:\\xampp\\htdocs...', 30, Array)
+#1 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#2 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-25 23:55:24 --> PDF rendering library or library path has not been defined.
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#2 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(67): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-10-25 23:57:02 --> Unable to load PDF Rendering library
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\Writer\PDF.php(60): PhpOffice\PhpWord\Writer\PDF\AbstractRenderer->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#2 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#3 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(68): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#6 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-10-25 23:58:09 --> PDF rendering library or library path has not been defined.
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#2 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(67): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#3 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-10-25 23:59:14 --> Unable to load PDF Rendering library
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\Writer\PDF.php(60): PhpOffice\PhpWord\Writer\PDF\AbstractRenderer->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#2 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#3 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(66): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#6 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-10-25 23:59:51 --> Unable to load PDF Rendering library
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\Writer\PDF.php(60): PhpOffice\PhpWord\Writer\PDF\AbstractRenderer->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#2 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#3 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(66): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#6 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-10-25 23:59:53 --> Unable to load PDF Rendering library
+#0 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\Writer\PDF.php(60): PhpOffice\PhpWord\Writer\PDF\AbstractRenderer->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#1 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\IOFactory.php(44): PhpOffice\PhpWord\Writer\PDF->__construct(Object(PhpOffice\PhpWord\PhpWord))
+#2 C:\xampp\htdocs\promise\vendor\phpoffice\phpword\src\PhpWord\PhpWord.php(361): PhpOffice\PhpWord\IOFactory::createWriter(Object(PhpOffice\PhpWord\PhpWord), 'PDF')
+#3 C:\xampp\htdocs\promise\app\Controllers\CetakSurat.php(66): PhpOffice\PhpWord\PhpWord->save('SURAT_PENGANTAR...', 'PDF', true)
+#4 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(928): App\Controllers\CetakSurat->suratPengantarSurvey()
+#5 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CetakSurat))
+#6 C:\xampp\htdocs\promise\vendor\codeigniter4\framework\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\promise\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 {main}
