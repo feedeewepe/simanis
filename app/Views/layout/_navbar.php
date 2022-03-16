@@ -7,7 +7,7 @@
         </div>
         <div>
           <a class="navbar-brand brand-logo" href="index.html">
-            <!-- <img src="<?= base_url(); ?>/assets/star-admin2/images/logo.svg" alt="logo" /> -->PROMISE
+            <!-- <img src="<?= base_url(); ?>/assets/star-admin2/images/logo.svg" alt="logo" /> -->SIMANIS
           </a>
           <a class="navbar-brand brand-logo-mini" href="index.html">
             <!-- <img src="<?= base_url(); ?>/assets/star-admin2/images/favicon.png" alt="logo" /> -->
@@ -17,7 +17,7 @@
       <div class="navbar-menu-wrapper d-flex align-items-top" style="height:0px"> 
         <ul class="navbar-nav">
           <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">            
-            <h3 class="welcome-sub-text">PRactical wOrk and intership Management Information SystEm </h3>
+            <h3 class="welcome-sub-text">Student Internship MANagement Information System </h3>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">          

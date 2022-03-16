@@ -7,7 +7,7 @@ class Dashboard extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'PROMISE - ITTelkom SBY',
+            'title' => 'SIMANIS - ITTelkom SBY',
             'usergroup' => $this->userGroup,
         ];
 
