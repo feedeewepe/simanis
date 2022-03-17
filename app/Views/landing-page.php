@@ -6,7 +6,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>PROMISE | ITTelkom SBY</title>
-        <link rel="icon" type="image/x-icon" href="<?php echo base_url('favicon.ico');?>" />
+        <link rel="icon" type="image/x-icon" href="<?php echo base_url('favicon.ico'); ?>" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -14,18 +14,18 @@
         <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;display=swap" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="<?php echo base_url('/assets/startbootstrap-coming-soon-gh-pages/css/styles.css');?>" rel="stylesheet" />
+        <link href="<?php echo base_url('/assets/startbootstrap-coming-soon-gh-pages/css/styles.css'); ?>" rel="stylesheet" />
     </head>
     <body class="login">
         <!-- Background Video-->
-        <video class="bg-video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="<?php echo base_url();?>/assets/startbootstrap-coming-soon-gh-pages/assets/mp4/bg.mp4" type="video/mp4" /></video>
+        <video class="bg-video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="<?php echo base_url(); ?>/assets/startbootstrap-coming-soon-gh-pages/assets/mp4/bg.mp4" type="video/mp4" /></video>
         <!-- Masthead-->
         <div class="masthead">
             <div class="masthead-content text-white">
                 <div class="container-fluid px-4 px-lg-0">
-                    <tittle>PROMISE</tittle>
+                    <tittle>SIMANIS</tittle>
                     <h1 class="fst-italic lh-1">Coming Soon</h1>
-                    <p>PRactical wOrk and intership Management Information SystEm</p>
+                    <p>Student Internship MANagement Information System</p>
                     
                         <!-- <section class="login_content">
                             <form>
@@ -46,67 +46,67 @@
 
                         <div class="">
                             <div class="col-5">
-                                <p class="login-box-msg"><?=lang('Auth.loginTitle')?></p>
-                                <?= view('Myth\Auth\Views\_message_block') ?>
-                                <form action="<?= route_to('Auth.login') ?>" method="post">
-                                <?= csrf_field() ?>
+                                <p class="login-box-msg"><?=lang('Auth.loginTitle'); ?></p>
+                                <?= view('Myth\Auth\Views\_message_block'); ?>
+                                <form action="<?= route_to('Auth.login'); ?>" method="post">
+                                <?= csrf_field(); ?>
                                 <?php if ($config->validFields === ['email']) { ?>
                                 <div class="mb-3">
                                     <input type="email" name="login"
-                                    class="form-control <?= session('error.login') || session('errors.login') ? 'is-invalid' : '' ?>"
-                                    placeholder="<?=lang('Auth.email')?>" value="<?= old('login') ?>" autocomplete="off">
+                                    class="form-control <?= session('error.login') || session('errors.login') ? 'is-invalid' : ''; ?>"
+                                    placeholder="<?=lang('Auth.email'); ?>" value="<?= old('login'); ?>" autocomplete="off">
                                     
                                     <div class="invalid-feedback">
-                                    <?= session('errors.login') ?>
+                                    <?= session('errors.login'); ?>
                                     </div>
                                 </div>
                                 <?php } else { ?>
                                 <div class="mb-3">
                                     <input type="text" name="login"
-                                    class="form-control <?= session('error.login') || session('errors.login') ? 'is-invalid' : '' ?>"
-                                    placeholder="<?=lang('Auth.emailOrUsername')?>" value="<?= old('login') ?>" autocomplete="off">
+                                    class="form-control <?= session('error.login') || session('errors.login') ? 'is-invalid' : ''; ?>"
+                                    placeholder="<?=lang('Auth.emailOrUsername'); ?>" value="<?= old('login'); ?>" autocomplete="off">
                                    
                                     <div class="invalid-feedback">
-                                    <?= session('errors.login') ?>
+                                    <?= session('errors.login'); ?>
                                     </div>
                                 </div>
                                 <?php } ?>
                                 <div class="mb-3">
                                     <input type="password" name="password"
-                                    class="form-control <?= session('errors.password') ? 'is-invalid' : '' ?>"
-                                    placeholder="<?=lang('Auth.password')?>">
+                                    class="form-control <?= session('errors.password') ? 'is-invalid' : ''; ?>"
+                                    placeholder="<?=lang('Auth.password'); ?>">
                                     
                                     <div class="invalid-feedback">
-                                    <?= session('errors.password') ?>
+                                    <?= session('errors.password'); ?>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <?php if ($config->allowRemembering) { ?>
                                     <div class="col-8">
                                     <div class="icheck-primary">
-                                        <input type="checkbox" name="remember" id="remember" <?= old('remember') ? 'checked' : '' ?> >
+                                        <input type="checkbox" name="remember" id="remember" <?= old('remember') ? 'checked' : ''; ?> >
                                         <label for="remember">
-                                        <?=lang('Auth.rememberMe')?>
+                                        <?=lang('Auth.rememberMe'); ?>
                                         </label>
                                     </div>
                                     </div>
                                     <?php } ?>
                                     <!-- /.col -->
                                     <div class="col-6">
-                                    <button type="submit" class="btn btn-primary btn-block"><?= lang('Auth.signIn') ?></button>
+                                    <button type="submit" class="btn btn-primary btn-block"><?= lang('Auth.signIn'); ?></button>
                                     </div>
                                     <!-- /.col -->
                                 </div>
                                 </form>
                                 
-                                <?php if ($config->activeResetter!=null) { ?>
+                                <?php if ($config->activeResetter != null) { ?>
                                 <p class="mb-1">
-                                <a href="forgot"><?=lang('Auth.forgotYourPassword')?></a>
+                                <a href="forgot"><?=lang('Auth.forgotYourPassword'); ?></a>
                                 </p>                                
                                 <?php } ?>
                                 <?php if ($config->allowRegistration) { ?>
                                 <p class="mb-0">
-                                <a href="register" class="text-center"><?=lang('Auth.needAnAccount')?></a>
+                                <a href="register" class="text-center"><?=lang('Auth.needAnAccount'); ?></a>
                                 </p>
                                 <?php } ?>
                             </div>
@@ -127,6 +127,6 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="<?php echo base_url();?>/assets/startbootstrap-coming-soon-gh-pages/js/scripts.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/startbootstrap-coming-soon-gh-pages/js/scripts.js"></script>
     </body>
 </html>
