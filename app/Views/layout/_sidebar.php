@@ -348,6 +348,7 @@
                   <div class="collapse" id="ui-basic-mhskp">
                     <ul class="nav flex-column sub-menu">
                       <?php $i = 0;
+                      if (isset($menu)):
                       foreach ($menu as $key => $value):
                         $i++; ?>
                       <li class="nav-item">
@@ -356,7 +357,7 @@
                             <?=$key; ?>
                         </a>
                       </li>
-                      <?php endforeach; ?>
+                      <?php endforeach; endif; ?>
                       <!-- <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('survey-kp'); ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-database"></i></div>

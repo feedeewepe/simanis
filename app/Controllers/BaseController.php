@@ -55,7 +55,7 @@ class BaseController extends Controller
     protected $helpers = ['auth', 'url', 'form', 'html', 'text'];
 
     protected $userGroup;
-    protected $menu;
+    protected $menu = [];
 
     /**
      * Constructor.
@@ -78,23 +78,28 @@ class BaseController extends Controller
         if (user() != null) {
             $this->userGroup = $this->userGroup->getGroupName(user()->usergroupid);
         } else {
-            header('location:/promise');
+            header('location:/simanis');
             die('redirect');
         }
-        if ($this->userGroup == 'Mahasiswa') {
-            $this->menu = [
-                'Pendaftaran KP' => 'kerjapraktek/daftarKP',
-                'Survey KP' => 'kerjapraktek/daftarKP',
-                'Proposal KP' => 'kerjapraktek/daftarKP',
-                'Surat Permohonan KP' => 'kerjapraktek/daftarKP',
-                'Surat Balasan KP' => 'kerjapraktek/daftarKP',
-                'Pakta Integritas KP' => 'kerjapraktek/daftarKP',
-                'Pelaksanaan-KP' => 'kerjapraktek/daftarKP',
-                'Laporan KP' => 'kerjapraktek/daftarKP',
-                'Revisi Laporan KP' => 'kerjapraktek/daftarKP',
-                'Presentasi' => 'kerjapraktek/daftarKP',
-                'Pengumpulan Dokumen' => 'kerjapraktek/daftarKP',
-            ];
+        switch ($this->userGroup) {
+            case 'Mahasiswa':
+                $this->menu = [
+                    'Pendaftaran KP' => 'kerjapraktek/daftarKP',
+                    'Survey KP' => 'kerjapraktek/daftarKP',
+                    'Proposal KP' => 'kerjapraktek/daftarKP',
+                    'Surat Permohonan KP' => 'kerjapraktek/daftarKP',
+                    'Surat Balasan KP' => 'kerjapraktek/daftarKP',
+                    'Pakta Integritas KP' => 'kerjapraktek/daftarKP',
+                    'Pelaksanaan-KP' => 'kerjapraktek/daftarKP',
+                    'Laporan KP' => 'kerjapraktek/daftarKP',
+                    'Revisi Laporan KP' => 'kerjapraktek/daftarKP',
+                    'Presentasi' => 'kerjapraktek/daftarKP',
+                    'Pengumpulan Dokumen' => 'kerjapraktek/daftarKP',
+                ];
+                break;
+            case 'Administrator':
+                $this->menu = [];
+                break;
         }
     }
 }
