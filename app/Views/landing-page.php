@@ -6,7 +6,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>PROMISE | ITTelkom SBY</title>
-        <link rel="icon" type="image/x-icon" href="<?php echo base_url('favicon.ico'); ?>" />
+        <link rel="icon" type="image/x-icon" href="<?php echo base_url('favicon.png'); ?>" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -23,8 +23,12 @@
         <div class="masthead">
             <div class="masthead-content text-white">
                 <div class="container-fluid px-4 px-lg-0">
-                    <tittle>SIMANIS</tittle>
+                    
                     <h1 class="fst-italic lh-1">Coming Soon</h1>
+                    <span class="title">
+                        <img src="<?php echo base_url('/assets/img/logo_simanis.png'); ?>" class="logo" alt="logo simanis"/>
+                        SIMANIS
+                    </span>  
                     <p>Student Internship MANagement Information System</p>
                     
                         <!-- <section class="login_content">
@@ -92,7 +96,7 @@
                                     </div>
                                     <?php } ?>
                                     <!-- /.col -->
-                                    <div class="col-6">
+                                    <div class="col-8">
                                     <button type="submit" class="btn btn-primary btn-block"><?= lang('Auth.signIn'); ?></button>
                                     </div>
                                     <!-- /.col -->
