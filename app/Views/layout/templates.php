@@ -24,7 +24,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="<?= base_url(); ?>/assets/star-admin2/css/vertical-layout-light/style.css">  
   <!-- endinject -->
-  <link rel="shortcut icon" href="<?= base_url(); ?>/assets/star-admin2/images/favicon.png" />
+  <link rel="shortcut icon" href="<?= base_url('favicon.png'); ?>" />
 </head>
 <body>
   <div class="container-scroller"> 

@@ -7,7 +7,7 @@
         </div>
         <div>
           <a class="navbar-brand brand-logo" href="index.html">
-            <!-- <img src="<?= base_url(); ?>/assets/star-admin2/images/logo.svg" alt="logo" /> -->SIMANIS
+            <img src="<?= base_url(); ?>/assets/img/logo_simanis.png" alt="logo" />SIMANIS
           </a>
           <a class="navbar-brand brand-logo-mini" href="index.html">
             <!-- <img src="<?= base_url(); ?>/assets/star-admin2/images/favicon.png" alt="logo" /> -->
