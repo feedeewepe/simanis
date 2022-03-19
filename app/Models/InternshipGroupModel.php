@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class StudentModel extends Model
+class InternshipGroupModel extends Model
 {
     protected $DBGroup = 'default';
-    protected $table = 'student';
-    protected $primaryKey = 'STUDENTID';
+    protected $table = 'internshipgroup';
+    protected $primaryKey = 'GROUPID';
     protected $useAutoIncrement = true;
     protected $insertID = 0;
-    protected $returnType = \App\Entities\Student::class;
+    protected $returnType = \App\Entities\InternshipGroup::class;
     protected $useSoftDeletes = false;
     protected $protectFields = true;
-    protected $allowedFields = ['FULLNAME', 'STUDYPROGRAMID', 'GROUPID', 'CLASS', 'LECTURERCODE', 'STUDENTSCHOOLYEAR'];
+    protected $allowedFields = ['GROUPID', 'LECTURERCODE', 'COMPANYID', 'TYPEID', 'SCHOOLYEAR', 'SEMESTER', 'STARTDATE', 'ENDDATE', 'ADVISORNAME', 'ADVISORUNIT', 'ADVISORPOSITION', 'ADVISORPHONE', 'ADVISOREMAIL'];
 
     // Dates
     protected $useTimestamps = false;

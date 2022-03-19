@@ -2,9 +2,13 @@
 
 namespace App\Controllers;
 
+use App\Models\InternshipGroupModel;
+use App\Models\StudentModel;
+
 class KerjaPraktek extends BaseController
 {
     protected $studentModel;
+    protected $internshipGroupModel;
 
     public function index()
     {
@@ -42,8 +46,9 @@ class KerjaPraktek extends BaseController
             'namaketua' => 'required',
             'tlpketua' => 'required',
             'emailketua' => 'required|valid_email',
-            'fakultas' => 'required',
-            'prodi' => 'required',
+            // 'fakultas' => 'required',
+            // 'prodi' => 'required',
+            'idinstansi' => 'required',
             'namainstansi' => 'required',
             'alamatinstansi' => 'required',
             'tlpinstansi' => 'required',
@@ -55,12 +60,27 @@ class KerjaPraktek extends BaseController
             'nimketua', 'namaketua', 'tlpketua', 'emailketua',
             'nimanggota1', 'namaanggota1', 'tlpanggota1', 'emailanggota1',
             'nimanggota2', 'namaanggota2', 'tlpanggota2', 'emailanggota2',
-            'fakultas', 'prodi', 'namainstansi', 'alamatinstansi', 'tlpinstansi', ];
+            'fakultas', 'prodi', 'idinstansi', 'namainstansi', 'alamatinstansi', 'tlpinstansi', ];
         $var = $this->request->getPost($allowedPostFields);
-        // var_dump($var);
+
+        $this->studentModel = model(StudentModel::class);
+        $this->internshipGroupModel = model(InternshipGroupModel::class);
+        $id = 1 + $this->internshipGroupModel->getInsertID();
+        $this->internshipGroupModel->insert(['GROUPID' => $id, 'COMPANYID' => $var['idinstansi']]);
+        // var_dump($id);
         // die;
-        if (!$var->save($var)) {
-            return redirect()->back()->withInput()->with('errors', $users->errors());
+        if ($id) {
+            $this->studentModel->update($var['nimketua'], ['GROUPID' => $id]);
+            if (isset($var['nimanggota1'])) {
+                $this->studentModel->update($var['nimanggota1'], ['GROUPID' => $id]);
+            }
+            if (isset($var['nimanggota2'])) {
+                $this->studentModel->update($var['nimanggota2'], ['GROUPID' => $id]);
+            }
+
+            return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
+        } else {
+            return redirect()->back()->withInput()->with('errors', $this->internshipGroupModel->errors());
         }
     }
 
