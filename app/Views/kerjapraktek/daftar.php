@@ -52,7 +52,7 @@
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" id="daftar-tab" data-bs-toggle="tab" href="#tabdaftar" role="tab"
-                                                    aria-selected="false">Daftar</a>
+                                                    aria-selected="false">Pendaftaran</a>
                                             </li>
                                         </ul>
                                     </div>
