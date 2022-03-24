@@ -88,7 +88,7 @@ class BaseController extends Controller
                     'Survey KP' => 'SurveyController/index',
                     'Proposal KP' => 'kerjapraktek/daftarKP',
                     'Surat Permohonan KP' => 'dokumen/permohonanKP',
-                    'Surat Balasan KP' => 'kerjapraktek/daftarKP',
+                    'Surat Balasan KP' => 'dokumen/balasanKP',
                     'Pakta Integritas KP' => 'kerjapraktek/daftarKP',
                     'Pelaksanaan-KP' => 'kerjapraktek/daftarKP',
                     'Laporan KP' => 'kerjapraktek/daftarKP',
