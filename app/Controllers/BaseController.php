@@ -87,7 +87,7 @@ class BaseController extends Controller
                     'Pendaftaran KP' => 'kerjapraktek/daftarKP',
                     'Survey KP' => 'kerjapraktek/daftarKP',
                     'Proposal KP' => 'kerjapraktek/daftarKP',
-                    'Surat Permohonan KP' => 'kerjapraktek/daftarKP',
+                    'Surat Permohonan KP' => 'dokumen/permohonanKP',
                     'Surat Balasan KP' => 'kerjapraktek/daftarKP',
                     'Pakta Integritas KP' => 'kerjapraktek/daftarKP',
                     'Pelaksanaan-KP' => 'kerjapraktek/daftarKP',
