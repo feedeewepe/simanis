@@ -22,12 +22,13 @@
   <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="<?= base_url(); ?>/assets/star-admin2/css/vertical-layout-light/style.css">  
+  <link rel="stylesheet" href="<?= base_url(); ?>/assets/star-admin2/css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= base_url('favicon.png'); ?>" />
 </head>
+
 <body>
-  <div class="container-scroller"> 
+  <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <?= $this->include('layout/_navbar'); ?>
     <!-- partial -->
@@ -40,7 +41,7 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-        <?= $this->renderSection('content'); ?>
+          <?= $this->renderSection('content'); ?>
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
@@ -78,9 +79,8 @@
   <!-- End custom js for this page-->
   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-  
+
   <?= $this->renderSection('injectCSS'); ?>
 </body>
 
 </html>
-

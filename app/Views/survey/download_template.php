@@ -1,5 +1,4 @@
 <?= $this->extend('layout/templates'); ?>
-
 <?= $this->Section('content'); ?>
 <div id="layoutSidenav_content">
     <main>
@@ -43,156 +42,71 @@
                                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link active ps-0" id="group-tab" data-bs-toggle="tab" href="#tabgroup" role="tab" aria-controls="tabgroup" aria-selected="true">Mahasiswa</a>
+                                                <a class="nav-link active ps-0" id="download-tab" data-bs-toggle="tab" href="#tabdownload" role="tab" aria-controls="tabgroup" aria-selected="true">Download Template BA</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="instansi-tab" data-bs-toggle="tab" href="#tabinstansi" role="tab" aria-selected="false">Instansi Tujuan</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="daftar-tab" data-bs-toggle="tab" href="#tabdaftar" role="tab" aria-selected="false">Pendaftaran</a>
+                                                <a class="nav-link" id="upload-tab" data-bs-toggle="tab" href="#tabupload" role="tab" aria-selected="false">Upload BA</a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="tab-content tab-content-basic">
-                                        <div class="tab-pane fade show active" id="tabgroup" role="tabpanel" aria-labelledby="tabgroup">
+                                        <div class="tab-pane fade show active" id="tabdownload" role="tabpanel" aria-labelledby="tabdownload">
                                             <div class="row">
-                                                <div class="col-xl-3 col-md-8 grid-margin stretch-card">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h4>Ketua</h4>
-                                                            <div class="form-group">
-
-                                                                <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" name="namaketua" id="namaketua" placeholder="Nama Lengkap Mahasiswa" class="form-control">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" name="tlpketua" id="tlpketua" placeholder="No Telp Mahasiswa" class="form-control">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" name="emailketua" id="emailketua" placeholder="Email Mahasiswa" class="form-control">
-
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-3 col-md-8 grid-margin stretch-card">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h4>Anggota 1 (Optional)</h4>
-                                                            <div class="form-group">
-                                                                <input type="text" name="nimanggota1" id="nimanggota1" placeholder="NIM Mahasiswa" class="typeahead form-control">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" name="namaanggota1" id="namaanggota1" placeholder="Nama Lengkap Mahasiswa" class="form-control">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" name="tlpanggota1" id="tlpanggota1" placeholder="No Telp Mahasiswa" class="form-control">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" name="emailanggota1" id="emailanggota1" placeholder="Email Mahasiswa" class="form-control">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-3 col-md-8 grid-margin stretch-card">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h4>Anggota 2 (Optional)</h4>
-                                                            <div class="form-group">
-                                                                <input type="text" name="nimanggota2" id="nimanggota2" placeholder="NIM Mahasiswa" class="typeahead form-control">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" name="namaanggota2" id="namaanggota2" placeholder="Nama Lengkap Mahasiswa" class="form-control">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" name="tlpanggota2" id="tlpanggota2" placeholder="No Telp Mahasiswa" class="form-control">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" name="emailanggota2" id="emailanggota2" placeholder="Email Mahasiswa" class="form-control">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <iframe src="https://drive.google.com/file/d/1DYq3hETGGePzB_Tn9csMs-ObRPijTAYw/preview" width="640" height="480"></iframe>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade " id="tabinstansi" role="tabpanel" aria-labelledby="tabinstansi">
+                                        <div class="tab-pane fade " id="tabupload" role="tabpanel" aria-labelledby="tabdownload">
                                             <div class="row">
-                                                <div class="col-xl-6  col-md-6 grid-margin stretch-card">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h4>Instansi Tujuan</h4>
-                                                            <div class="row">
-                                                                <div id="instansi">
-                                                                    <div class="form-group">
-                                                                        <label for="namainstansi">Nama Instansi</label>
-                                                                        <div class="input-group">
-                                                                            <span class="input-group-text"><i class="icon-search"></i></span>
-                                                                            <input type="text" name="namainstansi" class="form-control" autocomplete="off" id="namainstansi" placeholder="Cari Nama instansi">
-                                                                            <input type="hidden" name="idinstansi" class="form-control" autocomplete="off" id="idinstansi">
-                                                                            <button class="btn btn-sm btn-success" type="button" id="btn-instansi" data-toggle="tooltip" data-placement="top" title="Tambah instansi baru">
-                                                                                <i class="icon-plus"></i>
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
+                                                <p>
+                                                    Survey dilakukan sebelum mengajukan proposal Kerja Praktek ke lokasi KP.
+                                                    Jika survey dilakukan secara offline, maka memerlukan Surat Pengantar Survey sedangkan
+                                                    jika survey dilakukan secara online tidak perlu Surat Pengantar Survey.
+                                                    Surat Pengantar Survey adalah surat yang digunakan untuk mengajukan kepada pihak
+                                                    Instansi untuk dilakukan kegiatan penjajakan lokasi Kerja Praktik oleh Mahasiswa.
+                                                    Surat pengantar survey tersebut harus diketahui dan atas izin Dekan Fakultas yang
+                                                    bersangkutan.
 
-                                                                    <div class="form-group">
-                                                                        <label for="alamatinstansi">Alamat Instansi</label>
-                                                                        <input type="text" name="alamatinstansi" class="form-control" autocomplete="off" id="alamatinstansi" readOnly="readOnly" placeholder="Alamat instansi atau perusahaan tujuan">
-                                                                    </div>
+                                                    Setelah melakukan survey, mahasiswa akan diminta mengisi Berita Acara Survey,
+                                                    baik survey offline maupun online harus mengisi Berita Acara Survey.
+                                                </p>
+                                                <form id="formdaftarkp" action="<?= base_url('KerjaPraktek/daftar'); ?>" method="post">
+                                                    <?= csrf_field(); ?>
 
-                                                                    <div class="form-group">
-                                                                        <label for="kotainstansi">Kota Instansi</label>
-                                                                        <input type="text" name="kotainstansi" class="form-control" autocomplete="off" id="kotainstansi" readOnly="readOnly" placeholder="Kota instansi atau perusahaan tujuan">
-                                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group row">
 
-                                                                    <div class="form-group">
-                                                                        <label for="propinstansi">Propinsi Instansi</label>
-                                                                        <input type="text" name="propinstansi" class="form-control" autocomplete="off" id="propinstansi" readOnly="readOnly" placeholder="Propinsi instansi atau perusahaan tujuan">
-                                                                    </div>
-
-                                                                    <div class="form-group">
-                                                                        <label for="tlpinstansi">No Telepon Instansi</label>
-                                                                        <input type="text" name="tlpinstansi" class="form-control" readOnly="readOnly" autocomplete="off" id="tlpinstansi" placeholder="No Telp instansi">
-                                                                    </div>
-
-                                                                    <div class="form-group">
-                                                                        <label for="emailinstansi">Email Instansi</label>
-                                                                        <input type="text" name="emailinstansi" class="form-control" readOnly="readOnly" autocomplete="off" id="emailinstansi" placeholder="Email instansi">
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <button type="button" id="btn-cancel-company" class="btn btn-secondary btn-sm invisible">Cancel</button>
-                                                                        <button type="submit" id="btn-submit-company" class="btn btn-primary btn-sm invisible">Simpan Instansi</button>
-                                                                    </div>
-                                                                </div>
-
+                                                            <label for="jenissurvey">Jenis Survey</label>
+                                                            <div class="col-xl-3 col-md-6">
+                                                                <label class="form-check-label col-xl-3 col-md-3">
+                                                                    <input type="radio" class="form-check-input jenissurvey" name="jenissurvey" id="jenissurvey1" value="offline">
+                                                                    Offline
+                                                                </label>
+                                                                <label class="form-check-label col-xl-3 col-md-3">
+                                                                    <input type="radio" class="form-check-input jenissurvey" name="jenissurvey" id="jenissurvey2" value="online">
+                                                                    Online
+                                                                </label>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade " id="tabdaftar" role="tabpanel" aria-labelledby="tabdaftar">
-                                            <div class="row">
-                                                <div class="col-xl-6  col-md-6 grid-margin stretch-card">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h4>Pendaftaran</h4>
-                                                            <div class="row">
-                                                                <div id="summarydaftar">
-                                                                    <p>Dengan klik tombol daftar di bawah ini, maka nama mahasiswa yang telah diisi pada tab mahasiswa
-                                                                        akan mendapatkan surat permohonan survey untuk Kerja Praktek yang akan ditujukan ke instansi tujuan.</P>
-                                                                </div>
-                                                            </div>
+                                                    <div class="row text-center">
+                                                        <div class="col-md-6">
+
+                                                            <button type="button" id="btn-sps" class="btn btn-primary btn-lg btn-block" disabled>
+                                                                <a href="<?= base_url('CetakSurat/suratPengantarSurvey'); ?>">
+                                                                    <i class="mdi mdi-calendar-text"></i>
+                                                                    Surat Pengantar Survey
+                                                                </a>
+                                                            </button>
+
                                                         </div>
-                                                        <div class="card-footer">
-                                                            <a href="<?= base_url('dashboard'); ?>" class="btn btn-secondary btn-sm" role="button">Close</a>
-                                                            <button type="submit" id="btn-submit" class="btn btn-primary btn-sm">Daftar</button>
+                                                        <div class="col-md-6">
+                                                            <button type="button" id="btn-bas" class="btn btn-primary btn-lg btn-block" disabled>
+                                                                <i class="mdi mdi-calendar-check"></i>
+                                                                Template Berita Acara Survey
+                                                            </button>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -258,13 +172,6 @@
                                 <div class="col-xl-3 col-md-8">
                                     <div class="form-group">
                                         <label for="fakultas">Fakultas</label>
-                                        <select name="fakultas" id="fakultas" class="form-control btn btn-outline-primary btn-fw">
-                                            <option value="">Pilih Fakultas</option>
-                                            <?php foreach ($fakultas as $f) { ?>
-                                            <li><?php echo '<option value="' . $f->FACULTYID . '">' . $f->FACULTYNAME . '</option>'; ?>
-                                            </li>
-                                            <?php } ?>
-                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 col-md-6">
@@ -340,7 +247,7 @@
                     .then((result) => {
                         if (result) { // if confirm clicked....
                             $('#formdaftarkp').closest('form').submit(); // submit form
-                            window.location.replace("<?= base_url('kerjaPraktek/pengantarSurvey'); ?>");
+                            // window.location.replace("<?= base_url('kerjaPraktek/pengantarSurvey'); ?>");
                         }
                     });
             });
