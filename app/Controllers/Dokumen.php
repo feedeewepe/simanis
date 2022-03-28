@@ -161,46 +161,63 @@ class Dokumen extends BaseController
 
 	public function upload_balasanKP()
 	{
-		$rules = [
-			'suratbalasan' => [
-				//'required'
-				'uploaded[file]',
-				'mime_in[file,image/jpg,image/jpeg,image/png]',
-				'max_size[file,100024]'
 
-			]
-		];
+		helper(['form', 'url']);
+		$rules = [
+			 'suratbalasan' => 'uploaded[suratbalasan]|ext_in[suratbalasan,png,jpg,jpeg,pdf]|max_size[suratbalasan,500000]'
+			 
+        ];
+        // $allowedPostFields = [
+        //     'suratbalasan'
+		// ];
+        // $var = $this->request->getPost($allowedPostFields);
+
+        // $this->dokumenModel = model(dokumenModel::class);
+        // $id = 1;
+        // // var_dump($id);
+        // // die;
+		// $this->dokumen->insert(['DOCUMENTID' => $id]);
+        // if ($id) {
+        //     $this->studentModel->update($var['suratbalasan'], ['DOCUMENTID' => $id]);
+        //     return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
+        // } else {
+        //     return redirect()->back()->withInput()->with('errors', $this->internshipGroupModel->errors());
+        // }
+
 		if (!$this->validate($rules)) {
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
-		}
-		$allowedPostFields = [
-			'suratbalasan'
-		];
-		$var = $this->request->getPost($allowedPostFields);
-
-		//$this->dokumenModel = model(dokumenModel::class);
-		//$id = 1;
-		// var_dump($id);
-		// die;
-		/*$this->dokumen->insert(['GROUPID' => $id]);
-        if ($id) {
-            $this->studentModel->update($var['suratbalasan'], ['GROUPID' => $id]);
-            return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
         } else {
-            return redirect()->back()->withInput()->with('errors', $this->internshipGroupModel->errors());
+			$id = 1;
+			$name = 'Syahfril';
+			$this->dokumenModel = model(DokumenModel::class);
+
+            $balasan = $this->request->getFile('suratbalasan');
+			$balasan->move(WRITEPATH . 'documents/uploads/balasanKP/'. $id .'/');
+    
+            $balasanUpload = [
+				'DOCUMENTID' => 1,
+                'GROUPID' => $id,
+                'DOCUMENT' =>  $balasan->getName(),
+                'DOCUMENTURL'  => WRITEPATH . 'documents/uploads/balasanKP/' . $id . '/',
+                'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
+                'INPUTBY' => $name
+            ];
+    
+            $this->dokumenModel->insert($balasanUpload);
+			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');       
         }
-		*/
-		helper(['form', 'url']);
-
-		$img = $this->request->getFile('suratbalasan');
-		$img->move(WRITEPATH . 'documents/uploads');
-
-		$data = [
-			'name' =>  $img->getName(),
-			'type'  => $img->getClientMimeType()
-		];
-
-		// $save = $db->insert($data);
-		print_r('File has successfully uploaded');
+		
+		// helper(['form', 'url']);
+        
+        //     $img = $this->request->getFile('suratbalasan');
+        //     $img->move(WRITEPATH . 'documents/uploads');
+    
+        //     $data = [
+        //        'name' =>  $img->getName(),
+        //        'type'  => $img->getClientMimeType()
+        //     ];
+    
+        //     $save = $db->insert($data);
+        //     print_r('File has successfully uploaded');        
+        }
 	}
-}
