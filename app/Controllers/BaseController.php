@@ -91,7 +91,7 @@ class BaseController extends Controller
                     'Surat Balasan KP' => 'dokumen/balasanKP',
                     'Pakta Integritas KP' => 'kerjapraktek/daftarKP',
                     'Pelaksanaan-KP' => 'kerjapraktek/daftarKP',
-                    'Laporan KP' => 'kerjapraktek/daftarKP',
+                    'Laporan KP' => 'dokumen/laporanKP',
                     'Revisi Laporan KP' => 'kerjapraktek/daftarKP',
                     'Presentasi' => 'kerjapraktek/daftarKP',
                     'Pengumpulan Dokumen' => 'kerjapraktek/daftarKP',

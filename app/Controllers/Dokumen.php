@@ -188,7 +188,7 @@ class Dokumen extends BaseController
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         } else {
 			$id = 1;
-			$name = 'Syahfril';
+			$name = 'UNTO';
 			$this->dokumenModel = model(DokumenModel::class);
 
             $balasan = $this->request->getFile('suratbalasan');
@@ -219,5 +219,66 @@ class Dokumen extends BaseController
     
         //     $save = $db->insert($data);
         //     print_r('File has successfully uploaded');        
-        }
+        
 	}
+
+	public function laporanKP()
+	{
+		$fakultas = model(FakultasModel::class);
+	
+		$data = [
+			'title' => 'Kerja Praktek - Surat Laporan',
+			'menu' => $this->menu,
+			'usergroup' => $this->userGroup,
+			'fakultas' => $fakultas->get_all_data(),
+		];
+		return view('dokumen/upload_laporan_kp', $data);
+	}
+
+	public function upload_laporanKP()
+	{
+
+		helper(['form', 'url']);
+		$rules = [
+			 'suratlaporan' => 'uploaded[suratlaporan]|ext_in[suratlaporan,png,jpg,jpeg,pdf]|max_size[suratlaporan,500000]'
+			 
+        ];
+
+
+		if (!$this->validate($rules)) {
+			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        } else {
+			$id = 1;
+			$name = 'UNTO';
+			$this->dokumenModel = model(DokumenModel::class);
+
+            $laporan = $this->request->getFile('suratlaporan');
+			$laporan->move(WRITEPATH . 'documents/uploads/laporanKP/'. $id .'/');
+    
+            $laporanUpload = [
+				'DOCUMENTID' => 2,
+                'GROUPID' => $id,
+                'DOCUMENT' =>  $laporan->getName(),
+                'DOCUMENTURL'  => WRITEPATH . 'documents/uploads/laporanKP/' . $id . '/',
+                'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
+                'INPUTBY' => $name
+            ];
+    
+            $this->dokumenModel->insert($laporanUpload);
+			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');       
+        }     
+        
+	}
+
+}
+
+
+	
+
+
+	
+    
+
+
+	
+	
