@@ -95,4 +95,57 @@ class CetakSurat extends BaseController
         // $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Something went wrong! try again</div>');
         // redirect('welcome');
     }
+
+    /*
+	Tujuan    : Generate pakta integritas mahasiswa
+	Parameter : 
+	Output    : Pakta Integritas yang telah digenerate
+	*/
+    public function generate_pakta() 
+    {
+        $path = FCPATH . 'documents';
+        $resp = 'PAKTA_INTEGRITAS_KP.docx';
+        $docx_path = $path . DIRECTORY_SEPARATOR . $resp;
+        $ext = 'docx';
+        if (file_exists($docx_path) && $ext == 'docx') {
+            Settings::setPdfRendererName('TCPDF');
+            Settings::setPdfRendererPath(ROOTPATH . 'vendor' . DIRECTORY_SEPARATOR . 'tecnickcom' . DIRECTORY_SEPARATOR . 'tcpdf');
+            $phpword = new PhpWord();
+            $document = $phpword->loadTemplate($docx_path);
+
+            $allowedPostFields = [
+                'nama', 'nim', 'telp', 'prodi', 'lokasi'
+            ];
+            $var = $this->request->getPost($allowedPostFields);
+
+            $data = [
+                'nama' => $var['nama'],
+                'nim' => $var['nim'],
+                'telp' => $var['telp'],
+                'prodi' => $var['prodi'],
+                'lokasi' => $var['lokasi'],
+            ];
+
+            $document->setvalues($data);
+            $_file_name = explode('.', $resp);
+            $orig_name = $_file_name[0];
+            $namafile = "{$orig_name}_" . $data['nim'] . '.docx';
+            $source = $path . DIRECTORY_SEPARATOR . "{$orig_name}_temp.docx";
+
+            try {
+                header('Content-Description: File Transfer');
+                header('Content-Disposition: attachment; filename="' . $namafile . '"');
+                header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+                header('Content-Transfer-Encoding: binary');
+                header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+                header('Expires: 0');
+                $document->saveAs('php://output');
+            } catch (Exception $e) {
+                die($e);
+            }
+            echo $source;
+        } else {
+            die($docx_path . ' File not exist!');
+        }
+    }
 }

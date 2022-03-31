@@ -142,6 +142,26 @@ class Dokumen extends BaseController
 	}
 
 	/*
+	Tujuan    : Menampilkan view pakta integritas
+	Parameter : 
+	Output    : View 'PaktaIntegritas'
+	*/
+	public function pakta_integritas()
+	{
+		$data = [
+			'title' => 'Kerja Praktek - Pakta Integritas',
+			'menu' => $this->menu,
+			'usergroup' => $this->userGroup,
+			'nama' => 'William Kurniawan',
+			'nim' => '1201190010',
+			'telp' => '+6281234567890',
+			'prodi' => 'Rekayasa Perangkat Lunak',
+			'lokasi' => 'PT. Mandiri Tbk'
+		];
+		return view('dokumen/pakta_integritas', $data);
+	}
+	
+	/*
 	Tujuan    : Menampilkan view pengajuan surat permohonan KP
 	Parameter : 
 	Output    : View 'kerjapraktek/form_permohonan_kp'
