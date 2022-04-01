@@ -19,6 +19,7 @@ use App\Models\UserGroupModel;
 use CodeIgniter\Config\Services;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\IncomingRequest;
+use CodeIgniter\Session\Session;
 use Config\Database;
 
 class BaseController extends Controller
@@ -55,6 +56,7 @@ class BaseController extends Controller
     protected $helpers = ['auth', 'url', 'form', 'html', 'text'];
 
     protected $userGroup;
+    protected $role;
     protected $menu = [];
 
     /**
@@ -73,15 +75,22 @@ class BaseController extends Controller
         $this->auth = Services::authentication();
         $this->authorize = Services::authorization();
         $this->db = Database::connect();
+        $this->session = service('session');
 
         $this->userGroup = new UserGroupModel();
         if (user() != null) {
-            $this->userGroup = $this->userGroup->getGroupName(user()->usergroupid);
+            $this->userGroup = $this->userGroup->getGroupName(user()->id);
         } else {
             header('location:/simanis');
             die('redirect');
         }
-        switch ($this->userGroup) {
+
+        if (!isset($_SESSION['role']) || $_SESSION['role'] == null) {
+            $_SESSION['role'] = $this->userGroup[0]->rolename;
+        }
+        $this->role = $_SESSION['role'];
+
+        switch ($this->role) {
             case 'Mahasiswa':
                 $this->menu = [
                     'Pendaftaran KP' => 'kerjapraktek/daftarKP',
@@ -95,6 +104,19 @@ class BaseController extends Controller
                     'Revisi Laporan KP' => 'kerjapraktek/daftarKP',
                     'Presentasi' => 'kerjapraktek/daftarKP',
                     'Pengumpulan Dokumen' => 'kerjapraktek/daftarKP',
+                ];
+                break;
+            case 'Pembimbing Akademik':
+                $this->menu = [
+                    'Pembekalan KP' => 'kerjapraktek/daftarKP',
+                    'Konsultasi KP' => 'SurveyController/index',
+                    'Tanda Tangan BA KP' => 'kerjapraktek/daftarKP',
+                    'Rekap Nilai KP' => 'dokumen/permohonanKP',
+                ];
+                break;
+            case 'Penguji':
+                $this->menu = [
+                    'Review Laporan KP' => 'kerjapraktek/daftarKP',
                 ];
                 break;
             case 'Administrator':

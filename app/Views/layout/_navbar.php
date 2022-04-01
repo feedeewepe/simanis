@@ -30,7 +30,9 @@
               <i class="dropdown-item-icon mdi mdi-account-circle me-2"></i>
                 <!-- <img class="img-md rounded-circle" src="<?= base_url(); ?>/assets/star-admin2/images/faces/face8.jpg" alt="Profile image"> -->
                 <p class="mb-1 mt-3 font-weight-semibold"><?= user()->username; ?></p>
-                <p class="fw-light text-muted mb-0"><?= $usergroup; ?></p>
+                <?php foreach ($usergroup as $act):?>
+                <p class="fw-light text-muted mb-0"><a class="dropdown-item <?=($act->rolename == $role) ? 'active' : ''; ?>"  href="<?= base_url('/dashboard/changeRole/'.$act->rolename); ?>"><i class="dropdown-item-icon mdi mdi-account-arrow-right text-primary me-2"></i><?= $act->rolename; ?></a></p>
+                <?php endforeach; ?>
               </div>
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
