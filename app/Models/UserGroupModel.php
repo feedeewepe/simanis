@@ -14,7 +14,7 @@ class UserGroupModel extends Model
     protected $returnType = 'App\Entities\UserGroup';
     protected $useSoftDeletes = false;
     protected $protectFields = true;
-    protected $allowedFields = [];
+    protected $allowedFields = ['user_id', 'role_id'];
 
     // Dates
     protected $useTimestamps = false;
@@ -61,8 +61,18 @@ class UserGroupModel extends Model
 
     public function getGroupName($id)
     {
-        $data = $this->usergroup->select('role.rolename')->join('role', 'usergroup.role_id = role.roleid')->Where(['usergroup.users_id' => $id])->get()->getResultObject();
+        $data = $this->usergroup->select('role.rolename,role.roleid')->join('role', 'usergroup.role_id = role.roleid')->Where(['usergroup.users_id' => $id])->get()->getResultObject();
         // $data = $this->select_data($id);
         return $data;
+    }
+
+    public function insert_batch($data)
+    {
+        $process = $this->usergroup->insertBatch($data);
+        if ($process) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

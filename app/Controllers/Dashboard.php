@@ -10,6 +10,7 @@ class Dashboard extends BaseController
             'title' => 'SIMANIS - ITTelkom SBY',
             'usergroup' => $this->userGroup,
             'role' => $this->role,
+            'roleid' => $this->roleid,
         ];
 
         return $this->view_dashboard($this->role);
@@ -22,6 +23,7 @@ class Dashboard extends BaseController
             'usergroup' => $this->userGroup,
             'menu' => $this->menu,
             'role' => $this->role,
+            'roleid' => $this->roleid,
         ];
 
         return view('dashboard/index'.str_replace(' ', '_', strtolower($role == 'Administrator' ? '' : '_'.$role)), $data);
@@ -32,7 +34,9 @@ class Dashboard extends BaseController
         foreach ($this->userGroup as $roles) {
             if ($roles->rolename == $role) {
                 $_SESSION['role'] = $role;
+                $_SESSION['roleid'] = $roles->roleid;
                 $this->role = $_SESSION['role'];
+                $this->roleid = $_SESSION['roleid'];
             }
         }
         $redirectURL = session('redirect_url') ?? site_url('/');

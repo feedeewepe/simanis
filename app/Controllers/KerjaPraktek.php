@@ -23,6 +23,8 @@ class KerjaPraktek extends BaseController
             'menu' => $this->menu,
             'usergroup' => $this->userGroup,
             'fakultas' => $fakultas->get_all_data(),
+            'role' => $this->role,
+            'roleid' => $this->roleid,
         ];
 
         return view('kerjapraktek/daftar', $data);
@@ -100,7 +102,7 @@ class KerjaPraktek extends BaseController
     {
         $nim = $this->request->getVar('nim');
         $this->studentModel = model(StudentModel::class);
-        $this->studentModel->like('STUDENTID', '%' . $nim . '%');
+        $this->studentModel->like('STUDENTID', '%'.$nim.'%');
         $this->studentModel->select('STUDENTID,FULLNAME,STUDYPROGRAMID');
         $res = $this->studentModel->findAll(5);
         // var_dump($res);
@@ -115,7 +117,7 @@ class KerjaPraktek extends BaseController
     {
         $namacompany = $this->request->getVar('namacompany');
         $this->studentModel = model(CompanyModel::class);
-        $this->studentModel->like('COMPANYNAME', '%' . $namacompany . '%');
+        $this->studentModel->like('COMPANYNAME', '%'.$namacompany.'%');
         $this->studentModel->select('COMPANYID,COMPANYNAME,ADDRESS,CITY,PROVINCE,PHONE,EMAIL');
         $res = $this->studentModel->findAll(5);
         // var_dump($res);

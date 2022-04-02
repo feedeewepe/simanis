@@ -6,7 +6,7 @@
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
-          <?php if (user()->usergroupid == 1) { ?>
+          <?php if ($roleid == 1) { ?>
           <li class="nav-item nav-category">Administrator</li>
           <li class="nav-item">
           <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-user" aria-expanded="false" aria-controls="ui-basic">
@@ -22,7 +22,7 @@
             </div>
           </li>
           <?php } ?>
-          <?php if (user()->usergroupid == 2 || user()->usergroupid == 1) { ?>
+          <?php if ($roleid == 2 || $roleid == 1) { ?>
             <li class="nav-item nav-category">Fakultas</li>
             <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-mg" aria-expanded="false" aria-controls="ui-basic">
@@ -96,7 +96,7 @@
             </li>
             <?php } ?>
 
-            <?php if (user()->usergroupid == 3 || user()->usergroupid == 1) { ?>                    
+            <?php if ($roleid == 3 || $roleid == 1) { ?>                    
                     <li class="nav-item nav-category">BPA</li>
                     <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-bpamg" aria-expanded="false" aria-controls="ui-basic">
@@ -152,7 +152,7 @@
                   </li>
                     <?php } ?>
 
-                    <?php if (user()->usergroupid == 4 || user()->usergroupid == 1) { ?>
+                    <?php if ($roleid == 4 || $roleid == 1) { ?>
                     <li class="nav-item nav-category">Pembimbing Akademik</li>
                     <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-pamg" aria-expanded="false" aria-controls="ui-basic">
@@ -214,7 +214,7 @@
                   </li>
                     <?php } ?>
 
-                    <?php if (user()->usergroupid == 5 || user()->usergroupid == 1) { ?>
+                    <?php if ($roleid == 5 || $roleid == 1) { ?>
                     <li class="nav-item nav-category">Pembimbing Lapangan</li>
                     <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-plmg" aria-expanded="false" aria-controls="ui-basic">
@@ -270,7 +270,7 @@
                   </li>
                     <?php } ?>
 
-                    <?php if (user()->usergroupid == 6 || user()->usergroupid == 1) { ?>
+                    <?php if ($roleid == 6 || $roleid == 1) { ?>
                     <li class="nav-item nav-category">Penguji</li>
                     <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-pjmg" aria-expanded="false" aria-controls="ui-basic">
@@ -314,7 +314,7 @@
                   </li>
                     <?php } ?>
 
-                    <?php if (user()->usergroupid == 7 || user()->usergroupid == 1) { ?>
+                    <?php if ($roleid == 7 || $roleid == 1) { ?>
                     <li class="nav-item nav-category">Mahasiswa</li>
                     <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-mhsmg" aria-expanded="false" aria-controls="ui-basic">

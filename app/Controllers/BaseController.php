@@ -57,6 +57,7 @@ class BaseController extends Controller
 
     protected $userGroup;
     protected $role;
+    protected $roleid;
     protected $menu = [];
 
     /**
@@ -85,10 +86,12 @@ class BaseController extends Controller
             die('redirect');
         }
 
-        if (!isset($_SESSION['role']) || $_SESSION['role'] == null) {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] == null || !isset($_SESSION['roleid']) || $_SESSION['roleid'] == null) {
             $_SESSION['role'] = $this->userGroup[0]->rolename;
+            $_SESSION['roleid'] = $this->userGroup[0]->roleid;
         }
         $this->role = $_SESSION['role'];
+        $this->roleid = $_SESSION['roleid'];
 
         switch ($this->role) {
             case 'Mahasiswa':
