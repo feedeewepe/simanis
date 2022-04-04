@@ -15,8 +15,8 @@
                     <?= $title; ?> Table
                 </div>
                 <div class="card-body">
-                    <a href="<?= base_url('/users/addUser') ?>" class="btn btn-primary btn-sm mb-2"><i class="fas fa-plus-square"></i> Add user</a>
-                    <?= view('Myth\Auth\Views\_message_block') ?>
+                    <a href="<?= base_url('/users/addUser'); ?>" class="btn btn-primary btn-sm mb-2"><i class="fas fa-plus-square"></i> Add user</a>
+                    <?= view('Myth\Auth\Views\_message_block'); ?>
                     <?php
                     $errors = session()->getFlashdata('failed');
                     if (!empty($errors)) : ?>
@@ -48,7 +48,7 @@
                                     <th>No</th>
                                     <th>Email</th>
                                     <th>Username</th>
-                                    <th>Usergroup</th>
+                                    <th>Role</th>
                                     <th>Active</th>
                                     <th>Option</th>
                                 </tr>
@@ -58,15 +58,15 @@
                                 foreach ($all_data as $datas) : ?>
                                     <tr>
                                         <td width="1%"><?= $no++; ?></td>
-                                        <td><?= esc($datas->email); ?></td>
-                                        <td><?= esc($datas->username); ?></td>                                        
-                                        <td><?= esc($datas->GROUPNAME); ?></td>
-                                        <td><?= esc(($datas->active==1?'Yes':'No')); ?></td>
+                                        <td><?= esc($datas['email']); ?></td>
+                                        <td><?= esc($datas['username']); ?></td>                                        
+                                        <td><?php foreach ($datas['role'] as $role): echo $role['rolename'].'<br>'; endforeach; ?></td>
+                                        <td><?= esc(($datas['active'] == 1 ? 'Yes' : 'No')); ?></td>
                                         <td class="text-center" width="20%">
-                                            <a href="#" class="btn btn-success btn-sm mb-1" data-bs-toggle="modal" data-bs-target="#updateModal<?= $datas->id; ?>">
+                                            <a href="#" class="btn btn-success btn-sm mb-1" data-bs-toggle="modal" data-bs-target="#updateModal<?= $datas['id']; ?>">
                                                 Update
                                             </a>
-                                            <a href="#" class="btn btn-danger btn-sm mb-1" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $datas->id; ?>">
+                                            <a href="#" class="btn btn-danger btn-sm mb-1" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $datas['id']; ?>">
                                                 Delete
                                             </a>
                                         </td>
@@ -84,7 +84,7 @@
 
     <!-- Update modal -->
     <?php foreach ($all_data as $datas) : ?>
-        <div class="modal fade" id="updateModal<?= $datas->id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="updateModal<?= $datas['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -94,47 +94,55 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <?= form_open('users/saveUser/' . $datas->id); ?>
+                        <?= form_open('users/saveUser/'.$datas['id']); ?>
                         <?= csrf_field(); ?>
-                        <input type="hidden" name="id" value="<?= $datas->id; ?>">
+                        <input type="hidden" name="id" value="<?= $datas['id']; ?>">
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" name="email" id="email<?= $datas->id; ?>" class="form-control" value="<?= $datas->email; ?>" disabled>
+                            <input type="text" name="email" id="email<?= $datas['id']; ?>" class="form-control" value="<?= $datas['email']; ?>" disabled>
                         </div>
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input type="text" name="username" id="username<?= $datas->id; ?>" class="form-control" value="<?= $datas->username; ?>" disabled>
+                            <input type="text" name="username" id="username<?= $datas['id']; ?>" class="form-control" value="<?= $datas['username']; ?>" disabled>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" name="password" id="password<?= $datas->id; ?>" class="form-control" placeholder="Isi jika Ganti Password Baru" autocomplete="off">
+                            <input type="password" name="password" id="password<?= $datas['id']; ?>" class="form-control" placeholder="Isi jika Ganti Password Baru" autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="pass_confirm">Ulangi Password</label>
-                            <input type="password" name="pass_confirm" id="pass_confirm<?= $datas->id; ?>" class="form-control"  placeholder="Isi jika Ganti Password Baru" autocomplete="off">
+                            <input type="password" name="pass_confirm" id="pass_confirm<?= $datas['id']; ?>" class="form-control"  placeholder="Isi jika Ganti Password Baru" autocomplete="off">
                         </div>  
                         <div class="form-group">
-                            <label for="usergroupid">User group</label>
-                            <select name="usergroupid" class="form-control <?php if(session('errors.usergroupid')) : ?>is-invalid<?php endif ?>"  placeholder="User Group">
-                                <?php if ($ugid = $datas->usergroupid ?? $datas->usergroupid) : ?>
+                            <label for="role">Peranan</label>
+                            <div class="form-check">
+                                <?php foreach ($roles as $peranan):?>
+                                <input class="form-check-input" type="checkbox" value="" id="<?=$peranan['roleid']; ?>">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    <?=$peranan['rolename']; ?>
+                                </label>
+                                <?php endforeach; ?>
+                            </div>
+                            <select name="usergroupid" class="form-control <?php if (session('errors.usergroupid')) : ?>is-invalid<?php endif; ?>"  placeholder="User Group">
+                                <?php //if ($ugid = $datas->usergroupid ?? $datas->usergroupid) :?>
                                 <option value="">User Group</option>
-                                <option value="2" <?= $ugid == '2' ? 'selected' : null ?>>Fakultas</option>
-                                <option value="3" <?= $ugid == '3' ? 'selected' : null ?>>Bagian Pelayanan Akademik</option>
-                                <option value="4" <?= $ugid == '4' ? 'selected' : null ?>>Pembimbing Akademik</option>
-                                <option value="5" <?= $ugid == '5' ? 'selected' : null ?>>Pembimbing Lapangan</option>
-                                <option value="6" <?= $ugid == '6' ? 'selected' : null ?>>Penguji</option>
-                                <option value="7" <?= $ugid == '7' ? 'selected' : null ?>>Mahasiswa</option>
-                            <?php endif; ?>
+                                <option value="2" <?//= $ugid == '2' ? 'selected' : null; ?>>Fakultas</option>
+                                <option value="3" <?//= $ugid == '3' ? 'selected' : null; ?>>Bagian Pelayanan Akademik</option>
+                                <option value="4" <?//= $ugid == '4' ? 'selected' : null; ?>>Pembimbing Akademik</option>
+                                <option value="5" <?//= $ugid == '5' ? 'selected' : null; ?>>Pembimbing Lapangan</option>
+                                <option value="6" <?//= $ugid == '6' ? 'selected' : null; ?>>Penguji</option>
+                                <option value="7" <?//= $ugid == '7' ? 'selected' : null; ?>>Mahasiswa</option>
+                            <?php //endif;?>
                             </select>   
                            
                         </div>
                         
                         <div class="form-group">
                             <label for="active">Active</label>                            
-                            <select name="active" class="form-control <?php if(session('errors.active')) : ?>is-invalid<?php endif ?>"  placeholder="Active Status">
-                                <?php $act = $datas->active;?>
-                                <option value="1" <?= $act == '1' ? 'selected' : null ?>>Activate</option>
-                                <option value="0" <?= ($act == '0' || $act == NULL) ? 'selected' : null ?>>Deactivate</option>
+                            <select name="active" class="form-control <?php if (session('errors.active')) : ?>is-invalid<?php endif; ?>"  placeholder="Active Status">
+                                <?php $act = $datas['active']; ?>
+                                <option value="1" <?= $act == '1' ? 'selected' : null; ?>>Activate</option>
+                                <option value="0" <?= ($act == '0' || $act == null) ? 'selected' : null; ?>>Deactivate</option>
                             
                             </select> 
                         </div>
@@ -151,7 +159,7 @@
 
     <!-- Delete modal -->
     <?php foreach ($all_data as $datas) : ?>
-        <div class="modal fade" id="deleteModal<?= $datas->id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="deleteModal<?= $datas['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -161,10 +169,10 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <?= form_open('users/deleteUser/' . $datas->id); ?>
+                        <?= form_open('users/deleteUser/'.$datas['id']); ?>
                         <?= csrf_field(); ?>
-                        <input type="hidden" name="id" value="<?= $datas->id; ?>">
-                        <p>Apakah anda yakin menghapus data <b><?= $datas->username; ?><b>?</p>
+                        <input type="hidden" name="id" value="<?= $datas['id']; ?>">
+                        <p>Apakah anda yakin menghapus data <b><?= $datas['username']; ?><b>?</p>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-danger btn-sm">Submit</button>

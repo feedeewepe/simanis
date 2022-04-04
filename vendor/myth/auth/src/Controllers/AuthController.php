@@ -6,6 +6,7 @@ use CodeIgniter\Controller;
 use CodeIgniter\Session\Session;
 use Models\LecturerModel;
 use Models\StudentModel;
+use Models\UserGroupModel;
 use Myth\Auth\Config\Auth as AuthConfig;
 use Myth\Auth\Entities\User;
 use Myth\Auth\Models\UserModel;
@@ -152,7 +153,7 @@ class AuthController extends Controller
         $rules = [
             'username' => 'required|alpha_numeric_space|min_length[3]|max_length[30]|is_unique[users.username]',
             'email' => 'required|valid_email|is_unique[users.email]',
-            'password' => 'required|strong_password',
+            'password' => 'required',
             'pass_confirm' => 'required|matches[password]',
             'nim_nip' => 'required|numeric',
         ];
@@ -165,13 +166,13 @@ class AuthController extends Controller
         $student = model(StudentModel::class);
         $lecturer = model(LecturerModel::class);
         $mhs = $student->find($this->request->getPost('nim_nip'));
-        $usergroup = null;
+        $role = [];
         if ($mhs != null) {
-            $usergroup = 7; //mahasiswa
+            $role = ['7']; //mahasiswa
         } else {
             $dsn = $lecturer->like('EMPLOYEEID', $this->request->getPost('nim_nip').'%')->first();
             if ($dsn != null) {
-                $usergroup = 4; //pembimbing akademik
+                $role = ['4', '6']; //pembimbing akademik dan Penguji
             } else {
                 return redirect()->back()->withInput()->with('error', 'NIM or NIP not available!');
             }
@@ -179,9 +180,8 @@ class AuthController extends Controller
 
         // Save the user
         $allowedPostFields = array_merge(['password'], $this->config->validFields, $this->config->personalFields);
-        $dataRegister = array_merge(['usergroupid' => $usergroup], $this->request->getPost($allowedPostFields));
 
-        $user = new User($dataRegister);
+        $user = new User($this->request->getPost($allowedPostFields));
         $this->config->requireActivation === null ? $user->activate : $user->generateActivateHash();
 
         // Ensure default group gets assigned if set
@@ -191,6 +191,15 @@ class AuthController extends Controller
 
         if (!$users->save($user)) {
             return redirect()->back()->withInput()->with('errors', $users->errors());
+        }
+
+        $usergroup = model(UserGroupModel::class);
+        $dataUserGroup = [];
+        foreach ($role as $sbg) {
+            $dataUserGroup[] = ['users_id' => $users->getInsertID(), 'role_id' => $sbg];
+        }
+        if (!$usergroup->insert_batch($dataUserGroup)) {
+            return redirect()->back()->withInput()->with('errors', $usergroup->errors());
         }
 
         if ($this->config->requireActivation !== null) {

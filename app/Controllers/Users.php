@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\RoleModel;
 use Myth\Auth\Config\Auth as AuthConfig;
 use Myth\Auth\Entities\User;
 use Myth\Auth\Models\UserModel;
@@ -9,6 +10,7 @@ use Myth\Auth\Models\UserModel;
 class Users extends BaseController
 {
     protected $userModel;
+    protected $roles;
     protected $auth;
 
     /**
@@ -24,6 +26,7 @@ class Users extends BaseController
     public function __construct()
     {
         $this->userModel = new UserModel();
+        $this->roles = new RoleModel();
         helper('form');
         $this->session = service('session');
 
@@ -33,14 +36,21 @@ class Users extends BaseController
 
     public function index()
     {
-        if (user() == null || !user()->usergroupid == 1) {
+        if (!$this->roleid == 1) {
             return redirect()->back();
         }
+        // echo '<pre>';
+        // var_dump($this->userModel->getUserWithRoles());
+        // echo '</pre>';
+        // die;
         $data = [
             'title' => 'User Management',
             'usergroup' => $this->userGroup,
-            'all_data' => $this->userModel->select_data(), // selecting all data
+            'all_data' => $this->userModel->getUserWithRoles(), // selecting all data
             'menu' => $this->menu,
+            'roles' => $this->roles->where('roleid >', 1)->findAll(),
+            'role' => $this->role,
+            'roleid' => $this->roleid,
         ];
 
         return view('Users/index', $data);
@@ -48,7 +58,7 @@ class Users extends BaseController
 
     public function addUser()
     {
-        if (user() == null || !user()->usergroupid == 1) {
+        if (!$this->roleid == 1) {
             return redirect()->back();
         }
 
@@ -56,6 +66,10 @@ class Users extends BaseController
             'title' => 'Add User',
             'usergroup' => $this->userGroup,
             'all_data' => $this->userModel->select_data(), // selecting all data
+            'menu' => $this->menu,
+            'roles' => $this->roles->where('roleid >', 1)->findAll(),
+            'role' => $this->role,
+            'roleid' => $this->roleid,
         ];
 
         return view('Users/addUser', $data);
