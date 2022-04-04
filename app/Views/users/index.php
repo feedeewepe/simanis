@@ -117,8 +117,8 @@
                             <label for="role">Peranan</label>
                             <div class="form-check">
                                 <?php foreach ($roles as $peranan):?>
-                                <input class="form-check-input" type="checkbox" value="" id="<?=$peranan['roleid']; ?>">
-                                <label class="form-check-label" for="defaultCheck1">
+                                <input class="form-check-input" type="checkbox" value="<?=$peranan['roleid']; ?>" id="roleCheck<?=$peranan['roleid']; ?>">
+                                <label class="form-check-label" for="roleCheck<?=$peranan['roleid']; ?>">
                                     <?=$peranan['rolename']; ?>
                                 </label>
                                 <?php endforeach; ?>
