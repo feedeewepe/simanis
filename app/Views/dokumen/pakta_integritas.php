@@ -43,22 +43,24 @@
                         </div>
                     <?php endif; ?>
                     <div class="modal-body">
-                        <form id="permohonankp" action="<?= base_url('CetakSurat/generate_pakta'); ?>" method="post" enctype="multipart/form-data">
-                            <?= csrf_field(); ?>
-                            <div class="row">
-                                <div class="home-tab">
-                                    <div class="d-sm-flex align-items-center justify-content-between border-bottom">
-                                        <ul class="nav nav-tabs" role="tablist">
-                                            <li class="nav-item">
-                                                <a class="nav-link active ps-0" id="group-tab" data-bs-toggle="tab" href="#tabgroup" role="tab" aria-controls="tabgroup" aria-selected="true">Generate Pakta Integritas</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="instansi-tab" data-bs-toggle="tab" href="#tabinstansi" role="tab" aria-selected="false">Upload Pakta Integritas</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-content tab-content-basic">
-                                        <div class="tab-pane fade show active" id="tabgroup" role="tabpanel" aria-labelledby="tabgroup">
+
+                        <div class="row">
+                            <div class="home-tab">
+                                <div class="d-sm-flex align-items-center justify-content-between border-bottom">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active ps-0" id="group-tab" data-bs-toggle="tab" href="#tabgroup" role="tab" aria-controls="tabgroup" aria-selected="true">Generate Pakta Integritas</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="instansi-tab" data-bs-toggle="tab" href="#tabinstansi" role="tab" aria-selected="false">Upload Pakta Integritas</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content tab-content-basic">
+                                    <div class="tab-pane fade show active" id="tabgroup" role="tabpanel" aria-labelledby="tabgroup">
+                                        <form id="permohonankp" action="<?= base_url('CetakSurat/generate_pakta'); ?>" method="post" enctype="multipart/form-data">
+                                            <?= csrf_field(); ?>
+
                                             <div class="row">
                                                 <div class="col-xl-6 col-md-10 grid-margin stretch-card">
                                                     <div class="card">
@@ -95,8 +97,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="tab-pane fade " id="tabinstansi" role="tabpanel" aria-labelledby="tabinstansi">
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade " id="tabinstansi" role="tabpanel" aria-labelledby="tabinstansi">
+                                        <form id="permohonankp" action="<?= base_url('dokumen/upload_pakta'); ?>" method="post" enctype="multipart/form-data">
+                                            <?= csrf_field(); ?>
                                             <div class="row">
                                                 <div class="col-xl-6  col-md-10 grid-margin stretch-card">
                                                     <div class="card">
@@ -105,8 +110,8 @@
                                                             <div class="row">
                                                                 <div id="instansi">
                                                                     <div class="form-group">
-                                                                        <label for="namainstansi">Pakta Integritas</label>
-                                                                        <input type="file" name="transkrip" class="form-control upload" autocomplete="off" id="transkrip" multiple>
+                                                                        <label for="paktaintegritas">Pakta Integritas</label>
+                                                                        <input type="file" name="paktaintegritas" class="form-control upload" autocomplete="off" id="paktaintegritas" multiple>
                                                                         <center>
                                                                             <button type="submit" class="px-4 mt-4 btn btn-primary btn-lg text-light">
                                                                                 <i class="bi bi-cloud-arrow-down"></i>
@@ -120,16 +125,17 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                </div>
-                        </form>
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </main>
 
 

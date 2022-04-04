@@ -149,6 +149,8 @@ class Dokumen extends BaseController
 	public function pakta_integritas()
 	{
 		$data = [
+			'role' => $this->role,
+            'roleid' => $this->roleid,
 			'title' => 'Kerja Praktek - Pakta Integritas',
 			'menu' => $this->menu,
 			'usergroup' => $this->userGroup,
@@ -187,22 +189,6 @@ class Dokumen extends BaseController
 			 'suratbalasan' => 'uploaded[suratbalasan]|ext_in[suratbalasan,png,jpg,jpeg,pdf]|max_size[suratbalasan,500000]'
 			 
         ];
-        // $allowedPostFields = [
-        //     'suratbalasan'
-		// ];
-        // $var = $this->request->getPost($allowedPostFields);
-
-        // $this->dokumenModel = model(dokumenModel::class);
-        // $id = 1;
-        // // var_dump($id);
-        // // die;
-		// $this->dokumen->insert(['DOCUMENTID' => $id]);
-        // if ($id) {
-        //     $this->studentModel->update($var['suratbalasan'], ['DOCUMENTID' => $id]);
-        //     return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
-        // } else {
-        //     return redirect()->back()->withInput()->with('errors', $this->internshipGroupModel->errors());
-        // }
 
 		if (!$this->validate($rules)) {
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
@@ -276,7 +262,7 @@ class Dokumen extends BaseController
 			$laporan->move(WRITEPATH . 'documents/uploads/laporanKP/'. $id .'/');
     
             $laporanUpload = [
-				'DOCUMENTID' => 2,
+				'DOCUMENTID' => 1,
                 'GROUPID' => $id,
                 'DOCUMENT' =>  $laporan->getName(),
                 'DOCUMENTURL'  => WRITEPATH . 'documents/uploads/laporanKP/' . $id . '/',
@@ -288,6 +274,35 @@ class Dokumen extends BaseController
 			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');       
         }     
         
+	}
+
+	public function upload_pakta() {
+		helper(['form', 'url']);
+		$rules = [
+			'paktaintegritas' => 'uploaded[paktaintegritas]|ext_in[paktaintegritas,png,jpg,jpeg,pdf]|max_size[paktaintegritas,50000]'
+		];
+		if (!$this->validate($rules)) {
+			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+		} else {
+			$id = 1;
+			$docid = 3;
+			$name = 'William';
+			$this->dokumenModel = model(DokumenModel::class);
+			$pakta = $this->request->getFile('paktaintegritas');
+			$pakta->move(WRITEPATH . 'documents/uploads/paktaintegritas/' . $id . '/');
+			$paktaUpload = [
+				'DOCUMENTID' => $docid,
+				'GROUPID' => $id,
+				'DOCUMENT' =>  $pakta->getName(),
+				'DOCUMENTURL'  => WRITEPATH . 'documents/uploads/paktaintegritas/' . $id . '/',
+				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
+				'INPUTBY' => $name
+			];
+
+			$this->dokumenModel->insert($paktaUpload);
+			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
+		}
+
 	}
 
 }

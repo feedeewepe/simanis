@@ -61,8 +61,8 @@
 										</ul>
 									</div>
 									
-																
-																	<div class="form-group mt-3">
+																	
+																	<div class="form-group mt-1">
 																		<label for="Masukan surat Balasan">Surat Balasan </label>
 																		<input type="file" name="suratbalasan" class="form-control upload" autocomplete="off" id="suratbalasan">
 
@@ -71,6 +71,7 @@
 																		<button type="reset" id="btn-cancel-company" class="btn btn-secondary btn-sm text-dark">Cancel</button>
 																		<button type="submit" id="btn-submit-company" class="btn btn-primary btn-sm text-light">Submit Form</button>
 																	</div>
+																	
 																</div>
 															</div>
 														</div>

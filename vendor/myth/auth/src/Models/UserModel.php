@@ -114,9 +114,26 @@ class UserModel extends Model
     public function select_data($id = false)
     {
         if ($id == false) {
-            return $this->db->table('users')->join('usergroup', 'users.id = usergroup.users_id')->where('usergroup.role_id <>', '1')->get()->getResultObject();
+            return $this->db->table('users')->get()->getResultObject();
+            // return $this->db->table('users')->join('usergroup', 'users.id = usergroup.users_id')->join('role', 'role.roleid = usergroup.role_id')->where('usergroup.role_id <>', '1')->get()->getResultObject();
         }
 
-        return $this->db->table('users')->join('usergroup', 'users.id = usergroup.users_id')->where('users.id', $id)->get()->getFirstRow();
+        return $this->db->table('users')->where('users.id', $id)->get()->getFirstRow();
+        // return $this->db->table('users')->join('usergroup', 'users.id = usergroup.users_id')->join('role', 'role.roleid = usergroup.role_id')->where('users.id', $id)->get()->getFirstRow();
+    }
+
+    public function getUserWithRoles($id = false)
+    {
+        if ($id == false) {
+            $users = $this->db->table('users')->get()->getResultArray();
+        } else {
+            $users = $this->db->table('users')->where('users.id', $id)->get()->getResultArray();
+        }
+        foreach ($users as $key => $user) {
+            $role = $this->db->table('role')->join('usergroup', 'usergroup.role_id = role.roleid')->where('usergroup.users_id', $user['id'])->get()->getResultArray();
+            $users[$key] = array_merge($users[$key], ['role' => $role]);
+        }
+
+        return $users;
     }
 }

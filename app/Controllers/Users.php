@@ -39,10 +39,14 @@ class Users extends BaseController
         if (!$this->roleid == 1) {
             return redirect()->back();
         }
+        // echo '<pre>';
+        // var_dump($this->userModel->getUserWithRoles());
+        // echo '</pre>';
+        // die;
         $data = [
             'title' => 'User Management',
             'usergroup' => $this->userGroup,
-            'all_data' => $this->userModel->select_data(), // selecting all data
+            'all_data' => $this->userModel->getUserWithRoles(), // selecting all data
             'menu' => $this->menu,
             'roles' => $this->roles->where('roleid >', 1)->findAll(),
             'role' => $this->role,
