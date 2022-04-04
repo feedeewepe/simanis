@@ -97,8 +97,8 @@ class BaseController extends Controller
             case 'Mahasiswa':
                 $this->menu = [
                     'Pendaftaran KP' => 'kerjapraktek/daftarKP',
-                    'Survey KP' => 'SurveyController/index',
-                    'Proposal KP' => 'kerjapraktek/daftarKP',
+                    'Pilih pembimbing' => 'DosbingController/index',
+                    'Proposal KP' => 'kerjapraktek/downloadlaporan',
                     'Surat Permohonan KP' => 'dokumen/permohonanKP',
                     'Surat Balasan KP' => 'dokumen/balasanKP',
                     'Pakta Integritas KP' => 'dokumen/pakta_integritas',

@@ -39,4 +39,10 @@ class LecturerModel extends Model
     protected $afterFind = [];
     protected $beforeDelete = [];
     protected $afterDelete = [];
+
+    public function tampildata()
+    {
+        $query = $this->db->query('select * from ' . $this->table);
+        return $query->getResult();
+    }
 }
