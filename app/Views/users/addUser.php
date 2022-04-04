@@ -15,7 +15,7 @@
                     <?= $title; ?>
                 </div>
                 <div class="card-body">                    
-                    <?= view('Myth\Auth\Views\_message_block') ?>
+                    <?= view('Myth\Auth\Views\_message_block'); ?>
                     <?php
                     $errors = session()->getFlashdata('failed');
                     if (!empty($errors)) : ?>
@@ -41,7 +41,7 @@
                         </div>
                     <?php endif; ?>
                     <div class="modal-body">
-                    <form action="<?= base_url('Users/saveUser') ?>" method="post">
+                    <form action="<?= base_url('Users/saveUser'); ?>" method="post">
                         <?= csrf_field(); ?>
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -52,16 +52,15 @@
                             <input type="username" name="username" id="username" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="usergroupid">User group</label>
-                            <select name="usergroupid" class="form-control"  placeholder="User Group">
-                                <option value="">User Group</option>
-                                <option value="2">Fakultas</option>
-                                <option value="3">Bagian Pelayanan Akademik</option>
-                                <option value="4">Pembimbing Akademik</option>
-                                <option value="5">Pembimbing Lapangan</option>
-                                <option value="6">Penguji</option>
-                                <option value="7">Mahasiswa</option>
-                            </select>                                                
+                            <label for="role">Peranan</label>
+                            <div class="form-check">
+                                <?php foreach ($roles as $peranan):?>
+                                <input class="form-check-input" style="margin-left: 0" type="checkbox" name="role" value="<?=$peranan['roleid']; ?>" id="roleCheck<?=$peranan['roleid']; ?>">
+                                <label class="form-check-label" for="roleCheck<?=$peranan['roleid']; ?>">
+                                    <?=$peranan['rolename']; ?>
+                                </label>
+                                <?php endforeach; ?>
+                            </div>                            
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
