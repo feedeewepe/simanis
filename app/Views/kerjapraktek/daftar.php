@@ -261,7 +261,7 @@
                                         <select name="fakultas" id="fakultas" class="form-control btn btn-outline-primary btn-fw">
                                             <option value="">Pilih Fakultas</option>
                                             <?php foreach ($fakultas as $f) { ?>
-                                            <li><?php echo '<option value="' . $f->FACULTYID . '">' . $f->FACULTYNAME . '</option>'; ?>
+                                            <li><?php echo '<option value="'.$f->FACULTYID.'">'.$f->FACULTYNAME.'</option>'; ?>
                                             </li>
                                             <?php } ?>
                                         </select>
@@ -340,7 +340,7 @@
                     .then((result) => {
                         if (result) { // if confirm clicked....
                             $('#formdaftarkp').closest('form').submit(); // submit form
-                            window.location.replace("<?= base_url('kerjaPraktek/pengantarSurvey'); ?>");
+                            window.location.replace("<?= base_url('kerjaPraktek/daftar'); ?>");
                         }
                     });
             });
