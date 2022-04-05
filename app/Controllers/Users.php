@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\RoleModel;
+use Models\UserGroupModel;
 use Myth\Auth\Config\Auth as AuthConfig;
 use Myth\Auth\Entities\User;
 use Myth\Auth\Models\UserModel;
@@ -87,7 +88,7 @@ class Users extends BaseController
                 'email' => 'required|valid_email|is_unique[users.email]',
                 'password' => 'required|strong_password',
                 'pass_confirm' => 'required|matches[password]',
-                'usergroupid' => 'required|greater_than[1]',
+                'role' => 'required',
             ];
             if (!$this->validate($rules)) {
                 return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
@@ -98,12 +99,36 @@ class Users extends BaseController
             if (!$users->save($user)) {
                 return redirect()->back()->withInput()->with('errors', $users->errors());
             }
+            $usergroup = model(UserGroupModel::class);
+            $dataUserGroup = [];
+            foreach ($role as $sbg) {
+                $dataUserGroup[] = ['users_id' => $users->getInsertID(), 'role_id' => $sbg];
+            }
+            if (!$usergroup->insert_batch($dataUserGroup)) {
+                return redirect()->back()->withInput()->with('errors', $usergroup->errors());
+            }
         } else {
             // Update the user
-            $allowedPostFields = ['password', 'usergroupid', 'active'];
+            $allowedPostFields = ['password', 'active', 'role'];
+            echo '<pre>';
+            var_dump($this->request->getPost($allowedPostFields));
+            echo '</pre>';
+            die;
             $user = new User($this->request->getPost($allowedPostFields));
             if (!$users->update($userid, $user)) {
                 return redirect()->back()->withInput()->with('errors', $users->errors());
+            }
+
+            $usergroup = model(UserGroupModel::class);
+            if (!$usergroup->where('users_id', $users->getInsertID())->delete()) {
+                return redirect()->back()->withInput()->with('errors', $usergroup->errors());
+            }
+            $dataUserGroup = [];
+            foreach ($role as $sbg) {
+                $dataUserGroup[] = ['users_id' => $users->getInsertID(), 'role_id' => $sbg];
+            }
+            if (!$usergroup->insert_batch($dataUserGroup)) {
+                return redirect()->back()->withInput()->with('errors', $usergroup->errors());
             }
         }
 

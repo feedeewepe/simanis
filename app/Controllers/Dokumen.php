@@ -5,11 +5,26 @@ namespace App\Controllers;
 use App\Models\DokumenModel;
 use App\Models\InternshipGroupModel;
 use CodeIgniter\I18n\Time;
+use App\Models\RoleModel;
+use Myth\Auth\Config\Auth as AuthConfig;
+use Myth\Auth\Models\UserModel;
 
 class Dokumen extends BaseController
 {
 	protected $dokumenModel;
 	protected $internshipGroupModel;
+	protected $roles;
+
+	public function __construct()
+    {
+        $this->userModel = new UserModel();
+        $this->roles = new RoleModel();
+        helper('form');
+        $this->session = service('session');
+
+        $this->config = config('Auth');
+        $this->auth = service('authentication');
+    }
 
 	/*
 	Tujuan    : Menampilkan view pengajuan surat permohonan KP
@@ -177,6 +192,9 @@ class Dokumen extends BaseController
 			'menu' => $this->menu,
 			'usergroup' => $this->userGroup,
 			'fakultas' => $fakultas->get_all_data(),
+			'roles' => $this->roles->where('roleid >', 1)->findAll(),
+            'role' => $this->role,
+            'roleid' => $this->roleid,
 		];
 		return view('dokumen/upload_balasan_kp', $data);
 	}
@@ -237,6 +255,9 @@ class Dokumen extends BaseController
 			'menu' => $this->menu,
 			'usergroup' => $this->userGroup,
 			'fakultas' => $fakultas->get_all_data(),
+			'roles' => $this->roles->where('roleid >', 1)->findAll(),
+            'role' => $this->role,
+            'roleid' => $this->roleid,
 		];
 		return view('dokumen/upload_laporan_kp', $data);
 	}
@@ -276,6 +297,55 @@ class Dokumen extends BaseController
         
 	}
 
+	public function pengumpulanDokumen()
+	{
+		$fakultas = model(FakultasModel::class);
+
+		$data = [
+			'title' => 'Kerja Praktek - pengumpulan Dokumen',
+			'menu' => $this->menu,
+			'usergroup' => $this->userGroup,
+			'fakultas' => $fakultas->get_all_data(),
+			'roles' => $this->roles->where('roleid >', 1)->findAll(),
+            'role' => $this->role,
+            'roleid' => $this->roleid,
+		];
+		return view('dokumen/upload_pengumpulan_dokumen', $data);
+	}
+
+	public function upload_pengumpulan_dokumen()
+	{
+
+		helper(['form', 'url']);
+		$rules = [
+			 'pengumpulandokumen' => 'uploaded[pengumpulandokumen]|ext_in[pengumpulandokumen,png,jpg,jpeg,pdf]|max_size[pengumpulandokumen,500000]'
+			 
+        ];
+
+		if (!$this->validate($rules)) {
+			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        } else {
+			$id = 1;
+			$name = 'UNTO';
+			$this->dokumenModel = model(DokumenModel::class);
+
+            $balasan = $this->request->getFile('pengumpulandokumen');
+			$balasan->move(WRITEPATH . 'documents/uploads/pengumpulanDokumen/'. $id .'/');
+    
+            $balasanUpload = [
+				'DOCUMENTID' => 88,
+                'GROUPID' => $id,
+                'DOCUMENT' =>  $balasan->getName(),
+                'DOCUMENTURL'  => WRITEPATH . 'documents/uploads/pengumpulan_dokumen/' . $id . '/',
+                'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
+                'INPUTBY' => $name
+            ];
+    
+            $this->dokumenModel->insert($balasanUpload);
+			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');       
+        }
+	}
+
 	public function upload_pakta() {
 		helper(['form', 'url']);
 		$rules = [
@@ -302,9 +372,7 @@ class Dokumen extends BaseController
 			$this->dokumenModel->insert($paktaUpload);
 			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
 		}
-
 	}
-
 }
 
 

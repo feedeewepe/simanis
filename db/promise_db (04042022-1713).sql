@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2022 at 11:15 AM
+-- Generation Time: Apr 04, 2022 at 12:12 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.13
 
@@ -283,7 +283,28 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 (167, '::1', 'feedeewepe@gmail.com', 2, '2022-03-22 03:48:07', 1),
 (168, '::1', 'feedeewepe@gmail.com', 2, '2022-03-22 04:00:19', 1),
 (169, '::1', 'user@gmail.com', 1, '2022-03-22 04:18:55', 1),
-(170, '::1', 'user@gmail.com', 1, '2022-04-01 03:03:00', 1);
+(170, '::1', 'user@gmail.com', 1, '2022-04-01 03:03:00', 1),
+(171, '::1', 'user@gmail.com', 1, '2022-04-01 05:14:55', 1),
+(172, '::1', 'fidi', NULL, '2022-04-01 06:52:27', 0),
+(173, '::1', 'fidi', 16, '2022-04-01 06:52:34', 0),
+(174, '::1', 'fidiwputro@gmail.com', 16, '2022-04-01 06:53:08', 1),
+(175, '::1', 'user@gmail.com', 1, '2022-04-01 07:16:52', 1),
+(176, '::1', 'user@gmail.com', 1, '2022-04-01 08:37:19', 1),
+(177, '::1', 'user@gmail.com', 1, '2022-04-01 10:03:35', 1),
+(178, '::1', 'fidiwputro@gmail.com', 16, '2022-04-01 10:22:01', 1),
+(179, '::1', 'fidiwputro@gmail.com', 16, '2022-04-01 11:10:53', 1),
+(180, '::1', 'fidiwputro@gmail.com', 16, '2022-04-01 11:12:24', 1),
+(181, '::1', 'user@gmail.com', 1, '2022-04-01 11:40:21', 1),
+(182, '::1', 'fidiwputro@gmail.com', 16, '2022-04-01 17:42:08', 1),
+(183, '::1', 'user@gmail.com', 1, '2022-04-01 19:25:34', 1),
+(184, '::1', 'qwe', 18, '2022-04-02 02:24:36', 0),
+(185, '::1', 'zxc', 19, '2022-04-02 02:27:11', 0),
+(186, '::1', 'feedeewepe@gmail.com', 2, '2022-04-02 02:28:07', 1),
+(187, '::1', 'user@gmail.com', 1, '2022-04-02 08:32:46', 1),
+(188, '::1', 'feedeewepe@gmail.com', 2, '2022-04-02 08:52:31', 1),
+(189, '::1', 'feedeewepe@gmail.com', 2, '2022-04-02 21:29:00', 1),
+(190, '::1', 'feedeewepe@gmail.com', 2, '2022-04-03 00:17:56', 1),
+(191, '::1', 'feedeewepe@gmail.com', 2, '2022-04-03 04:54:59', 1);
 
 -- --------------------------------------------------------
 
@@ -470,15 +491,16 @@ CREATE TABLE `internshipgroup` (
   `ADVISORUNIT` varchar(100) DEFAULT NULL,
   `ADVISORPOSITION` varchar(100) DEFAULT NULL,
   `ADVISORPHONE` varchar(100) DEFAULT NULL,
-  `ADVISOREMAIL` varchar(100) DEFAULT NULL
+  `ADVISOREMAIL` varchar(100) DEFAULT NULL,
+  `STATUS` enum('Pendaftaran KP','Survey KP','Proposal KP','Surat Permohonan KP','Surat Balasan KP','Pakta Integritas KP','Pelaksanaan-KP','Laporan KP','Revisi Laporan KP','Presentasi','Pengumpulan Dokumen') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `internshipgroup`
 --
 
-INSERT INTO `internshipgroup` (`GROUPID`, `LECTURERCODE`, `COMPANYID`, `TYPEID`, `SCHOOLYEAR`, `SEMESTER`, `STARTDATE`, `ENDDATE`, `ADVISORNAME`, `ADVISORUNIT`, `ADVISORPOSITION`, `ADVISORPHONE`, `ADVISOREMAIL`) VALUES
-('1', NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `internshipgroup` (`GROUPID`, `LECTURERCODE`, `COMPANYID`, `TYPEID`, `SCHOOLYEAR`, `SEMESTER`, `STARTDATE`, `ENDDATE`, `ADVISORNAME`, `ADVISORUNIT`, `ADVISORPOSITION`, `ADVISORPHONE`, `ADVISOREMAIL`, `STATUS`) VALUES
+('1', NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2040,13 +2062,14 @@ CREATE TABLE `usergroup` (
 --
 
 INSERT INTO `usergroup` (`USERGROUPID`, `users_id`, `role_id`) VALUES
-(1, 0, 0),
-(2, 0, 0),
-(3, 0, 0),
-(4, 0, 0),
-(5, 0, 0),
-(6, 0, 0),
-(7, 0, 0);
+(8, 1, 7),
+(9, 16, 4),
+(10, 16, 6),
+(11, 18, 4),
+(12, 18, 6),
+(13, 19, 4),
+(14, 19, 6),
+(15, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -2058,6 +2081,7 @@ CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `email` varchar(255) NOT NULL,
   `username` varchar(30) DEFAULT NULL,
+  `nim_nip` varchar(15) DEFAULT NULL,
   `password_hash` varchar(255) NOT NULL,
   `reset_hash` varchar(255) DEFAULT NULL,
   `reset_at` datetime DEFAULT NULL,
@@ -2076,15 +2100,18 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `username`, `password_hash`, `reset_hash`, `reset_at`, `reset_expires`, `activate_hash`, `status`, `status_message`, `active`, `force_pass_reset`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'user@gmail.com', 'user', '$2y$10$i9UULNpwHQ30kgj7pmCWru/Q/UY5AYErIJSoVIdM15jis6m9sMkea', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-01-15 23:12:25', '2021-10-18 20:30:48', NULL),
-(2, 'feedeewepe@gmail.com', 'feedeewepe', '$2y$10$sUiqqGChs0D3vtY4hXcHnOcDRXWLfLAYwR/Ya16hjY3p4rK9Dipwa', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-08-09 23:08:02', '2021-08-09 23:08:02', NULL),
-(9, 'fidiwputro@ittelkom-sby.ac.id', 'fwp', '$2y$10$66YaE0Pcs7CIbDJgDdb.KuytHCyGyFwMeWT.cb4vRG0Eq0MNizzIS', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-08-17 08:46:05', '2021-10-18 21:48:40', NULL),
-(10, 'se@ittelkom-sby.ac.id', 'serpl', '$2y$10$9dBLLipH0MXlXgRLNgq5n.NVhAo2OhCMedPFQTaq378ngij7F.PKG', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-08-17 08:47:46', '2021-08-19 09:07:39', NULL),
-(13, 'bpa@tes.aja', 'bpa', '$2y$10$atp0w5uJGtHjwSCyf2TlHuGNgov058V1tqej8xG7VCk3QS2m5p.Ta', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-08-19 09:05:00', '2022-03-17 00:24:07', NULL),
-(14, 'lap@tes.aja', 'lap', '$2y$10$k9dceiYcomntBfyKZSQPzOm8aSQvTQ0/CPt8BdVsOOjwDA0z3r00W', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-08-19 09:06:05', '2022-03-17 00:24:48', NULL),
-(15, 'uji@tes.aja', 'uji', '$2y$10$VzFSlfKhKdv.AHYxIRcUxuOjMvn.Sm.4Z2XIRshFM3SDitvZz3TG6', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-08-19 09:06:49', '2022-03-17 00:25:09', NULL),
-(16, 'fidiwputro@gmail.com', 'fidi', '$2y$10$TEoRMH.Uy9CxSvA19El95OqubS3MEccX1Du.unKd4ofOIkTlJvuzm', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2022-03-25 10:18:55', '2022-03-25 10:18:55', NULL);
+INSERT INTO `users` (`id`, `email`, `username`, `nim_nip`, `password_hash`, `reset_hash`, `reset_at`, `reset_expires`, `activate_hash`, `status`, `status_message`, `active`, `force_pass_reset`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'user@gmail.com', 'user', NULL, '$2y$10$i9UULNpwHQ30kgj7pmCWru/Q/UY5AYErIJSoVIdM15jis6m9sMkea', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-01-15 23:12:25', '2021-10-18 20:30:48', NULL),
+(2, 'feedeewepe@gmail.com', 'feedeewepe', NULL, '$2y$10$sUiqqGChs0D3vtY4hXcHnOcDRXWLfLAYwR/Ya16hjY3p4rK9Dipwa', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-08-09 23:08:02', '2021-08-09 23:08:02', NULL),
+(9, 'fidiwputro@ittelkom-sby.ac.id', 'fwp', NULL, '$2y$10$66YaE0Pcs7CIbDJgDdb.KuytHCyGyFwMeWT.cb4vRG0Eq0MNizzIS', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-08-17 08:46:05', '2021-10-18 21:48:40', NULL),
+(10, 'se@ittelkom-sby.ac.id', 'serpl', NULL, '$2y$10$9dBLLipH0MXlXgRLNgq5n.NVhAo2OhCMedPFQTaq378ngij7F.PKG', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-08-17 08:47:46', '2021-08-19 09:07:39', NULL),
+(13, 'bpa@tes.aja', 'bpa', NULL, '$2y$10$atp0w5uJGtHjwSCyf2TlHuGNgov058V1tqej8xG7VCk3QS2m5p.Ta', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-08-19 09:05:00', '2022-03-17 00:24:07', NULL),
+(14, 'lap@tes.aja', 'lap', NULL, '$2y$10$k9dceiYcomntBfyKZSQPzOm8aSQvTQ0/CPt8BdVsOOjwDA0z3r00W', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-08-19 09:06:05', '2022-03-17 00:24:48', NULL),
+(15, 'uji@tes.aja', 'uji', NULL, '$2y$10$VzFSlfKhKdv.AHYxIRcUxuOjMvn.Sm.4Z2XIRshFM3SDitvZz3TG6', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-08-19 09:06:49', '2022-03-17 00:25:09', NULL),
+(16, 'fidiwputro@gmail.com', 'fidi', NULL, '$2y$10$TEoRMH.Uy9CxSvA19El95OqubS3MEccX1Du.unKd4ofOIkTlJvuzm', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2022-03-25 10:18:55', '2022-03-25 10:18:55', NULL),
+(17, 'asd@gmail.com', 'asd', NULL, '$2y$10$3ED.vm4/mhUDUsuxaD5a3u07ibSO0AWsEin0z.ZluJIaUQOMHlNPO', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2022-04-02 02:21:46', '2022-04-02 02:21:46', NULL),
+(18, 'qwe@gmail.com', 'qwe', NULL, '$2y$10$HKo0qwo7MozWKFUJg5IZfOoKUWkwZyfWyiTSG9bG0L/pwetrqV5Lu', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2022-04-02 02:24:15', '2022-04-02 02:24:15', NULL),
+(19, 'zxc@gmail.com', 'zxc', NULL, '$2y$10$DwBKZJ3YrFRrdU2nkViwa.7dJbQbg/ZNdJlFDzxlVSIX5CeHXQnHC', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2022-04-02 02:27:05', '2022-04-02 02:27:05', NULL);
 
 --
 -- Indexes for dumped tables
@@ -2326,7 +2353,7 @@ ALTER TABLE `auth_groups`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=192;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions`
@@ -2374,13 +2401,13 @@ ALTER TABLE `survey`
 -- AUTO_INCREMENT for table `usergroup`
 --
 ALTER TABLE `usergroup`
-  MODIFY `USERGROUPID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `USERGROUPID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables

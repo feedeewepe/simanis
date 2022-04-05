@@ -106,7 +106,7 @@ class BaseController extends Controller
                     'Laporan KP' => 'dokumen/laporanKP',
                     'Revisi Laporan KP' => 'kerjapraktek/daftarKP',
                     'Presentasi' => 'kerjapraktek/daftarKP',
-                    'Pengumpulan Dokumen' => 'kerjapraktek/daftarKP',
+                    'Pengumpulan Dokumen' => 'dokumen/pengumpulanDokumen',
                 ];
                 break;
             case 'Pembimbing Akademik':

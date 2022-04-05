@@ -43,44 +43,34 @@
 						</div>
 					<?php endif; ?>
 					<div class="modal-body">
-						<form id="formdaftarkp" action="<?= base_url('dokumen/upload_laporanKP'); ?>" method="post" enctype="multipart/form-data">
+						<form id="formdaftarkp" action="<?= base_url('dokumen/upload_pengumpulan_dokumen'); ?>" method="post" enctype="multipart/form-data">
 							<?= csrf_field(); ?>
 							<div class="row">
 								<div class="home-tab">
 									<div class="d-sm-flex align-items-center justify-content-between border-bottom">
 										<ul class="nav nav-tabs" role="tablist">
 											<li class="nav-item">
-												<a class="nav-link active ps-0" id="group-tab" data-bs-toggle="tab" href="#tabgroup" role="tab" aria-controls="tabgroup" aria-selected="true">Surat Laporan Kerja Praktek</a>
+												<a class="nav-link active ps-0" id="group-tab" data-bs-toggle="tab" href="#tabgroup" role="tab" aria-controls="tabgroup" aria-selected="true">pengumpulan dokumen Kerja Praktek</a>
 											</li>
-											<li class="nav-item">
-                                                <a class="nav-link " id="download-tab" data-bs-toggle="tab" href="#tabdownload" role="tab" aria-selected="false">Download Template </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-content tab-content-basic">
-                                        <div class="tab-pane fade show active" id="tabgroup" role="tabpanel" aria-labelledby="tabdownload">
-                                            <div class="row">
-                                                <iframe src="https://docs.google.com/document/d/1cqQeLP7nnwRKain9XX75AlYqw96IOMON" width="640" height="480"></iframe>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade " id="tabdownload" role="tabpanel" aria-labelledby="tabdownload">
-											<div class="form-group mt-1">
-																		<label for="Masukan surat laporan">Surat Laporan </label>
-																		<input type="file" name="suratlaporan" class="form-control upload" autocomplete="off" id="suratlaporan">
+											<!-- <li class="nav-item">
+                        <a class="nav-link" id="instansi-tab" data-bs-toggle="tab" href="#tabinstansi" role="tab" aria-selected="false">Instansi Tujuan</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="daftar-tab" data-bs-toggle="tab" href="#tabdaftar" role="tab" aria-selected="false">Pendaftaran</a>
+                      </li> -->
+										</ul>
+									</div>
+									
+																	
+																	<div class="form-group mt-1">
+																		<label for="Masukan surat Balasan">pengumpulan dokumen </label>
+																		<input type="file" name="pengumpulandokumen" class="form-control upload" autocomplete="off" id="pengumpulanDokumen">
 
 																	</div>
 																	<div class="form-group">
 																		<button type="reset" id="btn-cancel-company" class="btn btn-secondary btn-sm text-dark">Cancel</button>
 																		<button type="submit" id="btn-submit-company" class="btn btn-primary btn-sm text-light">Submit Form</button>
 																	</div>
-
-                                        </div> 
-                                    </div>
-                                </div>
-										</ul>
-									</div>
-									
-																	
 																	
 																</div>
 															</div>

@@ -117,24 +117,12 @@
                             <label for="role">Peranan</label>
                             <div class="form-check">
                                 <?php foreach ($roles as $peranan):?>
-                                <input class="form-check-input" type="checkbox" value="" id="<?=$peranan['roleid']; ?>">
-                                <label class="form-check-label" for="defaultCheck1">
+                                <input class="form-check-input" type="checkbox" style="margin-left: 0" name="role" value="<?=$peranan['roleid']; ?>" id="roleCheck<?=$peranan['roleid']; ?>" <?php foreach ($datas['role'] as $sbg): echo $sbg['roleid'] == $peranan['roleid'] ? 'checked' : ''; endforeach; ?>>
+                                <label class="form-check-label" for="roleCheck<?=$peranan['roleid']; ?>">
                                     <?=$peranan['rolename']; ?>
                                 </label>
                                 <?php endforeach; ?>
                             </div>
-                            <select name="usergroupid" class="form-control <?php if (session('errors.usergroupid')) : ?>is-invalid<?php endif; ?>"  placeholder="User Group">
-                                <?php //if ($ugid = $datas->usergroupid ?? $datas->usergroupid) :?>
-                                <option value="">User Group</option>
-                                <option value="2" <?//= $ugid == '2' ? 'selected' : null; ?>>Fakultas</option>
-                                <option value="3" <?//= $ugid == '3' ? 'selected' : null; ?>>Bagian Pelayanan Akademik</option>
-                                <option value="4" <?//= $ugid == '4' ? 'selected' : null; ?>>Pembimbing Akademik</option>
-                                <option value="5" <?//= $ugid == '5' ? 'selected' : null; ?>>Pembimbing Lapangan</option>
-                                <option value="6" <?//= $ugid == '6' ? 'selected' : null; ?>>Penguji</option>
-                                <option value="7" <?//= $ugid == '7' ? 'selected' : null; ?>>Mahasiswa</option>
-                            <?php //endif;?>
-                            </select>   
-                           
                         </div>
                         
                         <div class="form-group">
