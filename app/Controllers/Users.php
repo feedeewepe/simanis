@@ -109,13 +109,20 @@ class Users extends BaseController
             }
         } else {
             // Update the user
-            $allowedPostFields = ['password', 'active'];
+            $allowedPostFields = ['password', 'active', 'role'];
+            echo '<pre>';
+            var_dump($this->request->getPost($allowedPostFields));
+            echo '</pre>';
+            die;
             $user = new User($this->request->getPost($allowedPostFields));
             if (!$users->update($userid, $user)) {
                 return redirect()->back()->withInput()->with('errors', $users->errors());
             }
 
             $usergroup = model(UserGroupModel::class);
+            if (!$usergroup->where('users_id', $users->getInsertID())->delete()) {
+                return redirect()->back()->withInput()->with('errors', $usergroup->errors());
+            }
             $dataUserGroup = [];
             foreach ($role as $sbg) {
                 $dataUserGroup[] = ['users_id' => $users->getInsertID(), 'role_id' => $sbg];
