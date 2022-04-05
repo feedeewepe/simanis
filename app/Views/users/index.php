@@ -117,7 +117,7 @@
                             <label for="role">Peranan</label>
                             <div class="form-check">
                                 <?php foreach ($roles as $peranan):?>
-                                <input class="form-check-input" type="checkbox" style="margin-left: 0" name="role" value="<?=$peranan['roleid']; ?>" id="roleCheck<?=$peranan['roleid']; ?>" <?php foreach ($datas['role'] as $sbg): echo $sbg['roleid'] == $peranan['roleid'] ? 'checked' : ''; endforeach; ?>>
+                                <input class="form-check-input" type="checkbox" style="margin-left: 0" name="role[]" value="<?=$peranan['roleid']; ?>" id="roleCheck<?=$peranan['roleid']; ?>" <?php foreach ($datas['role'] as $sbg): echo $sbg['roleid'] == $peranan['roleid'] ? 'checked' : ''; endforeach; ?>>
                                 <label class="form-check-label" for="roleCheck<?=$peranan['roleid']; ?>">
                                     <?=$peranan['rolename']; ?>
                                 </label>
