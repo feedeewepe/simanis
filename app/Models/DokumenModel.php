@@ -39,4 +39,19 @@ class DokumenModel extends Model
 	protected $afterFind            = [];
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
+
+	// protected $db;
+	// protected $dokumen;
+
+	// public function __construct()
+	// {
+	// 	$this->db = \config\Database::connect();
+	// 	$this->dokumen = $this->db->table('document');
+	// }
+
+	// public function getInsertID()
+	// {
+	// 	$lastID = $this->dokumen->select('DOCUMENTID')->limit(1)->orderBy('DOCUMENTID', 'DESC')->get()->getResultArray();
+	// 	return $lastID;
+	// }
 }
