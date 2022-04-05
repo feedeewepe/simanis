@@ -183,7 +183,7 @@
                                                             <div class="row">
                                                                 <div id="summarydaftar">
                                                                     <p>Dengan klik tombol daftar di bawah ini, maka nama mahasiswa yang telah diisi pada tab mahasiswa
-                                                                        akan mendapatkan surat permohonan survey untuk Kerja Praktek yang akan ditujukan ke instansi tujuan.</P>
+                                                                        akan terdaftar dan selanjutnya harus memilih dosen pembimbing akademik pada menu pilih pembimbing</P>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -340,7 +340,7 @@
                     .then((result) => {
                         if (result) { // if confirm clicked....
                             $('#formdaftarkp').closest('form').submit(); // submit form
-                            window.location.replace("<?= base_url('kerjaPraktek/pengantarSurvey'); ?>");
+                            // window.location.replace("<?= base_url('kerjaPraktek/daftar'); ?>");
                         }
                     });
             });

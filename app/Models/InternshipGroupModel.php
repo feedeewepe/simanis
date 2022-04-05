@@ -39,4 +39,19 @@ class InternshipGroupModel extends Model
     protected $afterFind = [];
     protected $beforeDelete = [];
     protected $afterDelete = [];
+
+    protected $db;
+    protected $internshipgroup;
+
+    public function __construct()
+    {
+        $this->db = \config\Database::connect();
+        $this->internshipgroup = $this->db->table('internshipgroup');
+    }
+
+    public function getInsertID()
+    {
+        $lastID = $this->internshipgroup->select('GROUPID')->limit(1)->orderBy('GROUPID', 'DESC')->get()->getResultArray();
+        return $lastID;
+    }
 }

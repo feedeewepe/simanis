@@ -2,8 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Models\GroupstatusModel;
 use App\Models\InternshipGroupModel;
 use App\Models\StudentModel;
+use CodeIgniter\I18n\Time;
 
 class KerjaPraktek extends BaseController
 {
@@ -43,6 +45,7 @@ class KerjaPraktek extends BaseController
 
     public function daftar()
     {
+        helper(['form', 'url']);
         $rules = [
             'nimketua' => 'required',
             'namaketua' => 'required',
@@ -64,12 +67,16 @@ class KerjaPraktek extends BaseController
             'nimanggota2', 'namaanggota2', 'tlpanggota2', 'emailanggota2',
             'fakultas', 'prodi', 'idinstansi', 'namainstansi', 'alamatinstansi', 'tlpinstansi',
         ];
-        $var = $this->request->getPost($allowedPostFields);
 
+        $var = $this->request->getPost($allowedPostFields);
+        var_dump($var);
         $this->studentModel = model(StudentModel::class);
         $this->internshipGroupModel = model(InternshipGroupModel::class);
-        $id = 1 + $this->internshipGroupModel->getInsertID();
+        $this->groupstatusModel = model(GroupstatusModel::class);
+        $id = 1 + (int) $this->internshipGroupModel->getInsertID()[0]["GROUPID"];
         $this->internshipGroupModel->insert(['GROUPID' => $id, 'COMPANYID' => $var['idinstansi']]);
+        $myTime = Time::now('Asia/Jakarta', 'en_US');
+        $this->groupstatusModel->insert(['STATUSID' => '1', 'GROUPID' => $id, 'INPUTDATE' => $myTime]);
         // var_dump($id);
         // die;
         if ($id) {
