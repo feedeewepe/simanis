@@ -33,10 +33,24 @@ class Dokumen extends BaseController
 	*/
 	public function permohonanKP()
 	{
+		$fakultas = model(FakultasModel::class);
+
 		$data = [
 			'title' => 'Kerja Praktek - Surat Permohonan',
 			'menu' => $this->menu,
-			'usergroup' => $this->userGroup
+			'usergroup' => $this->userGroup,
+			'fakultas' => $fakultas->get_all_data(),
+			'roles' => $this->roles->where('roleid >', 1)->findAll(),
+			'role' => $this->role,
+			'roleid' => $this->roleid,
+			'namaketua' => 'Syahfril Nizammudin',
+			'nimketua' => '1201192030',
+			'namaAnggota1' => 'William Kurniawan',
+			'nimAnggota1' => '1201190010',
+			'namaAnggota2' => 'Rizki Fadillah',
+			'nimAnggota2' => '1201192030',
+			'prodi' => 'Rekayasa Perangkat Lunak',
+			'fakultas' => 'FTIB'
 		];
 		return view('dokumen/form_permohonan_kp', $data);
 	}
@@ -69,9 +83,14 @@ class Dokumen extends BaseController
 				'mulaikp', 'akhirkp'
 			];
 
+			$var = $this->request->getPost($allowedPostFields);
+			$this->dokumenModel = model(DokumenModel::class);
+			$this->internshipGroupModel = model(InternshipGroupModel::class);
+
 			// Static Id and Name for GROUPID and INPUTBY
-			$id = 1;
+			$docid = 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()["DOCUMENTID"];
 			$name = "William";
+			$id = 1;
 
 			// Getting file and move file to writable folder
 			$ksm = $this->request->getFile('ksm');
@@ -88,11 +107,8 @@ class Dokumen extends BaseController
 			$survey->move(WRITEPATH . 'documents/uploads/permohonanKP/' . $id . '/');
 			$proposal->move(WRITEPATH . 'documents/uploads/permohonanKP/' . $id . '/');
 
-			$var = $this->request->getPost($allowedPostFields);
-			$this->dokumenModel = model(DokumenModel::class);
-			$this->internshipGroupModel = model(InternshipGroupModel::class);
-
 			$ksmUpload = [
+				'DOCUMENTID' => $docid,
 				'GROUPID' => $id,
 				'DOCUMENT' =>  $ksm->getName(),
 				'DOCUMENTURL'  => WRITEPATH . 'documents/uploads/permohonanKP/' . $id . '/',
@@ -101,6 +117,7 @@ class Dokumen extends BaseController
 			];
 
 			$ktmUpload = [
+				'DOCUMENTID' => $docid + 1,
 				'GROUPID' => $id,
 				'DOCUMENT' =>  $ktm->getName(),
 				'DOCUMENTURL'  => WRITEPATH . 'documents/uploads/permohonanKP/' . $id . '/',
@@ -109,6 +126,7 @@ class Dokumen extends BaseController
 			];
 
 			$transkripUpload = [
+				'DOCUMENTID' => $docid + 2,
 				'GROUPID' => $id,
 				'DOCUMENT' =>  $transkrip->getName(),
 				'DOCUMENTURL'  => WRITEPATH . 'documents/uploads/permohonanKP/' . $id . '/',
@@ -117,6 +135,7 @@ class Dokumen extends BaseController
 			];
 
 			$cvUpload = [
+				'DOCUMENTID' => $docid + 3,
 				'GROUPID' => $id,
 				'DOCUMENT' =>  $cv->getName(),
 				'DOCUMENTURL'  => WRITEPATH . 'documents/uploads/permohonanKP/' . $id . '/',
@@ -125,6 +144,7 @@ class Dokumen extends BaseController
 			];
 
 			$surveyUpload = [
+				'DOCUMENTID' => $docid + 4,
 				'GROUPID' => $id,
 				'DOCUMENT' =>  $cv->getName(),
 				'DOCUMENTURL'  => WRITEPATH . 'documents/uploads/permohonanKP/' . $id . '/',
@@ -133,6 +153,7 @@ class Dokumen extends BaseController
 			];
 
 			$proposalUpload = [
+				'DOCUMENTID' => $docid + 5,
 				'GROUPID' => $id,
 				'DOCUMENT' =>  $proposal->getName(),
 				'DOCUMENTURL'  => WRITEPATH . 'documents/uploads/permohonanKP/' . $id . '/',
@@ -355,9 +376,10 @@ class Dokumen extends BaseController
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
 		} else {
 			$id = 1;
-			$docid = 3;
 			$name = 'William';
+
 			$this->dokumenModel = model(DokumenModel::class);
+			$docid = 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()["DOCUMENTID"];
 			$pakta = $this->request->getFile('paktaintegritas');
 			$pakta->move(WRITEPATH . 'documents/uploads/paktaintegritas/' . $id . '/');
 			$paktaUpload = [

@@ -60,25 +60,12 @@
                         <div class="col-xl-3 col-md-8 grid-margin stretch-card">
                           <div class="card">
                             <div class="card-body">
-                              <h4>Ketua</h4>
+                              <h4 class="mb-4">Ketua</h4>
                               <div class="form-group">
-                                <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control" readonly value="William">
+                                <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control" readonly value="<?= $nimketua ?>">
                               </div>
                               <div class="form-group">
-                                <input type="text" name="namaketua" id="namaketua" placeholder="Nama Lengkap Mahasiswa" class="form-control" readonly value="1201190010">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xl-3 col-md-8 grid-margin stretch-card">
-                          <div class="card">
-                            <div class="card-body">
-                              <h4>Anggota 1 (Optional)</h4>
-                              <div class="form-group">
-                                <input type="text" name="nimanggota1" id="nimanggota1" placeholder="NIM Mahasiswa" class="typeahead form-control" readonly value="William">
-                              </div>
-                              <div class="form-group">
-                                <input type="text" name="namaanggota1" id="namaanggota1" placeholder="Nama Lengkap Mahasiswa" class="form-control" readonly value="1201190010">
+                                <input type="text" name="namaketua" id="namaketua" placeholder="Nama Lengkap Mahasiswa" class="form-control" readonly value="<?= $namaketua ?>">
                               </div>
                             </div>
                           </div>
@@ -86,12 +73,25 @@
                         <div class="col-xl-3 col-md-8 grid-margin stretch-card">
                           <div class="card">
                             <div class="card-body">
-                              <h4>Anggota 2 (Optional)</h4>
+                              <h4 class="mb-4">Anggota 1 (Optional)</h4>
                               <div class="form-group">
-                                <input type="text" name="nimanggota2" id="nimanggota2" placeholder="NIM Mahasiswa" class="typeahead form-control" readonly value="William">
+                                <input type="text" name="nimanggota1" id="nimanggota1" placeholder="NIM Mahasiswa" class="typeahead form-control" readonly value="<?= $nimAnggota1 ?>">
                               </div>
                               <div class="form-group">
-                                <input type="text" name="namaanggota2" id="namaanggota2" placeholder="Nama Lengkap Mahasiswa" class="form-control" readonly value="1201190010">
+                                <input type="text" name="namaanggota1" id="namaanggota1" placeholder="Nama Lengkap Mahasiswa" class="form-control" readonly value="<?= $namaAnggota1 ?>">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xl-3 col-md-8 grid-margin stretch-card">
+                          <div class="card">
+                            <div class="card-body">
+                              <h4 class="mb-4">Anggota 2 (Optional)</h4>
+                              <div class="form-group">
+                                <input type="text" name="nimanggota2" id="nimanggota2" placeholder="NIM Mahasiswa" class="typeahead form-control" readonly value="<?= $nimAnggota2 ?>">
+                              </div>
+                              <div class="form-group">
+                                <input type="text" name="namaanggota2" id="namaanggota2" placeholder="Nama Lengkap Mahasiswa" class="form-control" readonly value="<?= $namaAnggota2 ?>">
                               </div>
                             </div>
                           </div>
@@ -105,11 +105,11 @@
                                 <div id="instansi">
                                   <div class="form-group">
                                     <label for="programstudi">Program Studi</label>
-                                    <input type="text" name="programstudi" id="programstudi" class="form-control" placeholder="Program Studi Mahasiswa" readonly disabled value="Rekayasa Perangkat Lunak">
+                                    <input type="text" name="programstudi" id="programstudi" class="form-control" placeholder="Program Studi Mahasiswa" readonly disabled value="<?= $prodi ?>">
                                   </div>
                                   <div class="form-group">
                                     <label for="fakultas">Fakultas</label>
-                                    <input type="text" name="fakultas" id="fakultas" class="form-control" placeholder="Fakultas Mahasiswa" readonly disabled value="Fakultas Teknologi Informasi dan Bisnis">
+                                    <input type="text" name="fakultas" id="fakultas" class="form-control" placeholder="Fakultas Mahasiswa" readonly disabled value="<?= $fakultas ?>">
                                   </div>
                                   <div class="form-group">
                                     <label for="mulaikp">Periode mulai kerja praktek</label>
