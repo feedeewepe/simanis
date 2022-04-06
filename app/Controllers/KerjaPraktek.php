@@ -69,7 +69,7 @@ class KerjaPraktek extends BaseController
         ];
 
         $var = $this->request->getPost($allowedPostFields);
-        var_dump($var);
+        // var_dump($var);
         $this->studentModel = model(StudentModel::class);
         $this->internshipGroupModel = model(InternshipGroupModel::class);
         $this->groupstatusModel = model(GroupstatusModel::class);

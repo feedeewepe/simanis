@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use phpDocumentor\Reflection\Types\This;
 
 class InternshipGroupModel extends Model
 {
@@ -54,4 +55,14 @@ class InternshipGroupModel extends Model
         $lastID = $this->internshipgroup->select('GROUPID')->limit(1)->orderBy('GROUPID', 'DESC')->get()->getResultArray();
         return $lastID;
     }
+
+    // function updatecode($lecturercode, $groupid)
+    // {
+    //     $data = [
+    //         'LECTURERCODE' => $lecturercode,
+    //     ];
+    //     $this->internshipgroup->set($data);
+    //     $this->internshipgroup->where('GROUPID', $groupid);
+    //     $this->internshipgroup->update();
+    // }
 }

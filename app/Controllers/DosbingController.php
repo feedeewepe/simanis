@@ -37,4 +37,28 @@ class DosbingController extends BaseController
 		echo json_encode($res);
 		exit();
 	}
+
+	public function simpandata()
+	{
+		helper(['form', 'url']);
+		$rules = [
+			'kodedosen' => 'required',
+		];
+		if (!$this->validate($rules)) {
+			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+		}
+		$allowedPostFields = 'kodedosen';
+		$groupid = 1;
+		$lecturercode = $this->request->getPost($allowedPostFields);
+		$this->internshipGroupModel = model(InternshipGroupModel::class);
+		$data = [
+			'LECTURERCODE' => $lecturercode,
+		];
+		$masuk = $this->internshipGroupModel->update($groupid, $data);
+		if ($masuk) {
+			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
+		} else {
+			return redirect()->back()->withInput()->with('errors', $this->internshipGroupModel->errors());
+		}
+	}
 }
