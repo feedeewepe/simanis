@@ -41,39 +41,28 @@
                         </div>
                     <?php endif; ?>
                     <div class="modal-body">
-                    <form action="<?= base_url('Users/saveUser'); ?>" method="post">
+                    <form action="<?= base_url('Users/saveUser/'.$all_data->id); ?>" method="post">
                         <?= csrf_field(); ?>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" name="email" id="email" class="form-control">
+                            <input type="text" name="email" id="email" class="form-control" value="<?=$all_data->email; ?>">                            
                         </div>
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input type="text" name="username" id="username" class="form-control">
+                            <input type="text" name="username" id="username" class="form-control" value="<?=$all_data->username; ?>">
                         </div>
                         <div class="form-group">
                             <label for="nim_nip">NIM / NIP</label>
-                            <input type="text" name="nim_nip" id="nim_nip" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="role">Peranan</label>
-                            <div class="form-check">
-                                <?php foreach ($roles as $peranan):?>
-                                <input class="form-check-input" style="margin-left: 0" type="checkbox" name="role[]" value="<?=$peranan['roleid']; ?>" id="roleCheck<?=$peranan['roleid']; ?>">
-                                <label class="form-check-label" for="roleCheck<?=$peranan['roleid']; ?>">
-                                    <?=$peranan['rolename']; ?>
-                                </label>
-                                <?php endforeach; ?>
-                            </div>                            
+                            <input type="text" name="nim_nip" id="nim_nip" class="form-control" value="<?=$all_data->nim_nip; ?>">
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" name="password" class="form-control" autocomplete="off">
+                            <input type="password" name="password" class="form-control" autocomplete="off" placeholder="Kosongi saja jika tidak ingin mengubah password">
                         </div>
 
                         <div class="form-group">
                             <label for="pass_confirm">Ulangi Password</label>
-                            <input type="password" name="pass_confirm" class="form-control" autocomplete="off">
+                            <input type="password" name="pass_confirm" class="form-control" autocomplete="off" placeholder="Kosongi saja jika tidak ingin mengubah password">
                         </div>                    
                         <div class="modal-footer">
                             <a href="<?= base_url('users'); ?>" class="btn btn-secondary btn-sm">Close</a>                            

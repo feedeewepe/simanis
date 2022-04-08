@@ -106,6 +106,10 @@
                             <input type="text" name="username" id="username<?= $datas['id']; ?>" class="form-control" value="<?= $datas['username']; ?>" disabled>
                         </div>
                         <div class="form-group">
+                            <label for="nim_nip">NIM / NIP</label>
+                            <input type="text" name="nim_nip" id="nim_nip<?= $datas['id']; ?>" class="form-control" value="<?= $datas['nim_nip']; ?>" >
+                        </div>
+                        <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" name="password" id="password<?= $datas['id']; ?>" class="form-control" placeholder="Isi jika Ganti Password Baru" autocomplete="off">
                         </div>
