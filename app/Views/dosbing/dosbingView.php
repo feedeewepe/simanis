@@ -36,45 +36,46 @@
                         </div>
                     <?php endif; ?>
                     <div class="modal-body">
-                        <?= form_open('DosbingController/simpandata') ?>
-                        <div class="row">
-                            <div class="home-tab">
-                                <div class="d-sm-flex align-items-center justify-content-between border-bottom">
-                                    <ul class="nav nav-tabs" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active ps-0" id="group-tab" data-bs-toggle="tab" href="#tabgroup" role="tab" aria-controls="tabgroup" aria-selected="true">Pilih Dosen Pembimbing Akademikk</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="tab-content tab-content-basic">
-                                    <div class="tab-pane fade show active" id="tabgroup" role="tabpanel" aria-labelledby="tabgroup">
-                                        <div class="row">
-                                            <div class="col-xl-3 col-md-8 grid-margin stretch-card">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h4>Dosen</h4>
-                                                        <div class="form-group mt-3">
-                                                            <input type="text" name="kodedosen" id="kodedosen" placeholder="Kode Dosen" class="typeahead form-control">
+                        <form id="pilihdosbing" action="<?= base_url('DosbingController/simpandata'); ?>" method="post">
+                            <?= csrf_field(); ?>
+                            <div class="row">
+                                <div class="home-tab">
+                                    <div class="d-sm-flex align-items-center justify-content-between border-bottom">
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active ps-0" id="group-tab" data-bs-toggle="tab" href="#tabgroup" role="tab" aria-controls="tabgroup" aria-selected="true">Pilih Dosen Pembimbing Akademikk</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content tab-content-basic">
+                                        <div class="tab-pane fade show active" id="tabgroup" role="tabpanel" aria-labelledby="tabgroup">
+                                            <div class="row">
+                                                <div class="col-xl-3 col-md-8 grid-margin stretch-card">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <h4>Dosen</h4>
+                                                            <div class="form-group mt-3">
+                                                                <input type="text" name="kodedosen" id="kodedosen" placeholder="Kode Dosen" class="typeahead form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" name="NIP" id="NIP" placeholder="NIP Dosen" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" name="namadosen" id="namadosen" placeholder="Nama Lengkap Dosen" class="form-control">
+                                                            </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <input type="text" name="NIP" id="NIP" placeholder="NIP Dosen" class="form-control">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="text" name="namadosen" id="namadosen" placeholder="Nama Lengkap Dosen" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-footer text-end">
-                                                        <button type="submit" id="btn-submit" class="btn btn-primary btn-sm ml-5 text-light">Ajukan</button>
+                                                        <div class="card-footer text-end">
+                                                            <button type="submit" id="btn-submit" class="btn btn-primary btn-sm ml-5 text-light">Ajukan</button>
 
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <?= form_close(); ?>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -132,28 +133,12 @@
                     })
                     .then((result) => {
                         if (result) { // if confirm clicked....
-                            $('#formdaftarkp').closest('form').submit(); // submit form
-                            window.location.replace("<?= base_url('kerjaPraktek/pengantarSurvey'); ?>");
+                            $('#pilihdosbing').closest('form').submit(); // submit form
+                            // window.location.replace("<?= base_url('DosbingController/simpandata'); ?>");
                         }
                     });
             });
 
-            $('#btn-submit-company').on("click", function(e) {
-                e.preventDefault();
-                swal({
-                        title: "Apakah anda yakin?",
-                        text: "Klik OK untuk menyimpan!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                    .then((result) => {
-                        if (result) { // if confirm clicked....
-                            // $('#formdaftarkp').closest('form').submit(); // submit form
-
-                        }
-                    });
-            });
 
             const lecturer = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.whitespace,

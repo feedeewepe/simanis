@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class DokumenModel extends Model
+class GroupstatusModel extends Model
 {
 	protected $DBGroup              = 'default';
-	protected $table                = 'document';
-	protected $primaryKey           = 'DOCUMENTID';
+	protected $table                = 'groupstatus';
+	protected $primaryKey           = 'GROUPSTATUSID';
 	protected $useAutoIncrement     = true;
 	protected $insertID             = 0;
-	protected $returnType           = 'array';
+	protected $returnType           = \App\Entities\Groupstatus::class;
 	protected $useSoftDeletes       = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = ['DOCUMENTID', 'GROUPID', 'DOCUMENT', 'DOCUMENTURL', 'INPUTDATE', 'INPUTBY'];
+	protected $allowedFields        = ['GROUPSTATUSID', 'STATUSID', 'GROUPID', 'INPUTDATE'];
 
 	// Dates
 	protected $useTimestamps        = false;
@@ -39,19 +39,4 @@ class DokumenModel extends Model
 	protected $afterFind            = [];
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
-
-	// protected $db;
-	// protected $dokumen;
-
-	// public function __construct()
-	// {
-	// 	$this->db = \config\Database::connect();
-	// 	$this->dokumen = $this->db->table('document');
-	// }
-
-	// public function getInsertID()
-	// {
-	// 	$lastID = $this->dokumen->select('DOCUMENTID')->limit(1)->orderBy('DOCUMENTID', 'DESC')->get()->getResultArray();
-	// 	return $lastID;
-	// }
 }

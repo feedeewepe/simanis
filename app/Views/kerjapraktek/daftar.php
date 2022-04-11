@@ -183,7 +183,7 @@
                                                             <div class="row">
                                                                 <div id="summarydaftar">
                                                                     <p>Dengan klik tombol daftar di bawah ini, maka nama mahasiswa yang telah diisi pada tab mahasiswa
-                                                                        akan mendapatkan surat permohonan survey untuk Kerja Praktek yang akan ditujukan ke instansi tujuan.</P>
+                                                                        akan terdaftar dan selanjutnya harus memilih dosen pembimbing akademik pada menu pilih pembimbing</P>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -261,7 +261,7 @@
                                         <select name="fakultas" id="fakultas" class="form-control btn btn-outline-primary btn-fw">
                                             <option value="">Pilih Fakultas</option>
                                             <?php foreach ($fakultas as $f) { ?>
-                                            <li><?php echo '<option value="'.$f->FACULTYID.'">'.$f->FACULTYNAME.'</option>'; ?>
+                                            <li><?php echo '<option value="' . $f->FACULTYID . '">' . $f->FACULTYNAME . '</option>'; ?>
                                             </li>
                                             <?php } ?>
                                         </select>
@@ -340,7 +340,7 @@
                     .then((result) => {
                         if (result) { // if confirm clicked....
                             $('#formdaftarkp').closest('form').submit(); // submit form
-                            window.location.replace("<?= base_url('kerjaPraktek/daftar'); ?>");
+                            // window.location.replace("<?= base_url('kerjaPraktek/daftar'); ?>");
                         }
                     });
             });

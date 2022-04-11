@@ -57,6 +57,21 @@ class Users extends BaseController
         return view('Users/index', $data);
     }
 
+    public function profile($userid)
+    {
+        $data = [
+            'title' => 'My Profile',
+            'usergroup' => $this->userGroup,
+            'all_data' => $this->userModel->find($userid), // selecting all data
+            'menu' => $this->menu,
+            'roles' => $this->roles->where('roleid >', 1)->findAll(),
+            'role' => $this->role,
+            'roleid' => $this->roleid,
+        ];
+
+        return view('Users/profile', $data);
+    }
+
     public function addUser()
     {
         if (!$this->roleid == 1) {
@@ -86,7 +101,7 @@ class Users extends BaseController
             $rules = [
                 'username' => 'required|alpha_numeric_space|min_length[3]|max_length[30]|is_unique[users.username]',
                 'email' => 'required|valid_email|is_unique[users.email]',
-                'password' => 'required|strong_password',
+                'password' => 'required',
                 'pass_confirm' => 'required|matches[password]',
                 'role' => 'required',
             ];
@@ -94,13 +109,14 @@ class Users extends BaseController
                 return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
             }
             // Save the user
-            $allowedPostFields = array_merge(['password'], $this->config->validFields, $this->config->personalFields);
+            $allowedPostFields = array_merge(['password', 'nim_nip', 'role'], $this->config->validFields, $this->config->personalFields);
             $user = new User($this->request->getPost($allowedPostFields));
             if (!$users->save($user)) {
                 return redirect()->back()->withInput()->with('errors', $users->errors());
             }
             $usergroup = model(UserGroupModel::class);
             $dataUserGroup = [];
+            $role = $this->request->getPost('role');
             foreach ($role as $sbg) {
                 $dataUserGroup[] = ['users_id' => $users->getInsertID(), 'role_id' => $sbg];
             }
@@ -108,31 +124,40 @@ class Users extends BaseController
                 return redirect()->back()->withInput()->with('errors', $usergroup->errors());
             }
         } else {
+            // jika password kosong maka tidak perlu update password
+            if ($this->request->getPost('password') != '') {
+                $allowedPostFields = ['password', 'nim_nip', 'role'];
+            } else {
+                $allowedPostFields = ['nim_nip', 'role'];
+            }
+
+            //jika status aktif tidak null maka diupdate
+            if ($this->request->getPost('active') != null) {
+                $allowedPostFields = array_merge(['active'], $allowedPostFields);
+            }
             // Update the user
-            $allowedPostFields = ['password', 'active', 'role'];
-            echo '<pre>';
-            var_dump($this->request->getPost($allowedPostFields));
-            echo '</pre>';
-            die;
             $user = new User($this->request->getPost($allowedPostFields));
             if (!$users->update($userid, $user)) {
                 return redirect()->back()->withInput()->with('errors', $users->errors());
             }
 
-            $usergroup = model(UserGroupModel::class);
-            if (!$usergroup->where('users_id', $users->getInsertID())->delete()) {
-                return redirect()->back()->withInput()->with('errors', $usergroup->errors());
-            }
             $dataUserGroup = [];
-            foreach ($role as $sbg) {
-                $dataUserGroup[] = ['users_id' => $users->getInsertID(), 'role_id' => $sbg];
-            }
-            if (!$usergroup->insert_batch($dataUserGroup)) {
-                return redirect()->back()->withInput()->with('errors', $usergroup->errors());
+            $role = $this->request->getPost('role');
+            if ($role != null || $role != '') {
+                $usergroup = model(UserGroupModel::class);
+                if (!$usergroup->where('users_id', $userid)->delete()) {
+                    return redirect()->back()->withInput()->with('errors', $usergroup->errors());
+                }
+                foreach ($role as $sbg) {
+                    $dataUserGroup[] = ['users_id' => $userid, 'role_id' => $sbg];
+                }
+                if (!$usergroup->insert_batch($dataUserGroup)) {
+                    return redirect()->back()->withInput()->with('errors', $usergroup->errors());
+                }
             }
         }
 
-        return redirect()->route('users')->with('message', lang('Auth.registerSuccess'));
+        return redirect()->back()->with('message', lang('Auth.registerSuccess'));
     }
 
     public function deleteUser(int $userid)

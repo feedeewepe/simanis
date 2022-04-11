@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use phpDocumentor\Reflection\Types\This;
 
 class InternshipGroupModel extends Model
 {
@@ -39,4 +40,29 @@ class InternshipGroupModel extends Model
     protected $afterFind = [];
     protected $beforeDelete = [];
     protected $afterDelete = [];
+
+    protected $db;
+    protected $internshipgroup;
+
+    public function __construct()
+    {
+        $this->db = \config\Database::connect();
+        $this->internshipgroup = $this->db->table('internshipgroup');
+    }
+
+    public function getInsertID()
+    {
+        $lastID = $this->internshipgroup->select('GROUPID')->limit(1)->orderBy('GROUPID', 'DESC')->get()->getResultArray();
+        return $lastID;
+    }
+
+    // function updatecode($lecturercode, $groupid)
+    // {
+    //     $data = [
+    //         'LECTURERCODE' => $lecturercode,
+    //     ];
+    //     $this->internshipgroup->set($data);
+    //     $this->internshipgroup->where('GROUPID', $groupid);
+    //     $this->internshipgroup->update();
+    // }
 }

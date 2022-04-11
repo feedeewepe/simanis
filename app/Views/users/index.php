@@ -106,6 +106,10 @@
                             <input type="text" name="username" id="username<?= $datas['id']; ?>" class="form-control" value="<?= $datas['username']; ?>" disabled>
                         </div>
                         <div class="form-group">
+                            <label for="nim_nip">NIM / NIP</label>
+                            <input type="text" name="nim_nip" id="nim_nip<?= $datas['id']; ?>" class="form-control" value="<?= $datas['nim_nip']; ?>" >
+                        </div>
+                        <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" name="password" id="password<?= $datas['id']; ?>" class="form-control" placeholder="Isi jika Ganti Password Baru" autocomplete="off">
                         </div>
@@ -117,7 +121,7 @@
                             <label for="role">Peranan</label>
                             <div class="form-check">
                                 <?php foreach ($roles as $peranan):?>
-                                <input class="form-check-input" type="checkbox" style="margin-left: 0" name="role" value="<?=$peranan['roleid']; ?>" id="roleCheck<?=$peranan['roleid']; ?>" <?php foreach ($datas['role'] as $sbg): echo $sbg['roleid'] == $peranan['roleid'] ? 'checked' : ''; endforeach; ?>>
+                                <input class="form-check-input" type="checkbox" style="margin-left: 0" name="role[]" value="<?=$peranan['roleid']; ?>" id="roleCheck<?=$peranan['roleid']; ?>" <?php foreach ($datas['role'] as $sbg): echo $sbg['roleid'] == $peranan['roleid'] ? 'checked' : ''; endforeach; ?>>
                                 <label class="form-check-label" for="roleCheck<?=$peranan['roleid']; ?>">
                                     <?=$peranan['rolename']; ?>
                                 </label>
