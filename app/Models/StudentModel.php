@@ -39,4 +39,19 @@ class StudentModel extends Model
     protected $afterFind = [];
     protected $beforeDelete = [];
     protected $afterDelete = [];
+
+    public function __construct()
+    {
+        $this->db = \Config\Database::connect();
+    }
+
+    // func select all status or by groupid
+    public function select_data($id = false)
+    {
+        if ($id == false) {
+            return $this->get()->getResultObject();
+        }
+
+        return $this->getWhere(['STUDENTID' => $id])->getRow();
+    }
 }

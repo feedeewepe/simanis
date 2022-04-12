@@ -73,8 +73,8 @@ class KerjaPraktek extends BaseController
         $this->studentModel = model(StudentModel::class);
         $this->internshipGroupModel = model(InternshipGroupModel::class);
         $this->groupstatusModel = model(GroupstatusModel::class);
-        $id = 1 + (int) $this->internshipGroupModel->getInsertID()[0]["GROUPID"];
-        $this->internshipGroupModel->insert(['GROUPID' => $id, 'COMPANYID' => $var['idinstansi']]);
+        $id = 1 + (int) $this->internshipGroupModel->getInsertID()[0]['GROUPID'];
+        $this->internshipGroupModel->insert(['GROUPID' => $id, 'COMPANYID' => $var['idinstansi'], 'LEADER_NIM' => $var['nimketua']]);
         $myTime = Time::now('Asia/Jakarta', 'en_US');
         $this->groupstatusModel->insert(['STATUSID' => '1', 'GROUPID' => $id, 'INPUTDATE' => $myTime]);
         // var_dump($id);
@@ -109,7 +109,7 @@ class KerjaPraktek extends BaseController
     {
         $nim = $this->request->getVar('nim');
         $this->studentModel = model(StudentModel::class);
-        $this->studentModel->like('STUDENTID', '%' . $nim . '%');
+        $this->studentModel->like('STUDENTID', '%'.$nim.'%');
         $this->studentModel->select('STUDENTID,FULLNAME,STUDYPROGRAMID');
         $res = $this->studentModel->findAll(5);
         // var_dump($res);
@@ -124,7 +124,7 @@ class KerjaPraktek extends BaseController
     {
         $namacompany = $this->request->getVar('namacompany');
         $this->studentModel = model(CompanyModel::class);
-        $this->studentModel->like('COMPANYNAME', '%' . $namacompany . '%');
+        $this->studentModel->like('COMPANYNAME', '%'.$namacompany.'%');
         $this->studentModel->select('COMPANYID,COMPANYNAME,ADDRESS,CITY,PROVINCE,PHONE,EMAIL');
         $res = $this->studentModel->findAll(5);
         // var_dump($res);
