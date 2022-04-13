@@ -5,12 +5,16 @@ namespace App\Controllers;
 use App\Models\GroupstatusModel;
 use App\Models\InternshipGroupModel;
 use App\Models\StudentModel;
+use App\Models\CompanyModel;
+use CodeIgniter\Model;
 use CodeIgniter\I18n\Time;
 
 class KerjaPraktek extends BaseController
 {
     protected $studentModel;
     protected $internshipGroupModel;
+    // protected $studentModel;
+    protected $companyModel;
 
     public function index()
     {
@@ -69,16 +73,15 @@ class KerjaPraktek extends BaseController
         ];
 
         $var = $this->request->getPost($allowedPostFields);
-        // var_dump($var);
         $this->studentModel = model(StudentModel::class);
         $this->internshipGroupModel = model(InternshipGroupModel::class);
         $this->groupstatusModel = model(GroupstatusModel::class);
-        $id = 1 + (int) $this->internshipGroupModel->getInsertID()[0]["GROUPID"];
+       
+        $id = $this->internshipGroupModel->orderBy('GROUPID', 'desc')->first() != null ? 1 + (int) $this->internshipGroupModel->orderBy('GROUPID', 'desc')->first()->GROUPID : 1;
         $this->internshipGroupModel->insert(['GROUPID' => $id, 'COMPANYID' => $var['idinstansi']]);
         $myTime = Time::now('Asia/Jakarta', 'en_US');
         $this->groupstatusModel->insert(['STATUSID' => '1', 'GROUPID' => $id, 'INPUTDATE' => $myTime]);
-        // var_dump($id);
-        // die;
+
         if ($id) {
             $this->studentModel->update($var['nimketua'], ['GROUPID' => $id]);
             if (isset($var['nimanggota1'])) {
