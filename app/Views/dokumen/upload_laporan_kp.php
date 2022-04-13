@@ -50,10 +50,10 @@
 									<div class="d-sm-flex align-items-center justify-content-between border-bottom">
 										<ul class="nav nav-tabs" role="tablist">
 											<li class="nav-item">
-												<a class="nav-link active ps-0" id="group-tab" data-bs-toggle="tab" href="#tabgroup" role="tab" aria-controls="tabgroup" aria-selected="true">Surat Laporan Kerja Praktek</a>
+												<a class="nav-link active ps-0" id="group-tab" data-bs-toggle="tab" href="#tabgroup" role="tab" aria-controls="tabgroup" aria-selected="true">Template Laporan Kerja Praktek</a>
 											</li>
 											<li class="nav-item">
-                                                <a class="nav-link " id="download-tab" data-bs-toggle="tab" href="#tabdownload" role="tab" aria-selected="false">Download Template </a>
+                                                <a class="nav-link " id="download-tab" data-bs-toggle="tab" href="#tabdownload" role="tab" aria-selected="false">Upload Laporan Kerja Praktek </a>
                                             </li>
                                         </ul>
                                     </div>

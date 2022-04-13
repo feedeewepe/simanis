@@ -165,7 +165,7 @@ class AuthController extends Controller
         //cek NIM or NIP to idetify student or lecturer
         $student = model(StudentModel::class);
         $lecturer = model(LecturerModel::class);
-        $mhs = $student->find($this->request->getPost('nim_nip'));
+        $mhs = $student->select_data($this->request->getPost('nim_nip'));
         $role = [];
         if ($mhs != null) {
             $role = ['7']; //mahasiswa
