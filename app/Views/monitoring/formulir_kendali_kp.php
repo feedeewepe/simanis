@@ -45,6 +45,9 @@
                                             <li class="nav-item">
                                                 <a class="nav-link active ps-0" id="group-tab" data-bs-toggle="tab" href="#tabgroup" role="tab" aria-controls="tabgroup" aria-selected="true">Laporan Kendali Kerja Praktek</a>
                                             </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link " id="table-tab" data-bs-toggle="tab" href="#tabtable" role="tab" aria-selected="false">Daftar kerja praktek</a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="tab-content tab-content-basic">
@@ -76,8 +79,31 @@
 																	</div>
                                                 </div>
                                             </div>
+
+                                            <div class="tab-pane fade " id="tabtable" role="tabpanel" aria-labelledby="tabtable">
+											<div class="table-responsive mt-1">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th> # </th>
+                                                            <th> NIM </th>
+                                                            <th> Unit Kerja </th>
+                                                            <th> Kegiatan </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <td> number </td>
+                                                        <td> nim </td>
+                                                        <td> unit </td>
+                                                        <td> kegiatan </td>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            </div>
+
+                                                
+                                        </div> 
                                         </div>
-                                        
                                     </div>
                                 </div>
                                 <div class="modal-footer">
