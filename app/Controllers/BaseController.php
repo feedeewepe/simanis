@@ -110,7 +110,9 @@ class BaseController extends Controller
                 ];
                 break;
             case 'Pembimbing Akademik':
+                $this->pembimbing = 'Pembimbing Akademik';
                 $this->menu = [
+                    'Persetujuan Bimbingan KP' => 'DosbingController/bimbingan',
                     'Pembekalan KP' => 'kerjapraktek/daftarKP',
                     'Konsultasi KP' => 'SurveyController/index',
                     'Tanda Tangan BA KP' => 'kerjapraktek/daftarKP',

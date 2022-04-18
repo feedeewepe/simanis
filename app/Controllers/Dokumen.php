@@ -88,7 +88,7 @@ class Dokumen extends BaseController
 			$this->internshipGroupModel = model(InternshipGroupModel::class);
 
 			// Static Id and Name for GROUPID and INPUTBY
-			$docid = 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()["DOCUMENTID"];
+			$docid = $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first() != null ? 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()['DOCUMENTID'] : 1;
 			$name = "William";
 			$id = 1;
 
@@ -379,7 +379,7 @@ class Dokumen extends BaseController
 			$name = 'William';
 
 			$this->dokumenModel = model(DokumenModel::class);
-			$docid = 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()["DOCUMENTID"];
+			$docid = $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first() != null ? 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()['DOCUMENTID'] : 1;
 			$pakta = $this->request->getFile('paktaintegritas');
 			$pakta->move(WRITEPATH . 'documents/uploads/paktaintegritas/' . $id . '/');
 			$paktaUpload = [
