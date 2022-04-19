@@ -2,12 +2,12 @@
 
 namespace App\Controllers;
 
+use App\Models\CompanyModel;
 use App\Models\GroupstatusModel;
 use App\Models\InternshipGroupModel;
 use App\Models\StudentModel;
-use App\Models\CompanyModel;
-use CodeIgniter\Model;
 use CodeIgniter\I18n\Time;
+use CodeIgniter\Model;
 
 class KerjaPraktek extends BaseController
 {
@@ -23,11 +23,13 @@ class KerjaPraktek extends BaseController
     public function daftarKP()
     {
         $fakultas = model(FakultasModel::class);
+        $intGroup = model(InternshipGroupModel::class);
 
         $data = [
             'title' => 'Kerja Praktek - Daftar',
             'menu' => $this->menu,
             'usergroup' => $this->userGroup,
+            'intGroup' => $intGroup->getWhere(['LEADER_NIM' => user()->nim_nip])->getRow(),
             'fakultas' => $fakultas->get_all_data(),
             'role' => $this->role,
             'roleid' => $this->roleid,
@@ -76,7 +78,7 @@ class KerjaPraktek extends BaseController
         $this->studentModel = model(StudentModel::class);
         $this->internshipGroupModel = model(InternshipGroupModel::class);
         $this->groupstatusModel = model(GroupstatusModel::class);
-       
+
         $id = $this->internshipGroupModel->orderBy('GROUPID', 'desc')->first() != null ? 1 + (int) $this->internshipGroupModel->orderBy('GROUPID', 'desc')->first()->GROUPID : 1;
         $this->internshipGroupModel->insert(['GROUPID' => $id, 'COMPANYID' => $var['idinstansi'], 'LEADER_NIM' => $var['nimketua']]);
         $myTime = Time::now('Asia/Jakarta', 'en_US');

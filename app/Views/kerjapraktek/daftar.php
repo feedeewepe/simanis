@@ -62,7 +62,7 @@
                                                             <h4>Ketua</h4>
                                                             <div class="form-group">
 
-                                                                <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control">
+                                                                <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control" value="<?= ($intGroup->LEADER_NIM == null) ? '' : $intGroup->LEADER_NIM; ?>" >
                                                             </div>
                                                             <div class="form-group">
                                                                 <input type="text" name="namaketua" id="namaketua" placeholder="Nama Lengkap Mahasiswa" class="form-control">
@@ -261,7 +261,7 @@
                                         <select name="fakultas" id="fakultas" class="form-control btn btn-outline-primary btn-fw">
                                             <option value="">Pilih Fakultas</option>
                                             <?php foreach ($fakultas as $f) { ?>
-                                            <li><?php echo '<option value="' . $f->FACULTYID . '">' . $f->FACULTYNAME . '</option>'; ?>
+                                            <li><?php echo '<option value="'.$f->FACULTYID.'">'.$f->FACULTYNAME.'</option>'; ?>
                                             </li>
                                             <?php } ?>
                                         </select>

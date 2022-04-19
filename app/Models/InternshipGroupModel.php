@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
-use phpDocumentor\Reflection\Types\This;
 
 class InternshipGroupModel extends Model
 {
@@ -15,7 +14,7 @@ class InternshipGroupModel extends Model
     protected $returnType = \App\Entities\InternshipGroup::class;
     protected $useSoftDeletes = false;
     protected $protectFields = true;
-    protected $allowedFields = ['GROUPID', 'LECTURERCODE', 'COMPANYID', 'TYPEID', 'SCHOOLYEAR', 'SEMESTER', 'STARTDATE', 'ENDDATE', 'ADVISORNAME', 'ADVISORUNIT', 'ADVISORPOSITION', 'ADVISORPHONE', 'ADVISOREMAIL'];
+    protected $allowedFields = ['GROUPID', 'LECTURERCODE', 'COMPANYID', 'TYPEID', 'SCHOOLYEAR', 'SEMESTER', 'STARTDATE', 'ENDDATE', 'ADVISORNAME', 'ADVISORUNIT', 'ADVISORPOSITION', 'ADVISORPHONE', 'ADVISOREMAIL', 'LEADER_NIM'];
 
     // Dates
     protected $useTimestamps = false;
