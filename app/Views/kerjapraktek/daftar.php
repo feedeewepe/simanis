@@ -62,7 +62,7 @@
                                                             <h4>Ketua</h4>
                                                             <div class="form-group">
 
-                                                                <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control" value="<?= ($intGroup->LEADER_NIM == null) ? '' : $intGroup->LEADER_NIM; ?>" >
+                                                                <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control" <?= ($intGroup == null) ? 'value=""' : 'value="'.$intGroup->LEADER_NIM.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
                                                                 <input type="text" name="namaketua" id="namaketua" placeholder="Nama Lengkap Mahasiswa" class="form-control">
