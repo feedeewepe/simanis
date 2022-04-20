@@ -35,6 +35,8 @@ class KerjaPraktek extends BaseController
             'intGroup' => $intGroup->join('STUDENT', 'STUDENTID=LEADER_NIM')->getWhere(['LEADER_NIM' => user()->nim_nip])->getRow(),
         ];
 
+        $data['anggota'] = $intGroup->join('STUDENT', 'STUDENT.GROUPID=internshipgroup.GROUPID')->getWhere(['LEADER_NIM' => user()->nim_nip, 'STUDENT.STUDENTID <>' => user()->nim_nip])->getResultObject();
+        // echo $intGroup->getLastQuery();
         return view('kerjapraktek/daftar', $data);
     }
 
@@ -87,10 +89,10 @@ class KerjaPraktek extends BaseController
         if ($id) {
             $this->studentModel->update($var['nimketua'], ['GROUPID' => $id]);
             if (isset($var['nimanggota1'])) {
-                $this->studentModel->update($var['nimanggota1'], ['GROUPID' => $id]);
+                $this->studentModel->update($var['nimanggota1'], ['GROUPID' => $id], ['STUDENT_PHONE' => $var['tlpanggota1']], ['STUDENT_EMAIL' => $var['emailanggota1']]);
             }
             if (isset($var['nimanggota2'])) {
-                $this->studentModel->update($var['nimanggota2'], ['GROUPID' => $id]);
+                $this->studentModel->update($var['nimanggota2'], ['GROUPID' => $id], ['STUDENT_PHONE' => $var['tlpanggota2']], ['STUDENT_EMAIL' => $var['emailanggota2']]);
             }
 
             return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
