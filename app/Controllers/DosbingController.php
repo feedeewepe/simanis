@@ -70,13 +70,13 @@ class DosbingController extends BaseController
 	public function bimbingan()
 	{
 		if ($this->pembimbing) {
-			// ID Dosen Static
-			$id_dosen = "MSK";
 			$this->studentModel = model(StudentModel::class);
 			$this->internshipGroupModel = model(InternshipGroupModel::class);
 			$this->companyModel = model(CompanyModel::class);
 			$this->groupStatusModel = model(GroupstatusModel::class);
+			$this->lectureModel = model(LecturerModel::class);
 
+			$id_dosen = $this->lectureModel->like("EMPLOYEEID", user()->nim_nip)->select('LECTURERCODE')->find()[0]['LECTURERCODE'];
 			$student_data = [];
 			$student_fixed = [];
 			$company_data = [];

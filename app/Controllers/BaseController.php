@@ -104,7 +104,7 @@ class BaseController extends Controller
                     'Pakta Integritas KP' => 'dokumen/pakta_integritas',
                     'Pelaksanaan-KP' => 'kendali/formKendali',
                     'Laporan KP' => 'dokumen/laporanKP',
-                    'Presentasi' => 'kerjapraktek/daftarKP',
+                    'Presentasi' => 'presentasi/',
                     'Revisi Laporan KP' => 'dokumen/upload_revisi',
                     'Pengumpulan Dokumen' => 'dokumen/pengumpulanDokumen',
                 ];
