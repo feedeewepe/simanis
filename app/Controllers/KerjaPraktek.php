@@ -29,10 +29,10 @@ class KerjaPraktek extends BaseController
             'title' => 'Kerja Praktek - Daftar',
             'menu' => $this->menu,
             'usergroup' => $this->userGroup,
-            'intGroup' => $intGroup->getWhere(['LEADER_NIM' => user()->nim_nip])->getRow(),
             'fakultas' => $fakultas->get_all_data(),
             'role' => $this->role,
             'roleid' => $this->roleid,
+            'intGroup' => $intGroup->join('STUDENT', 'STUDENTID=LEADER_NIM')->getWhere(['LEADER_NIM' => user()->nim_nip])->getRow(),
         ];
 
         return view('kerjapraktek/daftar', $data);

@@ -65,13 +65,13 @@
                                                                 <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control" <?= ($intGroup == null) ? 'value=""' : 'value="'.$intGroup->LEADER_NIM.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="namaketua" id="namaketua" placeholder="Nama Lengkap Mahasiswa" class="form-control">
+                                                                <input type="text" name="namaketua" id="namaketua" placeholder="Nama Lengkap Mahasiswa" class="form-control" <?= ($intGroup == null) ? 'value=""' : 'value="'.$intGroup->FULLNAME.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="tlpketua" id="tlpketua" placeholder="No Telp Mahasiswa" class="form-control">
+                                                                <input type="text" name="tlpketua" id="tlpketua" placeholder="No Telp Mahasiswa" class="form-control" <?= ($intGroup == null) ? 'value=""' : 'value="'.$intGroup->STUDENT_PHONE.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="emailketua" id="emailketua" placeholder="Email Mahasiswa" class="form-control">
+                                                                <input type="text" name="emailketua" id="emailketua" placeholder="Email Mahasiswa" class="form-control" <?= ($intGroup == null) ? 'value=""' : 'value="'.$intGroup->STUDENT_EMAIL.'" disabled'; ?> >
 
                                                             </div>
                                                         </div>
