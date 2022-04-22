@@ -85,17 +85,27 @@
                                                 <table class="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th> # </th>
                                                             <th> NIM </th>
                                                             <th> Unit Kerja </th>
                                                             <th> Kegiatan </th>
+                                                            <th> Tanggal </th>
+                                                            <th> status </th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <td> number </td>
-                                                        <td> nim </td>
-                                                        <td> unit </td>
-                                                        <td> kegiatan </td>
+                                                        <?php $no = 1;
+                                                           foreach ($all_data as $datas) : ?>
+                                                            <tr>
+                                                                
+                                                                <td><?= ($datas['STUDENTID']); ?></td>
+                                                                <td><?= ($datas['activityunit']); ?></td>   
+                                                                <td><?= ($datas['activity']); ?></td>                                        
+                                                                <td><?= ($datas['activitydate']); ?></td>
+                                                                <td><?= ($datas['activitystatus'] = 0 ? "Belum Diteima" : "Diterima"); ?></td>
+                                                            
+                                                            </tr>
+                                                        <?php 
+                                                            endforeach; ?>
                                                     </tbody>
                                                 </table>
                                             </div>

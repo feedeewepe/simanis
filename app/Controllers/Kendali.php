@@ -3,18 +3,44 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\KendaliModel;
 use CodeIgniter\I18n\Time;
 
 class Kendali extends BaseController
 {
+	// protected $internshipactivity;
+	protected $kendaliModel;
 
     public function formKendali() {
+		// if (!$this->idinternshipactivity == 1) {
+        //     return redirect()->back();
+        // }
+
+		$this->kendaliModel = model(KendaliModel::class);
+		// var_dump($this->kendaliModel);
+		$dataz=$this->kendaliModel->findAll();
+		//var_dump($dataz);
+
+		// $readData = [
+		// 	'title' => 'User Management',
+		// 	'usergroup' => $this->userGroup,
+		// 	'all_data' => $this->internshipactivity->findAll(), // selecting all data
+		// 	'menu' => $this->menu,
+		// 	'internshipid' => $this->idinternship->where('idinternshipactivity >', 1)->findAll(),
+		// 	'studentid' => $this->STUDENTID,
+		// 	'activity' => $this->activity,
+		// 	'roleid' => $this->roleid,
+		// ];
+
+		// return view('monitoring/formulir_kendali_kp', $readdata);
+
         $data = [
 			'role' => $this->role,
             'roleid' => $this->roleid,
 			'title' => 'Kerja Praktek - Pakta Integritas',
 			'menu' => $this->menu,
 			'usergroup' => $this->userGroup,
+			'all_data' => $dataz,
 			'nama' => 'William Kurniawan',
 			'nim' => '1201190010',
 			'telp' => '+6281234567890',
@@ -45,12 +71,13 @@ class Kendali extends BaseController
 			$name = "UNTO";
 
 			$var = $this->request->getPost($allowedPostFields);
+			//var_dump($var);die;
 			$this->dokumenModel = model(DokumenModel::class);
 			$this->KendaliModel = model(KendaliModel::class);
 			
 
 			$data = [
-                'idinternshipactivity' => "2",
+                'idinternshipactivity' => "1",
 				'STUDENTID' => $var['nimmhs'],
 				'activity' => $var['kegiatan'],
                 'activityunit' => $var['unitkerja'],
@@ -58,9 +85,21 @@ class Kendali extends BaseController
                 'activitystatus' => 0
 			];
 
+			$kendali = new Kendali($data);
+			//var_dump($kendali);die;
+            // if (!$this->KendaliModel->insert($data)) {
+            //     return redirect()->back()->withInput()->with('errors', $this->kendaliModel->errors());
+            // }
 			// Save file to document and update date in internshipgroup
 			$this->KendaliModel->insert($data);
 			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
+			// $kendali = model(KendaliModel::class);
+        	// $mhs = $kendali->select_data($this->request->getPost('nimmhs'));
+        	// $role = [];
+        	// if ($mhs != null) {
+			// 	return redirect()->back()->withInput()->with('error', 'NIM or NIP not available!');
+        	// } 
+
 		}
 	
 		// $fakultas = model(FakultasModel::class);
@@ -87,6 +126,32 @@ class Kendali extends BaseController
         // echo json_encode($res);
         // exit();
     }
+
+	public function readkendali()
+	{
+
+		if (!$this->idinternshipactivity == 1) {
+            return redirect()->back();
+        }
+
+		$this->kendaliModel = model(KendaliModel::class);
+		// var_dump($this->kendaliModel);
+		$dataz=$this->kendaliModel->findAll();
+		var_dump($dataz);
+
+		$readData = [
+			'title' => 'User Management',
+			'usergroup' => $this->userGroup,
+			'all_data' => $this->internshipactivity->findAll(), // selecting all data
+			'menu' => $this->menu,
+			'internshipid' => $this->idinternship->where('idinternshipactivity >', 1)->findAll(),
+			'studentid' => $this->STUDENTID,
+			'activity' => $this->activity,
+			'roleid' => $this->roleid,
+		];
+
+		return view('monitoring/formulir_kendali_kp', $readdata);
+	}
 
 	
 }
