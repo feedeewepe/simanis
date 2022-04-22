@@ -40,11 +40,6 @@ class StudentModel extends Model
     protected $beforeDelete = [];
     protected $afterDelete = [];
 
-    public function __construct()
-    {
-        $this->db = \Config\Database::connect();
-    }
-
     // func select all status or by groupid
     public function select_data($id = false)
     {

@@ -62,16 +62,16 @@
                                                             <h4>Ketua</h4>
                                                             <div class="form-group">
 
-                                                                <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control">
+                                                                <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control" <?= ($intGroup == null) ? 'value=""' : 'value="'.$intGroup->LEADER_NIM.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="namaketua" id="namaketua" placeholder="Nama Lengkap Mahasiswa" class="form-control">
+                                                                <input type="text" name="namaketua" id="namaketua" placeholder="Nama Lengkap Mahasiswa" class="form-control" <?= ($intGroup == null) ? 'value=""' : 'value="'.$intGroup->FULLNAME.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="tlpketua" id="tlpketua" placeholder="No Telp Mahasiswa" class="form-control">
+                                                                <input type="text" name="tlpketua" id="tlpketua" placeholder="No Telp Mahasiswa" class="form-control" <?= ($intGroup == null) ? 'value=""' : 'value="'.$intGroup->STUDENT_PHONE.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="emailketua" id="emailketua" placeholder="Email Mahasiswa" class="form-control">
+                                                                <input type="text" name="emailketua" id="emailketua" placeholder="Email Mahasiswa" class="form-control" <?= ($intGroup == null) ? 'value=""' : 'value="'.$intGroup->STUDENT_EMAIL.'" disabled'; ?> >
 
                                                             </div>
                                                         </div>
@@ -83,16 +83,16 @@
                                                         <div class="card-body">
                                                             <h4>Anggota 1 (Optional)</h4>
                                                             <div class="form-group">
-                                                                <input type="text" name="nimanggota1" id="nimanggota1" placeholder="NIM Mahasiswa" class="typeahead form-control">
+                                                                <input type="text" name="nimanggota1" id="nimanggota1" placeholder="NIM Mahasiswa" class="typeahead form-control" <?= (@$anggota[0] == null) ? 'value=""' : 'value="'.@$anggota[0]->STUDENTID.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="namaanggota1" id="namaanggota1" placeholder="Nama Lengkap Mahasiswa" class="form-control">
+                                                                <input type="text" name="namaanggota1" id="namaanggota1" placeholder="Nama Lengkap Mahasiswa" class="form-control" <?= (@$anggota[0] == null) ? 'value=""' : 'value="'.@$anggota[0]->FULLNAME.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="tlpanggota1" id="tlpanggota1" placeholder="No Telp Mahasiswa" class="form-control">
+                                                                <input type="text" name="tlpanggota1" id="tlpanggota1" placeholder="No Telp Mahasiswa" class="form-control" <?= (@$anggota[0] == null) ? 'value=""' : 'value="'.@$anggota[0]->STUDENT_PHONE.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="emailanggota1" id="emailanggota1" placeholder="Email Mahasiswa" class="form-control">
+                                                                <input type="text" name="emailanggota1" id="emailanggota1" placeholder="Email Mahasiswa" class="form-control" <?= (@$anggota[0] == null) ? 'value=""' : 'value="'.@$anggota[0]->STUDENT_EMAIL.'" disabled'; ?> >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -102,7 +102,7 @@
                                                         <div class="card-body">
                                                             <h4>Anggota 2 (Optional)</h4>
                                                             <div class="form-group">
-                                                                <input type="text" name="nimanggota2" id="nimanggota2" placeholder="NIM Mahasiswa" class="typeahead form-control">
+                                                                <input type="text" name="nimanggota2" id="nimanggota2" placeholder="NIM Mahasiswa" class="typeahead form-control" <?= (@$anggota[1] == null) ? 'value=""' : 'value="'.@$anggota[1]->STUDENTID.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
                                                                 <input type="text" name="namaanggota2" id="namaanggota2" placeholder="Nama Lengkap Mahasiswa" class="form-control">
@@ -261,7 +261,7 @@
                                         <select name="fakultas" id="fakultas" class="form-control btn btn-outline-primary btn-fw">
                                             <option value="">Pilih Fakultas</option>
                                             <?php foreach ($fakultas as $f) { ?>
-                                            <li><?php echo '<option value="' . $f->FACULTYID . '">' . $f->FACULTYNAME . '</option>'; ?>
+                                            <li><?php echo '<option value="'.$f->FACULTYID.'">'.$f->FACULTYNAME.'</option>'; ?>
                                             </li>
                                             <?php } ?>
                                         </select>
