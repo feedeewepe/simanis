@@ -58,30 +58,42 @@
                                             <div class="row">
                                                 <div class="col-xl-3 col-md-8 grid-margin stretch-card">
                                                     <div class="card">
-                                                        <div class="card-body">
+                                                        <div class="card-header">
                                                             <h4>Ketua</h4>
+                                                        </div>
+                                                        <div class="card-body">                                                            
                                                             <div class="form-group">
 
-                                                                <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control" <?= ($intGroup == null) ? 'value=""' : 'value="'.$intGroup->LEADER_NIM.'" disabled'; ?> >
+                                                                <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control" <?= ($ketua == null) ? 'value=""' : 'value="'.$ketua->STUDENTID.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="namaketua" id="namaketua" placeholder="Nama Lengkap Mahasiswa" class="form-control" <?= ($intGroup == null) ? 'value=""' : 'value="'.$intGroup->FULLNAME.'" disabled'; ?> >
+                                                                <input type="text" name="namaketua" id="namaketua" placeholder="Nama Lengkap Mahasiswa" class="form-control" <?= ($ketua == null) ? 'value=""' : 'value="'.$ketua->FULLNAME.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="tlpketua" id="tlpketua" placeholder="No Telp Mahasiswa" class="form-control" <?= ($intGroup == null) ? 'value=""' : 'value="'.$intGroup->STUDENT_PHONE.'" disabled'; ?> >
+                                                                <input type="text" name="tlpketua" id="tlpketua" placeholder="No Telp Mahasiswa" class="form-control" <?= ($ketua == null) ? 'value=""' : 'value="'.$ketua->STUDENT_PHONE.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="emailketua" id="emailketua" placeholder="Email Mahasiswa" class="form-control" <?= ($intGroup == null) ? 'value=""' : 'value="'.$intGroup->STUDENT_EMAIL.'" disabled'; ?> >
+                                                                <input type="text" name="emailketua" id="emailketua" placeholder="Email Mahasiswa" class="form-control" <?= ($ketua == null) ? 'value=""' : 'value="'.$ketua->STUDENT_EMAIL.'" disabled'; ?> >
 
                                                             </div>
+                                                        </div>
+                                                        <div class="card-footer">
+                                                            <?php if ($ketua->STUDENTID == user()->nim_nip):
+                                                            echo '<button type="button" id="btn-editgroup" class="btn btn-primary text-white">Edit</button>';
+                                                            echo '<button type="button" id="btn-ungroup" class="btn btn-danger text-white">Ungroup</button>';
+                                                            endif;
+                                                            ?>
                                                         </div>
 
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-3 col-md-8 grid-margin stretch-card">
                                                     <div class="card">
-                                                        <div class="card-body">
+                                                        <div class="card-header">
                                                             <h4>Anggota 1 (Optional)</h4>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            
                                                             <div class="form-group">
                                                                 <input type="text" name="nimanggota1" id="nimanggota1" placeholder="NIM Mahasiswa" class="typeahead form-control" <?= (@$anggota[0] == null) ? 'value=""' : 'value="'.@$anggota[0]->STUDENTID.'" disabled'; ?> >
                                                             </div>
@@ -95,24 +107,40 @@
                                                                 <input type="text" name="emailanggota1" id="emailanggota1" placeholder="Email Mahasiswa" class="form-control" <?= (@$anggota[0] == null) ? 'value=""' : 'value="'.@$anggota[0]->STUDENT_EMAIL.'" disabled'; ?> >
                                                             </div>
                                                         </div>
+                                                        <div class="card-footer">
+                                                            <?php if (@$anggota[0]->STUDENTID == user()->nim_nip):
+                                                            echo '<button type="button" id="btn-editgroup" class="btn btn-primary text-white">Edit</button>';
+                                                            echo '<button type="button" id="btn-ungroup" class="btn btn-danger text-white">Ungroup</button>';
+                                                            endif;
+                                                            ?>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-3 col-md-8 grid-margin stretch-card">
                                                     <div class="card">
-                                                        <div class="card-body">
+                                                        <div class="card-header">
                                                             <h4>Anggota 2 (Optional)</h4>
+                                                        </div>
+                                                        <div class="card-body">                                                            
                                                             <div class="form-group">
                                                                 <input type="text" name="nimanggota2" id="nimanggota2" placeholder="NIM Mahasiswa" class="typeahead form-control" <?= (@$anggota[1] == null) ? 'value=""' : 'value="'.@$anggota[1]->STUDENTID.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="namaanggota2" id="namaanggota2" placeholder="Nama Lengkap Mahasiswa" class="form-control">
+                                                                <input type="text" name="namaanggota2" id="namaanggota2" placeholder="Nama Lengkap Mahasiswa" class="form-control" <?= (@$anggota[1] == null) ? 'value=""' : 'value="'.@$anggota[1]->FULLNAME.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="tlpanggota2" id="tlpanggota2" placeholder="No Telp Mahasiswa" class="form-control">
+                                                                <input type="text" name="tlpanggota2" id="tlpanggota2" placeholder="No Telp Mahasiswa" class="form-control" <?= (@$anggota[1] == null) ? 'value=""' : 'value="'.@$anggota[1]->STUDENT_PHONE.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="emailanggota2" id="emailanggota2" placeholder="Email Mahasiswa" class="form-control">
+                                                                <input type="text" name="emailanggota2" id="emailanggota2" placeholder="Email Mahasiswa" class="form-control" <?= (@$anggota[1] == null) ? 'value=""' : 'value="'.@$anggota[1]->STUDENT_EMAIL.'" disabled'; ?> >
                                                             </div>
+                                                        </div>
+                                                        <div class="card-footer">
+                                                            <?php if (@$anggota[1]->STUDENTID == user()->nim_nip):
+                                                            echo '<button type="button" id="btn-editgroup" class="btn btn-primary text-white">Edit</button>';
+                                                            echo '<button type="button" id="btn-ungroup" class="btn btn-danger text-white">Ungroup</button>';
+                                                            endif;
+                                                            ?>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -24,6 +24,7 @@ class KerjaPraktek extends BaseController
     {
         $fakultas = model(FakultasModel::class);
         $intGroup = model(InternshipGroupModel::class);
+        $student = model(StudentModel::class);
 
         $data = [
             'title' => 'Kerja Praktek - Daftar',
@@ -32,11 +33,15 @@ class KerjaPraktek extends BaseController
             'fakultas' => $fakultas->get_all_data(),
             'role' => $this->role,
             'roleid' => $this->roleid,
-            'intGroup' => $intGroup->join('STUDENT', 'STUDENTID=LEADER_NIM')->getWhere(['LEADER_NIM' => user()->nim_nip])->getRow(),
         ];
 
-        $data['anggota'] = $intGroup->join('STUDENT', 'STUDENT.GROUPID=internshipgroup.GROUPID')->getWhere(['LEADER_NIM' => user()->nim_nip, 'STUDENT.STUDENTID <>' => user()->nim_nip])->getResultObject();
+        $data['intGroup'] = $intGroup->join('STUDENT', 'STUDENT.GROUPID=internshipgroup.GROUPID')->getWhere(['STUDENTID' => user()->nim_nip])->getRow();
+        $data['ketua'] = $student->getWhere(['STUDENTID' => $data['intGroup']->LEADER_NIM])->getRow();
+        $data['anggota'] = $student->getWhere(['GROUPID' => $data['intGroup']->GROUPID, 'STUDENTID <>' => $data['intGroup']->LEADER_NIM])->getResultObject();
+
         // echo $intGroup->getLastQuery();
+        // die;
+
         return view('kerjapraktek/daftar', $data);
     }
 
