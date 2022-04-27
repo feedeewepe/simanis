@@ -36,9 +36,10 @@ class KerjaPraktek extends BaseController
         ];
 
         $data['intGroup'] = $intGroup->join('STUDENT', 'STUDENT.GROUPID=internshipgroup.GROUPID')->getWhere(['STUDENTID' => user()->nim_nip])->getRow();
-        $data['ketua'] = $student->getWhere(['STUDENTID' => $data['intGroup']->LEADER_NIM])->getRow();
-        $data['anggota'] = $student->getWhere(['GROUPID' => $data['intGroup']->GROUPID, 'STUDENTID <>' => $data['intGroup']->LEADER_NIM])->getResultObject();
-
+        if ($data['intGroup'] != null) {
+            $data['ketua'] = $student->getWhere(['STUDENTID' => $data['intGroup']->LEADER_NIM])->getRow();
+            $data['anggota'] = $student->getWhere(['GROUPID' => $data['intGroup']->GROUPID, 'STUDENTID <>' => $data['intGroup']->LEADER_NIM])->getResultObject();
+        }
         // echo $intGroup->getLastQuery();
         // die;
 

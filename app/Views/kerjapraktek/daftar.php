@@ -64,21 +64,21 @@
                                                         <div class="card-body">                                                            
                                                             <div class="form-group">
 
-                                                                <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control" <?= ($ketua == null) ? 'value=""' : 'value="'.$ketua->STUDENTID.'" disabled'; ?> >
+                                                                <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control" <?= (@$ketua == null) ? 'value=""' : 'value="'.@$ketua->STUDENTID.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="namaketua" id="namaketua" placeholder="Nama Lengkap Mahasiswa" class="form-control" <?= ($ketua == null) ? 'value=""' : 'value="'.$ketua->FULLNAME.'" disabled'; ?> >
+                                                                <input type="text" name="namaketua" id="namaketua" placeholder="Nama Lengkap Mahasiswa" class="form-control" <?= (@$ketua == null) ? 'value=""' : 'value="'.@$ketua->FULLNAME.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="tlpketua" id="tlpketua" placeholder="No Telp Mahasiswa" class="form-control" <?= ($ketua == null) ? 'value=""' : 'value="'.$ketua->STUDENT_PHONE.'" disabled'; ?> >
+                                                                <input type="text" name="tlpketua" id="tlpketua" placeholder="No Telp Mahasiswa" class="form-control" <?= (@$ketua == null) ? 'value=""' : 'value="'.@$ketua->STUDENT_PHONE.'" disabled'; ?> >
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="emailketua" id="emailketua" placeholder="Email Mahasiswa" class="form-control" <?= ($ketua == null) ? 'value=""' : 'value="'.$ketua->STUDENT_EMAIL.'" disabled'; ?> >
+                                                                <input type="text" name="emailketua" id="emailketua" placeholder="Email Mahasiswa" class="form-control" <?= (@$ketua == null) ? 'value=""' : 'value="'.@$ketua->STUDENT_EMAIL.'" disabled'; ?> >
 
                                                             </div>
                                                         </div>
                                                         <div class="card-footer">
-                                                            <?php if ($ketua->STUDENTID == user()->nim_nip):
+                                                            <?php if (@$ketua->STUDENTID == user()->nim_nip):
                                                             echo '<button type="button" id="btn-editgroup" class="btn btn-primary text-white">Edit</button>';
                                                             echo '<button type="button" id="btn-ungroup" class="btn btn-danger text-white">Ungroup</button>';
                                                             endif;
@@ -548,7 +548,21 @@
                 $("#instansi").removeClass(" border border-success rounded");
             });
 
-
+            $('#btn-ungroup').on("click", function(e) {
+                e.preventDefault();
+                swal({
+                        title: "Apakah anda yakin keluar dari group?",
+                        text: "Jika yakin klik OK!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((result) => {
+                        if (result) { // if confirm clicked....                            
+                            alert("Keluar Group!");
+                        }
+                    });
+            });
 
         });
     </script>
