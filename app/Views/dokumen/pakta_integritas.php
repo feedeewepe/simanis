@@ -84,7 +84,7 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="prodi">Lokasi Kerja Praktek</label>
-                                                                <input type="text" name="lokasi" id="lokasi" placeholder="Lokasi KP Mahasiswa" class="form-control" readonly value="<?= $lokasi; ?>">
+                                                                <input type="text" name="lokasi" id="lokasi" placeholder="Lokasi KP Mahasiswa" class="form-control" readonly value="<?= $lokasi != null ? $lokasi : ''; ?>">
                                                             </div>
                                                             <center>
                                                                 <button type="submit" class="px-4 btn btn-primary btn-lg text-light">

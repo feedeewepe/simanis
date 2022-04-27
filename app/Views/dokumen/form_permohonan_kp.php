@@ -62,34 +62,36 @@
                             <div class="card-body">
                               <h4 class="mb-4">Ketua</h4>
                               <div class="form-group">
-                                <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control" readonly value="<?= $ketua->FULLNAME ?>">
+                                <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control" readonly value="<?= $ketua != null ? $ketua->FULLNAME : ''  ?>">
                               </div>
                               <div class="form-group">
-                                <input type="text" name="namaketua" id="namaketua" placeholder="Nama Lengkap Mahasiswa" class="form-control" readonly value="<?= $ketua->STUDENTID ?>">
+                                <input type="text" name="namaketua" id="namaketua" placeholder="Nama Lengkap Mahasiswa" class="form-control" readonly value="<?= $ketua != null ? $ketua->STUDENTID : '' ?>">
                               </div>
                             </div>
                           </div>
                         </div>
                         <?php
                         $i = 1;
-                        foreach ($data as $d) {
-                          if ($i < 3 && $d->STUDENTID != $ketua->STUDENTID) {
+                        if ($data != null) {
+                          foreach ($data as $d) {
+                            if ($i < 3 && $d->STUDENTID != $ketua->STUDENTID) {
                         ?>
-                            <div class="col-xl-3 col-md-8 grid-margin stretch-card">
-                              <div class="card">
-                                <div class="card-body">
-                                  <h4 class="mb-4">Anggota <?= $i ?></h4>
-                                  <div class="form-group">
-                                    <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control" readonly value="<?= $d->FULLNAME ?>">
-                                  </div>
-                                  <div class="form-group">
-                                    <input type="text" name="namaketua" id="namaketua" placeholder="Nama Lengkap Mahasiswa" class="form-control" readonly value="<?= $d->STUDENTID ?>">
+                              <div class="col-xl-3 col-md-8 grid-margin stretch-card">
+                                <div class="card">
+                                  <div class="card-body">
+                                    <h4 class="mb-4">Anggota <?= $i ?></h4>
+                                    <div class="form-group">
+                                      <input type="text" name="nimketua" id="nimketua" placeholder="NIM Mahasiswa" class="typeahead form-control" readonly value="<?= $d->FULLNAME ?>">
+                                    </div>
+                                    <div class="form-group">
+                                      <input type="text" name="namaketua" id="namaketua" placeholder="Nama Lengkap Mahasiswa" class="form-control" readonly value="<?= $d->STUDENTID ?>">
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
                         <?php
-                            $i++;
+                              $i++;
+                            }
                           }
                         }
                         ?>
@@ -103,11 +105,11 @@
                                 <div id="instansi">
                                   <div class="form-group">
                                     <label for="programstudi">Program Studi</label>
-                                    <input type="text" name="programstudi" id="programstudi" class="form-control" placeholder="Program Studi Mahasiswa" readonly disabled value="<?= $namaProdi ?>">
+                                    <input type="text" name="programstudi" id="programstudi" class="form-control" placeholder="Program Studi Mahasiswa" readonly disabled value="<?= $namaProdi != null ? $namaProdi : '' ?>">
                                   </div>
                                   <div class="form-group">
                                     <label for="fakultas">Fakultas</label>
-                                    <input type="text" name="fakultas" id="fakultas" class="form-control" placeholder="Fakultas Mahasiswa" readonly disabled value="<?= $namaFakultas ?>">
+                                    <input type="text" name="fakultas" id="fakultas" class="form-control" placeholder="Fakultas Mahasiswa" readonly disabled value="<?= $namaFakultas != null ? $namaFakultas : '' ?>">
                                   </div>
                                   <div class="form-group">
                                     <label for="mulaikp">Periode mulai kerja praktek</label>

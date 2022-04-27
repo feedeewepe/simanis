@@ -70,30 +70,12 @@ class DosbingController extends BaseController
 	public function bimbingan()
 	{
 		if ($this->pembimbing) {
-			$this->studentModel = model(StudentModel::class);
 			$this->internshipGroupModel = model(InternshipGroupModel::class);
-			$this->companyModel = model(CompanyModel::class);
-			$this->groupStatusModel = model(GroupstatusModel::class);
 			$this->lectureModel = model(LecturerModel::class);
 
-			$id_dosen = $this->lectureModel->like("EMPLOYEEID", user()->nim_nip)->select('LECTURERCODE')->find()[0]['LECTURERCODE'];
-			$student_data = [];
-			$student_fixed = [];
-			$company_data = [];
-			$company_fixed = [];
-			$student_groups = $this->internshipGroupModel->where('LECTURERCODE', $id_dosen)->find();
-
-			
-			for ($i = 0; $i < count($student_groups); $i++) {
-				$userstatus = $this->groupStatusModel->where('GROUPID', $student_groups[$i]->GROUPID)->findColumn("STATUSID");			
-				if ($userstatus[0] == 2) {
-					array_push($student_data, $this->studentModel->where('GROUPID', $student_groups[$i]->GROUPID)->find());
-					array_push($company_data, $this->companyModel->where('COMPANYID', $student_groups[$i]->COMPANYID)->find());
-				} else if ($userstatus[0] == 3) {
-					array_push($student_fixed, $this->studentModel->where('GROUPID', $student_groups[$i]->GROUPID)->find());
-					array_push($company_fixed, $this->companyModel->where('COMPANYID', $student_groups[$i]->COMPANYID)->find());
-				}
-			}
+			$idDosen = $this->lectureModel->like("EMPLOYEEID", user()->nim_nip)->select('LECTURERCODE')->find()[0]['LECTURERCODE'];
+			$studentData = $this->internshipGroupModel->join("student", "student.GROUPID=internshipgroup.GROUPID")->join("company", "internshipgroup.COMPANYID=company.COMPANYID")->join("groupstatus", "groupstatus.GROUPID=internshipgroup.GROUPID")->getWhere(['internshipgroup.LECTURERCODE' => $idDosen, 'STATUSID' => 2])->getResult();
+			$studentAccepted = $this->internshipGroupModel->join("student", "student.GROUPID=internshipgroup.GROUPID")->join("company", "internshipgroup.COMPANYID=company.COMPANYID")->join("groupstatus", "groupstatus.GROUPID=internshipgroup.GROUPID")->getWhere(['internshipgroup.LECTURERCODE' => $idDosen, 'STATUSID' => 3])->getResult();
 
 			$data = [
 				'title' => 'Kerja Praktek - Data Mahasiswa Bimbingan',
@@ -101,11 +83,8 @@ class DosbingController extends BaseController
 				'usergroup' => $this->userGroup,
 				'role' => $this->role,
 				'roleid' => $this->roleid,
-				'student_groups' => $student_groups,
-				'student_data' => $student_data,
-				'company_data' => $company_data,
-				'student_fixed' => $student_fixed,
-				'company_fixed' => $company_fixed,
+				'studentData' => $studentData,
+				'studentAccepted' => $studentAccepted,
 			];
 			return view('dosbing/dosbingDosenView', $data);
 		}

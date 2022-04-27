@@ -7,6 +7,7 @@ use App\Models\DokumenModel;
 use App\Models\InternshipGroupModel;
 use CodeIgniter\I18n\Time;
 use App\Models\RoleModel;
+use App\Models\StudyProgramModel;
 use Myth\Auth\Config\Auth as AuthConfig;
 use Myth\Auth\Models\UserModel;
 
@@ -37,49 +38,26 @@ class Dokumen extends BaseController
 		$fakultas = model(FakultasModel::class);
 		$intGroup = model(InternshipGroupModel::class);
 		$studentModel = model(StudentModel::class);
+		$prodiModel = model(StudyProgramModel::class);
 		
 		$kelompokMhs = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->GROUPID;
-		$nimKetua = $intGroup->getWhere(['GROUPID' => $kelompokMhs])->getRow()->LEADER_NIM;
+		if ($kelompokMhs != 0) {
+			$nimKetua = $intGroup->getWhere(['GROUPID' => $kelompokMhs])->getRow()->LEADER_NIM;
 
-		$dataKelompok = $intGroup->join('student', 'student.GROUPID=internshipgroup.GROUPID')->getWhere(['internshipgroup.GROUPID' => $kelompokMhs])->getResult();
-		$ketua = $intGroup->join('STUDENT', 'STUDENTID=LEADER_NIM')->getWhere(['LEADER_NIM' => $nimKetua])->getRow();
+			$dataKelompok = $intGroup->join('student', 'student.GROUPID=internshipgroup.GROUPID')->getWhere(['internshipgroup.GROUPID' => $kelompokMhs])->getResult();
+			$ketua = $intGroup->join('STUDENT', 'STUDENTID=LEADER_NIM')->getWhere(['LEADER_NIM' => $nimKetua])->getRow();
 
-		$kodeProdi = explode('-', $dataKelompok[0]->CLASS)[0];
-		if ($kodeProdi == 'SE' || $kodeProdi == 'IT' || $kodeProdi == 'IS') {
-			$namaFakultas = 'Fakultas Teknologi Informasi dan Bisnis';
-			switch ($kodeProdi) {
-				case 'SE':
-					$namaProdi = 'Rekayasa Perangkat Lunak';
-					break;
-				case 'IT':
-					$namaProdi = 'Teknologi Informasi';
-					break;
-				case 'IS':
-					$namaProdi = 'Sistem Informasi';
-					break;
-				default:
-					$namaProdi = 'Tidak Ditemukan';
-			} 
-		} else if ($kodeProdi == 'CE' || $kodeProdi == 'TT' || $kodeProdi == 'TE' || $kodeProdi == 'IE') {
-			$namaFakultas = 'Fakultas Teknologi Informasi dan Bisnis';
-			switch ($kodeProdi) {
-				case 'CE':
-					$namaProdi = 'Teknik Komputer';
-					break;
-				case 'TT':
-					$namaProdi = 'Teknik Telekomunikasi';
-					break;
-				case 'TE':
-					$namaProdi = 'Teknik Elektro';
-					break;
-				case 'IE':
-					$namaProdi = 'Teknik Industri';
-					break;
-				default:
-					$namaProdi = 'Tidak Ditemukan';
-			} 
+			$kodeProdi = explode('-', $dataKelompok[0]->CLASS)[0];
+			$prodi = $prodiModel->join('faculties', 'studyprogram.FACULTYID=faculties.FACULTYID')->getWhere(['studyprogram.ACRONIM' => $kodeProdi])->getRow();
+		} else {
+			$ketua = null;
+			$dataKelompok = null;
+			$prodi = (object) [
+				"STUDYPROGRAMNAME" => null,
+				"FACULTYNAME" => null,
+			];
 		}
-
+		
 		$data = [
 			'title' => 'Kerja Praktek - Surat Permohonan',
 			'menu' => $this->menu,
@@ -90,8 +68,8 @@ class Dokumen extends BaseController
 			'roleid' => $this->roleid,
 			'ketua' => $ketua,
 			'data' => $dataKelompok,
-			'namaProdi' => $namaProdi,
-			'namaFakultas' => $namaFakultas
+			'namaProdi' => $prodi->STUDYPROGRAMNAME,
+			'namaFakultas' => $prodi->FACULTYNAME
 		];
 		return view('dokumen/form_permohonan_kp', $data);
 	}
@@ -230,36 +208,17 @@ class Dokumen extends BaseController
 		$intGroup = model(InternshipGroupModel::class);
 		$company = model(CompanyModel::class);
 		$studentModel = model(StudentModel::class);
+		$prodiModel = model(StudyProgramModel::class);
+
 		$mahasiswa = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow();
-		$nimMhs = user()->nim_nip;
-		$companyName = $company->join('internshipgroup', ' company.COMPANYID = internshipgroup.COMPANYID')->join('student', ' internshipgroup.GROUPID = student.GROUPID')->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->COMPANYNAME;
-		
 		$kodeProdi = explode('-', $mahasiswa->CLASS)[0];
-		switch ($kodeProdi) {
-			case 'SE':
-				$namaProdi = 'Rekayasa Perangkat Lunak';
-				break;
-			case 'IT':
-				$namaProdi = 'Teknologi Informasi';
-				break;
-			case 'IS':
-				$namaProdi = 'Sistem Informasi';
-				break;
-			case 'CE':
-				$namaProdi = 'Teknik Komputer';
-				break;
-			case 'TT':
-				$namaProdi = 'Teknik Telekomunikasi';
-				break;
-			case 'TE':
-				$namaProdi = 'Teknik Elektro';
-				break;
-			case 'IE':
-				$namaProdi = 'Teknik Industri';
-				break;
-			default:
-				$namaProdi = 'Tidak Ditemukan';
-		} 
+		$prodi = $prodiModel->join('faculties', 'studyprogram.FACULTYID=faculties.FACULTYID')->getWhere(['studyprogram.ACRONIM' => $kodeProdi])->getRow();
+		if ($mahasiswa->GROUPID != 0) {
+			$companyName = $company->join('internshipgroup', ' company.COMPANYID = internshipgroup.COMPANYID')->join('student', ' internshipgroup.GROUPID = student.GROUPID')->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->COMPANYNAME;
+		} else {
+			$companyName = null;
+		}
+
 		$data = [
 			'role' => $this->role,
 			'roleid' => $this->roleid,
@@ -267,19 +226,14 @@ class Dokumen extends BaseController
 			'menu' => $this->menu,
 			'usergroup' => $this->userGroup,
 			'nama' => $mahasiswa->FULLNAME,
-			'nim' => $nimMhs,
+			'nim' => user()->nim_nip,
 			'telp' => $mahasiswa->STUDENT_PHONE,
-			'prodi' => $namaProdi,
+			'prodi' => $prodi->STUDYPROGRAMNAME,
 			'lokasi' => $companyName
 		];
 		return view('dokumen/pakta_integritas', $data);
 	}
 
-	/*
-	Tujuan    : Menampilkan view pengajuan surat permohonan KP
-	Parameter : 
-	Output    : View 'kerjapraktek/form_permohonan_kp'
-	*/
 	public function balasanKP()
 	{
 		$fakultas = model(FakultasModel::class);

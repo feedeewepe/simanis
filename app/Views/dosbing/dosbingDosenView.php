@@ -1,6 +1,12 @@
 <?= $this->extend('layout/templates'); ?>
-
 <?= $this->Section('content'); ?>
+<style>
+    .undefined {
+        text-align: center;
+        margin-top: 1.4rem;
+    }
+</style>
+
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid">
@@ -70,51 +76,60 @@
                                                                     <tr>
                                                                         <th>No.</th>
                                                                         <th>Nama Mahasiswa</th>
-                                                                        <th>Program Studi</th>
+                                                                        <th>Kelas</th>
                                                                         <th>Lokasi Kerja Praktek</th>
                                                                         <th>Action</th>
                                                                     </tr>
                                                                 </thead>
-                                                                <?php
-                                                                for ($i = 0; $i < count($student_data); $i++) { ?>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td>
-                                                                                <div class="d-flex">
-                                                                                    <h6><?= $i + 1 ?>.</h6>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>
-                                                                                <?php
-                                                                                for ($j = 0; $j < count($student_data[$i]); $j++) {
-                                                                                ?>
-                                                                                    <p class="text-dark"><?= $student_data[$i][$j]->FULLNAME ?></p>
-                                                                                <?php
-                                                                                }
-                                                                                ?>
-                                                                            </td>
-                                                                            <td>
-                                                                                <h6>Rekayasa Perangkat Lunak</h6>
-                                                                            </td>
-                                                                            <td>
-                                                                                <h6><?= $company_data[$i][0]["COMPANYNAME"] ?></h6>
-                                                                                <p><?= $company_data[$i][0]["ADDRESS"] ?></p>
-                                                                            </td>
-                                                                            <td>
-                                                                                <form id="pilihdosbing" action="<?= base_url('DosbingController/approval'); ?>" method="post">
-                                                                                    <?= csrf_field(); ?>
-                                                                                    <input type="hidden" name="groupid" value="<?= $student_data[$i][0]->GROUPID ?>">
-                                                                                    <button type="submit" name="acc" class="btn btn-success btn-lg text-white mb-0 me-0" type="button"><i class="mdi mdi-account-check"></i>Acc</button>
-                                                                                    <button type="submit" name="reject" class="btn btn-danger btn-lg text-white mb-0 me-0" type="button"><i class="mdi mdi-account-edit"></i>Reject</button>
+                                                                <tbody>
+                                                                    <?php
+                                                                    $i = 0;
+                                                                    $tempGroupId = "0";
+                                                                    foreach ($studentData as $data) {
+                                                                        if ($data->GROUPID != $tempGroupId) {
+                                                                            $tempGroupId = $data->GROUPID;
+                                                                    ?>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="d-flex">
+                                                                                        <h6><?= $i + 1 ?>.</h6>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <?php foreach ($studentData as $dataTeam) {
+                                                                                        if ($dataTeam->GROUPID == $tempGroupId) { ?>
+                                                                                            <p><?= $dataTeam->FULLNAME ?></p>
+                                                                                    <?php }
+                                                                                    } ?>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <h6><?= $data->CLASS ?></h6>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <h6><?= $data->COMPANYNAME ?></h6>
+                                                                                    <p><?= $data->ADDRESS ?></p>
+                                                                                    <p><?= $data->CITY ?>, <?= $data->PROVINCE ?></p>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <form id="pilihdosbing" action="<?= base_url('DosbingController/approval'); ?>" method="post">
+                                                                                        <?= csrf_field(); ?>
+                                                                                        <input type="hidden" name="groupid" value="<?= $data->GROUPID ?>">
+                                                                                        <button type="submit" name="acc" class="btn btn-success btn-lg text-white mb-0 me-0" type="button"><i class="mdi mdi-account-check"></i>Acc</button>
+                                                                                        <button type="submit" name="reject" class="btn btn-danger btn-lg text-white mb-0 me-0" type="button"><i class="mdi mdi-account-edit"></i>Reject</button>
+                                                                                    </form>
+                                                                                </td>
+                                                                            </tr>
+                                                                    <?php
+                                                                            $i++;
+                                                                        }
+                                                                    }
+                                                                    ?>
 
-                                                                                </form>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                <?php
-                                                                }
-                                                                ?>
+                                                                </tbody>
                                                             </table>
+                                                            <?php if (count($studentData) == 0) { ?>
+                                                                <h5 class="undefined">Data Mahasiswa Tidak Ditemukan</h5>
+                                                            <?php } ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -144,39 +159,46 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <?php
-                                                                for ($i = 0; $i < count($student_fixed); $i++) { ?>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td>
-                                                                                <div class="d-flex">
-                                                                                    <h6><?= $i + 1 ?>.</h6>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>
-                                                                                <?php
-                                                                                for ($j = 0; $j < count($student_fixed[$i]); $j++) {
-                                                                                ?>
-                                                                                    <p class="text-dark"><?= $student_fixed[$i][$j]->FULLNAME ?></p>
-                                                                                <?php
-                                                                                }
-                                                                                ?>
-                                                                            </td>
-                                                                            <td>
-                                                                                <h6>Rekayasa Perangkat Lunak</h6>
-                                                                            </td>
-                                                                            <td>
-                                                                                <h6><?= $company_fixed[$i][0]["COMPANYNAME"] ?></h6>
-                                                                                <p><?= $company_fixed[$i][0]["ADDRESS"] ?></p>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span class="badge rounded-pill bg-success">Accepted</span>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
+                                                                $i = 0;
+                                                                $tempGroupIdAcc = "0";
+                                                                foreach ($studentAccepted as $data) {
+                                                                    if ($data->GROUPID != $tempGroupIdAcc) {
+                                                                        $tempGroupIdAcc = $data->GROUPID; ?>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="d-flex">
+                                                                                        <h6><?= $i + 1 ?>.</h6>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <?php foreach ($studentAccepted as $dataTeam) {
+                                                                                        if ($dataTeam->GROUPID == $tempGroupIdAcc) { ?>
+                                                                                            <p><?= $dataTeam->FULLNAME ?></p>
+                                                                                    <?php }
+                                                                                    } ?>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <h6>Rekayasa Perangkat Lunak</h6>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <h6><?= $data->COMPANYNAME ?></h6>
+                                                                                    <p><?= $data->ADDRESS ?></p>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <span class="badge rounded-pill bg-success">Accepted</span>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
                                                                 <?php
+                                                                        $i++;
+                                                                    }
                                                                 }
                                                                 ?>
                                                             </table>
+                                                            <?php if (count($studentAccepted) == 0) { ?>
+                                                                <h5 class="undefined">Data Mahasiswa Tidak Ditemukan</h5>
+                                                            <?php } ?>
                                                         </div>
                                                     </div>
                                                 </div>
