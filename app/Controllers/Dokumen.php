@@ -39,7 +39,7 @@ class Dokumen extends BaseController
 		$intGroup = model(InternshipGroupModel::class);
 		$studentModel = model(StudentModel::class);
 		$prodiModel = model(StudyProgramModel::class);
-		
+
 		$kelompokMhs = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->GROUPID;
 		if ($kelompokMhs != 0) {
 			$nimKetua = $intGroup->getWhere(['GROUPID' => $kelompokMhs])->getRow()->LEADER_NIM;
@@ -57,7 +57,7 @@ class Dokumen extends BaseController
 				"FACULTYNAME" => null,
 			];
 		}
-		
+
 		$data = [
 			'title' => 'Kerja Praktek - Surat Permohonan',
 			'menu' => $this->menu,
@@ -102,12 +102,12 @@ class Dokumen extends BaseController
 				'mulaikp', 'akhirkp'
 			];
 			$var = $this->request->getPost($allowedPostFields);
-			
-			$this->dokumenModel = model(DokumenModel::class);
-			$this->internshipGroupModel = model(InternshipGroupModel::class);
+
+			$dokumen = model(DokumenModel::class);
+			$intGroup = model(InternshipGroupModel::class);
 			$studentModel = model(StudentModel::class);
 
-			$docid = $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first() != null ? 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()['DOCUMENTID'] : 1;
+			$docid = $dokumen->orderBy('DOCUMENTID', 'desc')->first() != null ? 1 + (int) $dokumen->orderBy('DOCUMENTID', 'desc')->first()['DOCUMENTID'] : 1;
 			$kelompokMhs = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->GROUPID;
 			$name = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->FULLNAME;
 
@@ -119,6 +119,12 @@ class Dokumen extends BaseController
 			$survey = $this->request->getFile('survey');
 			$proposal = $this->request->getFile('proposal');
 
+			$ksmName = 'ksm.' . $ksm->getClientExtension();
+			$ktmName = 'ktm.' . $ktm->getClientExtension();
+			$transkripName = 'transkrip.' . $transkrip->getClientExtension();
+			$cvName = 'cv.' . $cv->getClientExtension();
+			$surveyName = 'survey.' . $survey->getClientExtension();
+			$proposalName = 'proposal.' . $survey->getClientExtension();
 
 			$ksm->move('documents/uploads/permohonanKP/' . $kelompokMhs. '/');
 			$ktm->move('documents/uploads/permohonanKP/' . $kelompokMhs . '/');
@@ -130,7 +136,7 @@ class Dokumen extends BaseController
 			$ksmUpload = [
 				'DOCUMENTID' => $docid,
 				'GROUPID' => $kelompokMhs,
-				'DOCUMENT' =>  $ksm->getName(),
+				'DOCUMENT' =>  $ksmName,
 				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $kelompokMhs . '/',
 				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
 				'INPUTBY' => $name
@@ -139,7 +145,7 @@ class Dokumen extends BaseController
 			$ktmUpload = [
 				'DOCUMENTID' => $docid + 1,
 				'GROUPID' => $kelompokMhs,
-				'DOCUMENT' =>  $ktm->getName(),
+				'DOCUMENT' =>  $ktmName,
 				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $kelompokMhs . '/',
 				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
 				'INPUTBY' => $name
@@ -148,7 +154,7 @@ class Dokumen extends BaseController
 			$transkripUpload = [
 				'DOCUMENTID' => $docid + 2,
 				'GROUPID' => $kelompokMhs,
-				'DOCUMENT' =>  $transkrip->getName(),
+				'DOCUMENT' =>  $transkripName,
 				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $kelompokMhs . '/',
 				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
 				'INPUTBY' => $name
@@ -157,7 +163,7 @@ class Dokumen extends BaseController
 			$cvUpload = [
 				'DOCUMENTID' => $docid + 3,
 				'GROUPID' => $kelompokMhs,
-				'DOCUMENT' =>  $cv->getName(),
+				'DOCUMENT' =>  $cvName,
 				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $kelompokMhs . '/',
 				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
 				'INPUTBY' => $name
@@ -166,7 +172,7 @@ class Dokumen extends BaseController
 			$surveyUpload = [
 				'DOCUMENTID' => $docid + 4,
 				'GROUPID' => $kelompokMhs,
-				'DOCUMENT' =>  $cv->getName(),
+				'DOCUMENT' =>  $surveyName,
 				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $kelompokMhs . '/',
 				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
 				'INPUTBY' => $name
@@ -175,7 +181,7 @@ class Dokumen extends BaseController
 			$proposalUpload = [
 				'DOCUMENTID' => $docid + 5,
 				'GROUPID' => $kelompokMhs,
-				'DOCUMENT' =>  $proposal->getName(),
+				'DOCUMENT' =>  $proposalName,
 				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $kelompokMhs . '/',
 				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
 				'INPUTBY' => $name
@@ -187,13 +193,8 @@ class Dokumen extends BaseController
 			];
 
 			// Save file to document and update date in internshipgroup
-			$this->dokumenModel->insert($ksmUpload);
-			$this->dokumenModel->insert($ktmUpload);
-			$this->dokumenModel->insert($transkripUpload);
-			$this->dokumenModel->insert($cvUpload);
-			$this->dokumenModel->insert($surveyUpload);
-			$this->dokumenModel->insert($proposalUpload);
-			$this->internshipGroupModel->update($kelompokMhs, $date);
+			$dokumen->insertBatch([$ksmUpload, $ktmUpload, $transkripUpload, $cvUpload, $surveyUpload, $proposalUpload]);
+			$intGroup->update($kelompokMhs, $date);
 			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
 		}
 	}
@@ -262,18 +263,22 @@ class Dokumen extends BaseController
 		if (!$this->validate($rules)) {
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
 		} else {
-			$id = 1;
-			$name = 'UNTO';
+			$studentModel = model(StudentModel::class);
 			$this->dokumenModel = model(DokumenModel::class);
+	
+			$groupid = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->GROUPID;
+			$name = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->FULLNAME;
+			$docid = $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first() != null ? 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()['DOCUMENTID'] : 1;
 
 			$balasan = $this->request->getFile('suratbalasan');
-			$balasan->move(WRITEPATH . 'documents/uploads/balasanKP/' . $id . '/');
+			$balasanName = 'balasanKP.' . $balasan->getClientExtension();
+			$balasan->move('documents/uploads/balasanKP/' . $groupid . '/', $balasanName);
 
 			$balasanUpload = [
-				'DOCUMENTID' => 1,
-				'GROUPID' => $id,
-				'DOCUMENT' =>  $balasan->getName(),
-				'DOCUMENTURL'  => WRITEPATH . 'documents/uploads/balasanKP/' . $id . '/',
+				'DOCUMENTID' => $docid,
+				'GROUPID' => $groupid,
+				'DOCUMENT' =>  $balasanName,
+				'DOCUMENTURL'  => 'documents/uploads/balasanKP/' . $groupid . '/',
 				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
 				'INPUTBY' => $name
 			];
@@ -412,12 +417,13 @@ class Dokumen extends BaseController
 			$name = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->FULLNAME;
 			$docid = $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first() != null ? 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()['DOCUMENTID'] : 1;
 			$pakta = $this->request->getFile('paktaintegritas');
-			$pakta->move('documents/uploads/paktaintegritas/' . $kelompokMhs . '/');
+			$paktaName = 'pakta.' . $pakta->getClientExtension();
+			$pakta->move('documents/uploads/paktaintegritas/' . $kelompokMhs . '/', $paktaName);
 
 			$paktaUpload = [
 				'DOCUMENTID' => $docid,
 				'GROUPID' => $kelompokMhs,
-				'DOCUMENT' =>  $pakta->getName(),
+				'DOCUMENT' =>  $paktaName,
 				'DOCUMENTURL'  => 'documents/uploads/paktaintegritas/' . $kelompokMhs . '/',
 				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
 				'INPUTBY' => $name
