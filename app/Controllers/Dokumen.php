@@ -87,12 +87,12 @@ class Dokumen extends BaseController
 		$rules = [
 			'mulaikp' => 'required',
 			'akhirkp' => 'required',
-			'ksm' => 'uploaded[ksm]|ext_in[ksm,png,jpg,jpeg,pdf]|max_size[ksm,50000]',
-			'ktm' => 'uploaded[ktm]|ext_in[ktm,png,jpg,jpeg,pdf]|max_size[ktm,50000]',
-			'transkrip' => 'uploaded[transkrip]|ext_in[transkrip,png,jpg,jpeg,pdf]|max_size[transkrip,50000]',
-			'cv' => 'uploaded[cv]|ext_in[cv,png,jpg,jpeg,pdf]|max_size[cv,50000]',
-			'survey' => 'uploaded[survey]|ext_in[survey,png,jpg,jpeg,pdf]|max_size[survey,50000]',
-			'proposal' => 'uploaded[proposal]|ext_in[proposal,png,jpg,jpeg,pdf]|max_size[proposal,50000]',
+			'ksm' => 'uploaded[ksm]|ext_in[ksm,pdf]|max_size[ksm,50000]',
+			'ktm' => 'uploaded[ktm]|ext_in[ktm,pdf]|max_size[ktm,50000]',
+			'transkrip' => 'uploaded[transkrip]|ext_in[transkrip,pdf]|max_size[transkrip,50000]',
+			'cv' => 'uploaded[cv]|ext_in[cv,pdf]|max_size[cv,50000]',
+			'survey' => 'uploaded[survey]|ext_in[survey,pdf]|max_size[survey,50000]',
+			'proposal' => 'uploaded[proposal]|ext_in[proposal,pdf]|max_size[proposal,50000]',
 		];
 
 		if (!$this->validate($rules)) {
@@ -107,8 +107,12 @@ class Dokumen extends BaseController
 			$intGroup = model(InternshipGroupModel::class);
 			$studentModel = model(StudentModel::class);
 
+			
+			$groupid = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->GROUPID;
+			if ($groupid == 0) {
+				return redirect()->back()->withInput()->with('errors', ['Anda belum terdaftar dalam kelompok kerja praktek']);
+			}
 			$docid = $dokumen->orderBy('DOCUMENTID', 'desc')->first() != null ? 1 + (int) $dokumen->orderBy('DOCUMENTID', 'desc')->first()['DOCUMENTID'] : 1;
-			$kelompokMhs = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->GROUPID;
 			$name = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->FULLNAME;
 
 			// Getting file and move file to writable folder
@@ -126,63 +130,63 @@ class Dokumen extends BaseController
 			$surveyName = 'survey.' . $survey->getClientExtension();
 			$proposalName = 'proposal.' . $survey->getClientExtension();
 
-			$ksm->move('documents/uploads/permohonanKP/' . $kelompokMhs. '/');
-			$ktm->move('documents/uploads/permohonanKP/' . $kelompokMhs . '/');
-			$transkrip->move('documents/uploads/permohonanKP/' . $kelompokMhs . '/');
-			$cv->move('documents/uploads/permohonanKP/' . $kelompokMhs . '/');
-			$survey->move('documents/uploads/permohonanKP/' . $kelompokMhs. '/');
-			$proposal->move('documents/uploads/permohonanKP/' . $kelompokMhs . '/');
+			$ksm->move('documents/uploads/permohonanKP/' . $groupid. '/', $ksmName);
+			$ktm->move('documents/uploads/permohonanKP/' . $groupid . '/', $ktmName);
+			$transkrip->move('documents/uploads/permohonanKP/' . $groupid . '/', $transkripName);
+			$cv->move('documents/uploads/permohonanKP/' . $groupid . '/', $cvName);
+			$survey->move('documents/uploads/permohonanKP/' . $groupid. '/', $surveyName);
+			$proposal->move('documents/uploads/permohonanKP/' . $groupid . '/', $proposalName);
 
 			$ksmUpload = [
 				'DOCUMENTID' => $docid,
-				'GROUPID' => $kelompokMhs,
+				'GROUPID' => $groupid,
 				'DOCUMENT' =>  $ksmName,
-				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $kelompokMhs . '/',
+				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $groupid . '/',
 				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
 				'INPUTBY' => $name
 			];
 
 			$ktmUpload = [
 				'DOCUMENTID' => $docid + 1,
-				'GROUPID' => $kelompokMhs,
+				'GROUPID' => $groupid,
 				'DOCUMENT' =>  $ktmName,
-				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $kelompokMhs . '/',
+				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $groupid . '/',
 				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
 				'INPUTBY' => $name
 			];
 
 			$transkripUpload = [
 				'DOCUMENTID' => $docid + 2,
-				'GROUPID' => $kelompokMhs,
+				'GROUPID' => $groupid,
 				'DOCUMENT' =>  $transkripName,
-				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $kelompokMhs . '/',
+				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $groupid . '/',
 				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
 				'INPUTBY' => $name
 			];
 
 			$cvUpload = [
 				'DOCUMENTID' => $docid + 3,
-				'GROUPID' => $kelompokMhs,
+				'GROUPID' => $groupid,
 				'DOCUMENT' =>  $cvName,
-				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $kelompokMhs . '/',
+				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $groupid . '/',
 				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
 				'INPUTBY' => $name
 			];
 
 			$surveyUpload = [
 				'DOCUMENTID' => $docid + 4,
-				'GROUPID' => $kelompokMhs,
+				'GROUPID' => $groupid,
 				'DOCUMENT' =>  $surveyName,
-				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $kelompokMhs . '/',
+				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $groupid . '/',
 				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
 				'INPUTBY' => $name
 			];
 
 			$proposalUpload = [
 				'DOCUMENTID' => $docid + 5,
-				'GROUPID' => $kelompokMhs,
+				'GROUPID' => $groupid,
 				'DOCUMENT' =>  $proposalName,
-				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $kelompokMhs . '/',
+				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $groupid . '/',
 				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
 				'INPUTBY' => $name
 			];
@@ -194,7 +198,7 @@ class Dokumen extends BaseController
 
 			// Save file to document and update date in internshipgroup
 			$dokumen->insertBatch([$ksmUpload, $ktmUpload, $transkripUpload, $cvUpload, $surveyUpload, $proposalUpload]);
-			$intGroup->update($kelompokMhs, $date);
+			$intGroup->update($groupid, $date);
 			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
 		}
 	}
@@ -206,7 +210,6 @@ class Dokumen extends BaseController
 	*/
 	public function pakta_integritas()
 	{
-		$intGroup = model(InternshipGroupModel::class);
 		$company = model(CompanyModel::class);
 		$studentModel = model(StudentModel::class);
 		$prodiModel = model(StudyProgramModel::class);
@@ -233,6 +236,44 @@ class Dokumen extends BaseController
 			'lokasi' => $companyName
 		];
 		return view('dokumen/pakta_integritas', $data);
+	}
+
+	public function upload_pakta()
+	{
+		helper(['form', 'url']);
+		$rules = [
+			'paktaintegritas' => 'uploaded[paktaintegritas]|ext_in[paktaintegritas,png,jpg,jpeg,pdf]|max_size[paktaintegritas,50000]'
+		];
+		if (!$this->validate($rules)) {
+			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+		} else {
+			$this->dokumenModel = model(DokumenModel::class);
+			$studentModel = model(StudentModel::class);
+
+			$groupid = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->GROUPID;
+			if ($groupid == 0) {
+				return redirect()->back()->withInput()->with('errors', ['Anda belum terdaftar dalam kelompok kerja praktek']);
+			}
+
+			$name = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->FULLNAME;
+			$docid = $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first() != null ? 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()['DOCUMENTID'] : 1;
+
+			$pakta = $this->request->getFile('paktaintegritas');
+			$paktaName = 'pakta.' . $pakta->getClientExtension();
+			$pakta->move('documents/uploads/paktaintegritas/' . $groupid . '/', $paktaName);
+
+			$paktaUpload = [
+				'DOCUMENTID' => $docid,
+				'GROUPID' => $groupid,
+				'DOCUMENT' =>  $paktaName,
+				'DOCUMENTURL'  => 'documents/uploads/paktaintegritas/' . $groupid . '/',
+				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
+				'INPUTBY' => $name
+			];
+
+			$this->dokumenModel->insert($paktaUpload);
+			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
+		}
 	}
 
 	public function balasanKP()
@@ -267,6 +308,10 @@ class Dokumen extends BaseController
 			$this->dokumenModel = model(DokumenModel::class);
 	
 			$groupid = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->GROUPID;
+			if ($groupid == 0) {
+				return redirect()->back()->withInput()->with('errors', ['Anda belum terdaftar dalam kelompok kerja praktek']);
+			}
+
 			$name = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->FULLNAME;
 			$docid = $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first() != null ? 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()['DOCUMENTID'] : 1;
 
@@ -286,20 +331,6 @@ class Dokumen extends BaseController
 			$this->dokumenModel->insert($balasanUpload);
 			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
 		}
-
-		// helper(['form', 'url']);
-
-		//     $img = $this->request->getFile('suratbalasan');
-		//     $img->move(WRITEPATH . 'documents/uploads');
-
-		//     $data = [
-		//        'name' =>  $img->getName(),
-		//        'type'  => $img->getClientMimeType()
-		//     ];
-
-		//     $save = $db->insert($data);
-		//     print_r('File has successfully uploaded');        
-
 	}
 
 	public function laporanKP()
@@ -315,34 +346,40 @@ class Dokumen extends BaseController
 			'role' => $this->role,
 			'roleid' => $this->roleid,
 		];
+		
 		return view('dokumen/upload_laporan_kp', $data);
 	}
 
 	public function upload_laporanKP()
 	{
-
 		helper(['form', 'url']);
 		$rules = [
 			'suratlaporan' => 'uploaded[suratlaporan]|ext_in[suratlaporan,png,jpg,jpeg,pdf]|max_size[suratlaporan,500000]'
-
 		];
-
 
 		if (!$this->validate($rules)) {
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
 		} else {
-			$id = 1;
-			$name = 'UNTO';
+			$studentModel = model(StudentModel::class);
 			$this->dokumenModel = model(DokumenModel::class);
 
+			$groupid = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->GROUPID;
+			if ($groupid == 0) {
+				return redirect()->back()->withInput()->with('errors', ['Anda belum terdaftar dalam kelompok kerja praktek']);
+			}
+
+			$name = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->FULLNAME;
+			$docid = $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first() != null ? 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()['DOCUMENTID'] : 1;
+			
 			$laporan = $this->request->getFile('suratlaporan');
-			$laporan->move(WRITEPATH . 'documents/uploads/laporanKP/' . $id . '/');
+			$laporanName = 'laporanKP.' . $laporan->getClientExtension();
+			$laporan->move('documents/uploads/laporanKP/' . $groupid . '/', $laporanName);
 
 			$laporanUpload = [
-				'DOCUMENTID' => 1,
-				'GROUPID' => $id,
-				'DOCUMENT' =>  $laporan->getName(),
-				'DOCUMENTURL'  => WRITEPATH . 'documents/uploads/laporanKP/' . $id . '/',
+				'DOCUMENTID' => $docid,
+				'GROUPID' => $groupid,
+				'DOCUMENT' =>  $laporanName,
+				'DOCUMENTURL'  =>  'documents/uploads/laporanKP/' . $groupid . '/',
 				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
 				'INPUTBY' => $name
 			];
@@ -380,59 +417,36 @@ class Dokumen extends BaseController
 		if (!$this->validate($rules)) {
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
 		} else {
-			$id = 1;
-			$name = 'UNTO';
-			$this->dokumenModel = model(DokumenModel::class);
 
-			$balasan = $this->request->getFile('pengumpulandokumen');
-			$balasan->move(WRITEPATH . 'documents/uploads/pengumpulanDokumen/' . $id . '/');
-
-			$balasanUpload = [
-				'DOCUMENTID' => 88,
-				'GROUPID' => $id,
-				'DOCUMENT' =>  $balasan->getName(),
-				'DOCUMENTURL'  => WRITEPATH . 'documents/uploads/pengumpulan_dokumen/' . $id . '/',
-				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
-				'INPUTBY' => $name
-			];
-
-			$this->dokumenModel->insert($balasanUpload);
-			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
-		}
-	}
-
-	public function upload_pakta()
-	{
-		helper(['form', 'url']);
-		$rules = [
-			'paktaintegritas' => 'uploaded[paktaintegritas]|ext_in[paktaintegritas,png,jpg,jpeg,pdf]|max_size[paktaintegritas,50000]'
-		];
-		if (!$this->validate($rules)) {
-			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
-		} else {
-			$this->dokumenModel = model(DokumenModel::class);
 			$studentModel = model(StudentModel::class);
+			$this->dokumenModel = model(DokumenModel::class);
 
-			$kelompokMhs = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->GROUPID;
+			$groupid = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->GROUPID;
+			if ($groupid == 0) {
+				return redirect()->back()->withInput()->with('errors', ['Anda belum terdaftar dalam kelompok kerja praktek']);
+			}
+			
 			$name = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->FULLNAME;
 			$docid = $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first() != null ? 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()['DOCUMENTID'] : 1;
-			$pakta = $this->request->getFile('paktaintegritas');
-			$paktaName = 'pakta.' . $pakta->getClientExtension();
-			$pakta->move('documents/uploads/paktaintegritas/' . $kelompokMhs . '/', $paktaName);
 
-			$paktaUpload = [
+			$dokumen = $this->request->getFile('pengumpulandokumen');
+			$dokumenName = 'dokumen.' . $dokumen->getClientExtension();
+			$dokumen->move('documents/uploads/pengumpulan_dokumen/' . $groupid . '/', $dokumenName);
+
+			$dokumenUpload = [
 				'DOCUMENTID' => $docid,
-				'GROUPID' => $kelompokMhs,
-				'DOCUMENT' =>  $paktaName,
-				'DOCUMENTURL'  => 'documents/uploads/paktaintegritas/' . $kelompokMhs . '/',
+				'GROUPID' => $groupid,
+				'DOCUMENT' =>  $dokumenName,
+				'DOCUMENTURL'  => 'documents/uploads/pengumpulan_dokumen/' . $groupid . '/',
 				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
 				'INPUTBY' => $name
 			];
 
-			$this->dokumenModel->insert($paktaUpload);
+			$this->dokumenModel->insert($dokumenUpload);
 			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
 		}
 	}
+
 
 	public function upload_revisi()
 	{
@@ -462,24 +476,30 @@ class Dokumen extends BaseController
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
 		} else {
 			$this->dokumenModel = model(DokumenModel::class);
+			$studentModel = model(StudentModel::class);
 
-			// $id = 1 + (int) $this->dokumenModel->getInsertID()[0]["DOCUMENTID"];
-			$id = 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()["DOCUMENTID"];
-			$name = 'SugarBabyHyeKyo';
+			$groupid = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->GROUPID;
+			if ($groupid == 0) {
+				return redirect()->back()->withInput()->with('errors', ['Anda belum terdaftar dalam kelompok kerja praktek']);
+			}
 
-			$balasan = $this->request->getFile('revisilaporan');
-			$balasan->move(WRITEPATH . 'documents\uploads\revisi' . $id . '/');
+			$docid = $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first() != null ? 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()['DOCUMENTID'] : 1;
+			$name = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->FULLNAME;
 
-			$balasanUpload = [
-				'DOCUMENTID' => $id,
-				'GROUPID' => $id,
-				'DOCUMENT' =>  $balasan->getName(),
-				'DOCUMENTURL'  => WRITEPATH . 'documents\uploads\revisi' . $id . '/',
+			$revisi = $this->request->getFile('revisilaporan');
+			$revisiName = 'revisi.' . $revisi->getClientExtension();
+			$revisi->move('documents/uploads/revisi/' . $groupid . '/', $revisiName);
+
+			$revisiUpload = [
+				'DOCUMENTID' => $docid,
+				'GROUPID' => $groupid,
+				'DOCUMENT' =>  $revisiName,
+				'DOCUMENTURL'  => 'documents/uploads/revisi/' . $groupid . '/',
 				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
 				'INPUTBY' => $name
 			];
 
-			$this->dokumenModel->insert($balasanUpload);
+			$this->dokumenModel->insert($revisiUpload);
 			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
 		}
 	}
