@@ -107,7 +107,7 @@ class Dokumen extends BaseController
 			$intGroup = model(InternshipGroupModel::class);
 			$studentModel = model(StudentModel::class);
 
-			
+
 			$groupid = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->GROUPID;
 			if ($groupid == 0) {
 				return redirect()->back()->withInput()->with('errors', ['Anda belum terdaftar dalam kelompok kerja praktek']);
@@ -130,11 +130,11 @@ class Dokumen extends BaseController
 			$surveyName = 'survey.' . $survey->getClientExtension();
 			$proposalName = 'proposal.' . $survey->getClientExtension();
 
-			$ksm->move('documents/uploads/permohonanKP/' . $groupid. '/', $ksmName);
+			$ksm->move('documents/uploads/permohonanKP/' . $groupid . '/', $ksmName);
 			$ktm->move('documents/uploads/permohonanKP/' . $groupid . '/', $ktmName);
 			$transkrip->move('documents/uploads/permohonanKP/' . $groupid . '/', $transkripName);
 			$cv->move('documents/uploads/permohonanKP/' . $groupid . '/', $cvName);
-			$survey->move('documents/uploads/permohonanKP/' . $groupid. '/', $surveyName);
+			$survey->move('documents/uploads/permohonanKP/' . $groupid . '/', $surveyName);
 			$proposal->move('documents/uploads/permohonanKP/' . $groupid . '/', $proposalName);
 
 			$ksmUpload = [
@@ -306,7 +306,7 @@ class Dokumen extends BaseController
 		} else {
 			$studentModel = model(StudentModel::class);
 			$this->dokumenModel = model(DokumenModel::class);
-	
+
 			$groupid = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->GROUPID;
 			if ($groupid == 0) {
 				return redirect()->back()->withInput()->with('errors', ['Anda belum terdaftar dalam kelompok kerja praktek']);
@@ -346,7 +346,7 @@ class Dokumen extends BaseController
 			'role' => $this->role,
 			'roleid' => $this->roleid,
 		];
-		
+
 		return view('dokumen/upload_laporan_kp', $data);
 	}
 
@@ -370,7 +370,7 @@ class Dokumen extends BaseController
 
 			$name = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->FULLNAME;
 			$docid = $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first() != null ? 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()['DOCUMENTID'] : 1;
-			
+
 			$laporan = $this->request->getFile('suratlaporan');
 			$laporanName = 'laporanKP.' . $laporan->getClientExtension();
 			$laporan->move('documents/uploads/laporanKP/' . $groupid . '/', $laporanName);
@@ -425,7 +425,7 @@ class Dokumen extends BaseController
 			if ($groupid == 0) {
 				return redirect()->back()->withInput()->with('errors', ['Anda belum terdaftar dalam kelompok kerja praktek']);
 			}
-			
+
 			$name = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->FULLNAME;
 			$docid = $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first() != null ? 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()['DOCUMENTID'] : 1;
 
@@ -500,6 +500,60 @@ class Dokumen extends BaseController
 			];
 
 			$this->dokumenModel->insert($revisiUpload);
+			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
+		}
+	}
+
+	public function proposal()
+	{
+		$fakultas = model(FakultasModel::class);
+
+		$data = [
+			'title' => 'Kerja Praktek - Daftar',
+			'menu' => $this->menu,
+			'usergroup' => $this->userGroup,
+			'fakultas' => $fakultas->get_all_data(),
+			'role' => $this->role,
+			'roleid' => $this->roleid,
+		];
+
+		return view('dokumen/proposal_kp', $data);
+	}
+
+	public function upload_proposal()
+	{
+		helper(['form', 'url']);
+		$rules = [
+			'proposalkp' => 'uploaded[proposalkp]|ext_in[proposalkp,png,jpg,jpeg,pdf]|max_size[proposalkp,50000]'
+		];
+		if (!$this->validate($rules)) {
+			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+		} else {
+			$this->dokumenModel = model(DokumenModel::class);
+			$studentModel = model(StudentModel::class);
+
+			$groupid = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->GROUPID;
+			if ($groupid == 0) {
+				return redirect()->back()->withInput()->with('errors', ['Anda belum terdaftar dalam kelompok kerja praktek']);
+			}
+
+			$name = $studentModel->getWhere(['STUDENTID' => user()->nim_nip])->getRow()->FULLNAME;
+			$docid = $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first() != null ? 1 + (int) $this->dokumenModel->orderBy('DOCUMENTID', 'desc')->first()['DOCUMENTID'] : 1;
+
+			$pakta = $this->request->getFile('proposalkp');
+			$paktaName = 'proposal.' . $pakta->getClientExtension();
+			$pakta->move('documents/uploads/' . $groupid . '/', $paktaName);
+
+			$paktaUpload = [
+				'DOCUMENTID' => $docid,
+				'GROUPID' => $groupid,
+				'DOCUMENT' =>  $paktaName,
+				'DOCUMENTURL'  => 'documents/uploads/' . $groupid . '/',
+				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
+				'INPUTBY' => $name
+			];
+
+			$this->dokumenModel->insert($paktaUpload);
 			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
 		}
 	}

@@ -98,7 +98,7 @@ class BaseController extends Controller
                 $this->menu = [
                     'Pendaftaran KP' => 'kerjapraktek/daftarKP',
                     'Pilih pembimbing' => 'DosbingController/index',
-                    'Proposal KP' => 'kerjapraktek/downloadlaporan',
+                    'Proposal KP' => 'dokumen/proposal',
                     'Surat Permohonan KP' => 'dokumen/permohonanKP',
                     'Surat Balasan KP' => 'dokumen/balasanKP',
                     'Pakta Integritas KP' => 'dokumen/pakta_integritas',
@@ -113,7 +113,7 @@ class BaseController extends Controller
                 $this->pembimbing = 'Pembimbing Akademik';
                 $this->menu = [
                     'Persetujuan Bimbingan KP' => 'DosbingController/bimbingan',
-                    'Pembekalan KP' => 'kerjapraktek/daftarKP',
+                    'Pembekalan KP' => 'dosbing/pembekalan',
                     'Konsultasi KP' => 'SurveyController/index',
                     'Tanda Tangan BA KP' => 'kerjapraktek/daftarKP',
                     'Rekap Nilai KP' => 'dokumen/permohonanKP',
