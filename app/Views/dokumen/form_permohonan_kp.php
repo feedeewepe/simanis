@@ -136,14 +136,14 @@
                                     <input type="file" name="cv" class="form-control upload" autocomplete="off" id="cv" multiple>
                                   </div>
                                   <div class="form-group">
-                                    <label for="survey">BA Survey Lokasi</label>
+                                    <label for="survey">Berita Acara Survey Lokasi</label>
                                     <input type="file" name="survey" class="form-control upload" autocomplete="off" id="survey">
                                   </div>
-                                  <div class="form-group">
+                                  <!-- <div class="form-group">
                                     <label for="proposal">Proposal Kerja Praktek</label>
                                     <input type="file" name="proposal" class="form-control upload" autocomplete="off" id="proposal">
 
-                                  </div>
+                                  </div> -->
                                   <div class="form-group">
                                     <button type="reset" id="btn-cancel-company" class="btn btn-secondary btn-sm text-dark">Cancel</button>
                                     <button type="submit" id="btn-submit" class="btn btn-primary btn-sm text-light">Submit Form</button>

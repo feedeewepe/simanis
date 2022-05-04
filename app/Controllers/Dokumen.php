@@ -92,7 +92,7 @@ class Dokumen extends BaseController
 			'transkrip' => 'uploaded[transkrip]|ext_in[transkrip,pdf]|max_size[transkrip,50000]',
 			'cv' => 'uploaded[cv]|ext_in[cv,pdf]|max_size[cv,50000]',
 			'survey' => 'uploaded[survey]|ext_in[survey,pdf]|max_size[survey,50000]',
-			'proposal' => 'uploaded[proposal]|ext_in[proposal,pdf]|max_size[proposal,50000]',
+			// 'proposal' => 'uploaded[proposal]|ext_in[proposal,pdf]|max_size[proposal,50000]',
 		];
 
 		if (!$this->validate($rules)) {
@@ -121,21 +121,21 @@ class Dokumen extends BaseController
 			$transkrip = $this->request->getFile('transkrip');
 			$cv = $this->request->getFile('cv');
 			$survey = $this->request->getFile('survey');
-			$proposal = $this->request->getFile('proposal');
+			// $proposal = $this->request->getFile('proposal');
 
 			$ksmName = 'ksm.' . $ksm->getClientExtension();
 			$ktmName = 'ktm.' . $ktm->getClientExtension();
 			$transkripName = 'transkrip.' . $transkrip->getClientExtension();
 			$cvName = 'cv.' . $cv->getClientExtension();
 			$surveyName = 'survey.' . $survey->getClientExtension();
-			$proposalName = 'proposal.' . $survey->getClientExtension();
+			// $proposalName = 'proposal.' . $survey->getClientExtension();
 
 			$ksm->move('documents/uploads/permohonanKP/' . $groupid . '/', $ksmName);
 			$ktm->move('documents/uploads/permohonanKP/' . $groupid . '/', $ktmName);
 			$transkrip->move('documents/uploads/permohonanKP/' . $groupid . '/', $transkripName);
 			$cv->move('documents/uploads/permohonanKP/' . $groupid . '/', $cvName);
 			$survey->move('documents/uploads/permohonanKP/' . $groupid . '/', $surveyName);
-			$proposal->move('documents/uploads/permohonanKP/' . $groupid . '/', $proposalName);
+			// $proposal->move('documents/uploads/permohonanKP/' . $groupid . '/', $proposalName);
 
 			$ksmUpload = [
 				'DOCUMENTID' => $docid,
@@ -182,14 +182,14 @@ class Dokumen extends BaseController
 				'INPUTBY' => $name
 			];
 
-			$proposalUpload = [
-				'DOCUMENTID' => $docid + 5,
-				'GROUPID' => $groupid,
-				'DOCUMENT' =>  $proposalName,
-				'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $groupid . '/',
-				'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
-				'INPUTBY' => $name
-			];
+			// $proposalUpload = [
+			// 	'DOCUMENTID' => $docid + 5,
+			// 	'GROUPID' => $groupid,
+			// 	'DOCUMENT' =>  $proposalName,
+			// 	'DOCUMENTURL'  => 'documents/uploads/permohonanKP/' . $groupid . '/',
+			// 	'INPUTDATE' => Time::now('Asia/Jakarta', 'en_US'),
+			// 	'INPUTBY' => $name
+			// ];
 
 			$date = [
 				'STARTDATE' => $var['mulaikp'],
@@ -197,7 +197,7 @@ class Dokumen extends BaseController
 			];
 
 			// Save file to document and update date in internshipgroup
-			$dokumen->insertBatch([$ksmUpload, $ktmUpload, $transkripUpload, $cvUpload, $surveyUpload, $proposalUpload]);
+			$dokumen->insertBatch([$ksmUpload, $ktmUpload, $transkripUpload, $cvUpload, $surveyUpload]);
 			$intGroup->update($groupid, $date);
 			return redirect()->back()->withInput()->with('success', 'data telah tersimpan');
 		}

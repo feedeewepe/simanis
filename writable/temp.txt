@@ -1,0 +1,156 @@
+========================================================================================================
+// Code Untuk Read File Permohonan KP
+// Controller
+$ktm = $dokumen->like('DOCUMENT', 'ktm')->getWhere(['GROUPID' => $groupid])->getRow();
+$ksm = $dokumen->like('DOCUMENT', 'ksm')->getWhere(['GROUPID' => $groupid])->getRow();
+$transkrip = $dokumen->like('DOCUMENT', 'transkrip')->getWhere(['GROUPID' => $groupid])->getRow();
+$cv = $dokumen->like('DOCUMENT', 'cv')->getWhere(['GROUPID' => $groupid])->getRow();
+$survey = $dokumen->like('DOCUMENT', 'survey')->getWhere(['GROUPID' => $groupid])->getRow();
+$proposal = $dokumen->like('DOCUMENT', 'proposal')->getWhere(['GROUPID' => $groupid])->getRow();
+
+$data = [
+  'ktm' => $ktm,
+  'ksm' => $ksm,
+  'transkrip' => $transkrip,
+  'cv' => $cv,
+  'survey' => $survey,
+  'proposal' => $proposal,
+];
+
+// View
+<div class="row">
+  <div class="col-xl-6  col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div id="instansi">
+              <div class="form-group">
+                <label for="programstudi">Program Studi</label>
+                <input type="text" name="programstudi" id="programstudi" class="form-control" placeholder="Program Studi Mahasiswa" readonly disabled value="<?= $namaProdi != null ? $namaProdi : '' ?>">
+              </div>
+              <div class="form-group">
+                <label for="fakultas">Fakultas</label>
+                <input type="text" name="fakultas" id="fakultas" class="form-control" placeholder="Fakultas Mahasiswa" readonly disabled value="<?= $namaFakultas != null ? $namaFakultas : '' ?>">
+              </div>
+              <div class="form-group">
+                <label for="mulaikp">Periode mulai kerja praktek</label>
+                <input type="date" name="mulaikp" class="form-control" readonly autocomplete="off" id="mulaikp" value="<?= $dataMhs[0]->STARTDATE ?>">
+              </div>
+              <div class="form-group">
+                <label for="akhirkp">Periode akhir kerja praktek</label>
+                <input type="date" name="akhirkp" class="form-control" readonly autocomplete="off" id="akhirkp" value="<?= $dataMhs[0]->ENDDATE ?>">
+              </div>
+              <hr>
+              <h5>Dokumen Kerja Praktek Mahasiswa</h5>
+              <p>*Klik button masing-masing dokumen untuk melihat file</p>
+              <div class="form-group">
+                <label>Kartu Studi Mahasiswa</label>
+                <br>
+                <?php
+                if ($ksm != null) {
+                  $url = base_url($ksm->DOCUMENTURL . '/' . $ksm->DOCUMENT);
+                ?>
+                  <input onClick="window.open('<?= $url ?>','_blank');" type="submit" name="ksm" class="form-control data-mhs" id="ksm" value="KSM Mahasiswa">
+                  </input>
+                <?php
+                } else if ($ksm == null) {
+                ?>
+                  <div class="badge badge-opacity-danger">Belum Menggumpulkan Kartu Studi Mahasiswa</div>
+                <?php
+                }
+                ?>
+
+              </div>
+              <div class="form-group">
+                <label for="ktm">Kartu Tanda Mahasiswa</label>
+                <br>
+                <?php
+                if ($ktm != null) {
+                  $url = base_url($ktm->DOCUMENTURL . '/' . $ktm->DOCUMENT);
+                ?>
+                  <input onClick="window.open('<?= $url ?>','_blank');" type="submit" name="ktm" class="form-control data-mhs" id="ktm" value="KTM Mahasiswa">
+                  </input>
+                <?php
+                } else if ($ktm == null) {
+                ?>
+                  <div class="badge badge-opacity-danger">Belum Menggumpulkan Kartu Tanda Mahasiswa</div>
+                <?php
+                }
+                ?>
+              </div>
+              <div class="form-group">
+                <label for="transkrip">Transkrip Nilai</label>
+                <br>
+                <?php
+                if ($transkrip != null) {
+                  $url = base_url($transkrip->DOCUMENTURL . '/' . $transkrip->DOCUMENT);
+                ?>
+                  <input onClick="window.open('<?= $url ?>','_blank');" type="submit" name="transkrip" class="form-control data-mhs" id="Transkrip" value="transkrip Mahasiswa">
+                  </input>
+                <?php
+                } else if ($transkrip == null) {
+                ?>
+                  <div class="badge badge-opacity-danger">Belum Menggumpulkan Transkrip Nilai</div>
+                <?php
+                }
+                ?>
+              </div>
+              <div class="form-group">
+                <label for="cv">CV Mahasiswa</label>
+                <br>
+                <?php
+                if ($cv != null) {
+                  $url = base_url($cv->DOCUMENTURL . '/' . $cv->DOCUMENT);
+                ?>
+                  <input onClick="window.open('<?= $url ?>','_blank');" type="submit" name="cv" class="form-control data-mhs" id="cv" value="CV Mahasiswa">
+                  </input>
+                <?php
+                } else if ($cv == null) {
+                ?>
+                  <div class="badge badge-opacity-danger">Belum Menggumpulkan CV Mahasiswa</div>
+                <?php
+                }
+                ?>
+              </div>
+              <div class="form-group">
+                <label for="survey">Berita Acara Survey Lokasi</label>
+                <br>
+                <?php
+                if ($survey != null) {
+                  $url = base_url($survey->DOCUMENTURL . '/' . $survey->DOCUMENT);
+                ?>
+                  <input onClick="window.open('<?= $url ?>','_blank');" type="submit" name="survey" class="form-control data-mhs" id="survey" value="Survey Mahasiswa">
+                  </input>
+                <?php
+                } else if ($survey == null) {
+                ?>
+                  <div class="badge badge-opacity-danger">Belum Menggumpulkan Survey Kerja Praktek</div>
+                <?php
+                }
+                ?>
+              </div>
+              <div class="form-group">
+                <label for="proposal">Proposal Kerja Praktek</label>
+                <br>
+                <?php
+                if ($proposal != null) {
+                  $url = base_url($proposal->DOCUMENTURL . '/' . $proposal->DOCUMENT);
+                ?>
+                  <input onClick="window.open('<?= $url ?>','_blank');" type="submit" name="proposal" class="form-control data-mhs" id="proposal" value="Proposal Mahasiswa">
+                  </input>
+                <?php
+                } else if ($proposal == null) {
+                ?>
+                  <div class="badge badge-opacity-danger">Belum Menggumpulkan Proposal Kerja Praktek</div>
+                <?php
+                }
+                ?>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+========================================================================================================

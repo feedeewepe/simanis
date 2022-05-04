@@ -3,9 +3,11 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\DokumenModel;
 use App\Models\GroupstatusModel;
 use App\Models\InternshipGroupModel;
 use App\Models\LecturerModel;
+use App\Models\ProdiModel;
 
 class DosbingController extends BaseController
 {
@@ -66,7 +68,7 @@ class DosbingController extends BaseController
 			return redirect()->back()->withInput()->with('errors', $this->internshipGroupModel->errors());
 		}
 	}
-	
+
 	public function bimbingan()
 	{
 		if ($this->pembimbing) {
@@ -75,7 +77,7 @@ class DosbingController extends BaseController
 
 			$idDosen = $this->lectureModel->like("EMPLOYEEID", user()->nim_nip)->select('LECTURERCODE')->find()[0]['LECTURERCODE'];
 			$studentData = $this->internshipGroupModel->join("student", "student.GROUPID=internshipgroup.GROUPID")->join("company", "internshipgroup.COMPANYID=company.COMPANYID")->join("groupstatus", "groupstatus.GROUPID=internshipgroup.GROUPID")->getWhere(['internshipgroup.LECTURERCODE' => $idDosen, 'STATUSID' => 2])->getResult();
-			$studentAccepted = $this->internshipGroupModel->join("student", "student.GROUPID=internshipgroup.GROUPID")->join("company", "internshipgroup.COMPANYID=company.COMPANYID")->join("groupstatus", "groupstatus.GROUPID=internshipgroup.GROUPID")->getWhere(['internshipgroup.LECTURERCODE' => $idDosen, 'STATUSID' => 3])->getResult();
+			$studentAccepted = $this->internshipGroupModel->join("student", "student.GROUPID=internshipgroup.GROUPID")->join("company", "internshipgroup.COMPANYID=company.COMPANYID")->join("groupstatus", "groupstatus.GROUPID=internshipgroup.GROUPID")->where('STATUSID >=', 3)->getWhere(['internshipgroup.LECTURERCODE' => $idDosen])->getResult();
 
 			$data = [
 				'title' => 'Kerja Praktek - Data Mahasiswa Bimbingan',
@@ -89,8 +91,9 @@ class DosbingController extends BaseController
 			return view('dosbing/dosbingDosenView', $data);
 		}
 	}
-	
-	public function approval() {
+
+	public function approval()
+	{
 		if ($this->pembimbing) {
 			$allowedPostFields = [
 				'groupid', 'acc', 'reject'
@@ -100,7 +103,7 @@ class DosbingController extends BaseController
 			$groupid = $post['groupid'];
 			$this->internshipGroupModel = model(InternshipGroupModel::class);
 			$this->groupStatusModel = model(GroupstatusModel::class);
-			
+
 			// Acc atau Reject Student
 			if (isset($post['acc'])) {
 				$acc_data = [
@@ -119,4 +122,47 @@ class DosbingController extends BaseController
 		}
 	}
 
+	public function review_data($groupid)
+	{
+		if ($this->pembimbing) {
+			$intGroup = model(InternshipGroupModel::class);
+			$prodiModel = model(ProdiModel::class);
+			$this->lectureModel = model(LecturerModel::class);
+
+			$idDosen = $this->lectureModel->like("EMPLOYEEID", user()->nim_nip)->select('LECTURERCODE')->find()[0]['LECTURERCODE'];
+			$studentData = $intGroup->join("student", "student.GROUPID=internshipgroup.GROUPID")->join("groupstatus", "groupstatus.GROUPID=internshipgroup.GROUPID")->join("company", "internshipgroup.COMPANYID=company.COMPANYID")->getWhere(['internshipgroup.LECTURERCODE' => $idDosen, 'internshipgroup.GROUPID' => $groupid])->getResult();
+
+			$dataMhs = array_merge(
+				array_filter($studentData, function ($var) use ($intGroup, $groupid) {
+					return ($var->STUDENTID == $intGroup->getWhere(['GROUPID' => $groupid])->getRow()->LEADER_NIM);
+				}),
+				array_filter($studentData, function ($var) use ($intGroup, $groupid) {
+					return ($var->STUDENTID != $intGroup->getWhere(['GROUPID' => $groupid])->getRow()->LEADER_NIM);
+				})
+			);
+
+			$kodeProdi = $dataMhs[0]->STUDYPROGRAMID;
+			$prodi = $prodiModel->join('faculties', 'studyprogram.FACULTYID=faculties.FACULTYID')->getWhere(['studyprogram.STUDYPROGRAMID' => $kodeProdi])->getRow();
+			$lokasi = $dataMhs[0]->COMPANYNAME;
+			$alamatKP = $dataMhs[0]->ADDRESS . ", " . $dataMhs[0]->CITY . ", " . $dataMhs[0]->PROVINCE;
+			$noTelpKP = $dataMhs[0]->PHONE;
+			$emailKP = $dataMhs[0]->EMAIL;
+
+			$data = [
+				'title' => 'Kerja Praktek - Review Data Mahasiswa',
+				'menu' => $this->menu,
+				'usergroup' => $this->userGroup,
+				'role' => $this->role,
+				'roleid' => $this->roleid,
+				'dataMhs' => $dataMhs,
+				'namaProdi' => $prodi->STUDYPROGRAMNAME,
+				'namaFakultas' => $prodi->FACULTYNAME,
+				'lokasiKP' => $lokasi,
+				'alamatKP' => $alamatKP,
+				'noTelpKP' => $noTelpKP,
+				'emailKP' => $emailKP,
+			];
+			return view('dosbing/dosbingReviewView', $data);
+		}
+	}
 }
