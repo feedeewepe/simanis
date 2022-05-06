@@ -55,42 +55,18 @@
         </a>
         <div class="collapse" id="ui-basic-kp">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('review-permohonan-kp'); ?>">
-                <div class="sb-nav-link-icon"><i class="fas fa-database"></i></div>
-                Review Permohonan KP
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('review-survey-kp'); ?>">
-                <div class="sb-nav-link-icon"><i class="fas fa-server"></i></div>
-                Review Survey KP
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('penentuan-lokasi-kp'); ?>">
-                <div class="sb-nav-link-icon"><i class="fas fa-spinner"></i></div>
-                Penentuan Lokasi KP
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('pengumuman-jadwal-kp'); ?>">
-                <div class="sb-nav-link-icon"><i class="fas fa-database"></i></div>
-                Pengumuman Jadwal KP
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('pengumuman-jadwal-upkp'); ?>">
-                <div class="sb-nav-link-icon"><i class="fas fa-server"></i></div>
-                Pengumuman Jadwal UPKP
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('ucapan-terima-kasih'); ?>">
-                <div class="sb-nav-link-icon"><i class="fas fa-spinner"></i></div>
-                Ucapan Terima Kasih
-              </a>
-            </li>
+            <?php $i = 0;
+            if (isset($menu)) :
+              foreach ($menu as $key => $value) :
+                $i++; ?>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?= base_url($value); ?>">
+                    <div class="sb-nav-link-icon"><i class="fas fa-database"></i></div>
+                    <?= $key ?>
+                  </a>
+                </li>
+            <?php endforeach;
+            endif; ?>
           </ul>
         </div>
       </li>

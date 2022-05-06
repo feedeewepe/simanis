@@ -124,6 +124,16 @@ class BaseController extends Controller
                     'Review Laporan KP' => 'kerjapraktek/daftarKP',
                 ];
                 break;
+            case 'Fakultas':
+                $this->menu = [
+                    'Review Permohonan KP' => '',
+                    'Review Survey KP' => '',
+                    'Penentuan Lokasi KP' => '',
+                    'Review Jadwal KP' => 'JadwalKP/review',
+                    'Pengumuman Jadwal UPKP' => '',
+                    'Ucapan Terima Kasih' => ''
+                ];
+                break;
             case 'Administrator':
                 $this->menu = [];
                 break;
