@@ -130,7 +130,7 @@ class BaseController extends Controller
                     'Review Survey KP' => '',
                     'Penentuan Lokasi KP' => '',
                     'Review Jadwal KP' => 'JadwalKP/review',
-                    'Pengumuman Jadwal UPKP' => '',
+                    'Pengumuman Jadwal UPKP' => 'JadwalKP/listUjianKp',
                     'Ucapan Terima Kasih' => ''
                 ];
                 break;

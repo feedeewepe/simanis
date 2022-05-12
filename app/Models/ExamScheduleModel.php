@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class StudentExamModel extends Model
+class ExamScheduleModel extends Model
 {
 	protected $DBGroup              = 'default';
-	protected $table                = 'studentexam';
-	protected $primaryKey           = 'STUDENTEXAMID';
+	protected $table                = 'examschedule';
+	protected $primaryKey           = 'SCHEDULEID';
 	protected $useAutoIncrement     = true;
 	protected $insertID             = 0;
 	protected $returnType           = 'array';
 	protected $useSoftDeletes       = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = ['STUDENTEXAMID', 'GROUPID', 'SCHEDULEID', 'LECTURERCODE', 'TOTALSCORE', 'FINALSCORE'];
+	protected $allowedFields        = ['STUDYPROGRAMID', 'SCHEDULEID', 'DAY', 'DATE', 'STARTTIME', 'ENDTIME'];
 
 	// Dates
 	protected $useTimestamps        = false;

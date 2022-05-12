@@ -99,7 +99,7 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="tab-pane fade " id="tabinstansi" role="tabpanel" aria-labelledby="tabinstansi">
+                                    <div class="tab-pane fade" id="tabinstansi" role="tabpanel" aria-labelledby="tabinstansi">
                                         <form id="permohonankp" action="<?= base_url('dokumen/upload_pakta'); ?>" method="post" enctype="multipart/form-data">
                                             <?= csrf_field(); ?>
                                             <div class="row">

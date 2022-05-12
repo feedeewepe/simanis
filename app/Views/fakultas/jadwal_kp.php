@@ -75,8 +75,6 @@
                                                                     $prodi = "";
                                                                     $fakultas = "";
                                                                     foreach ($dataJadwalGroup as $data) {
-                                                                        // if ($data->GROUPID != $tempGroupId) {
-                                                                        //     $tempGroupId = $data->GROUPID;
                                                                     ?>
                                                                         <tr>
                                                                             <td>
@@ -126,9 +124,7 @@
                                                                             </td>
                                                                         </tr>
                                                                     <?php
-                                                                        // $i++;
                                                                     }
-                                                                    // }
                                                                     ?>
                                                                 </tbody>
                                                             </table>
@@ -136,7 +132,7 @@
                                                             $pager->links('group', 'bootstrap_pagination')
                                                             ?>
                                                             <?php
-                                                            if ($dataJadwal == null) { ?>
+                                                            if ($dataJadwalGroup == null) { ?>
                                                                 <h5 class="undefined">Data Jadwal Kerja Praktek Tidak Ditemukan</h5>
                                                             <?php } ?>
                                                         </div>
